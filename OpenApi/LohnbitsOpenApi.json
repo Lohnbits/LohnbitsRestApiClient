@@ -1,0 +1,3534 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lohnbits Api",
+    "description": "Spezifikation der Lohnbits Api",
+    "contact": {
+      "name": "Lohnbits",
+      "url": "https://lohnbits.de"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://secure4.steuerberatung-straelen.de",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/api/v1/loginOtp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login mit Benutzername, Passwort und TOTP",
+        "description": "Mit dieser Methode meldet sich ein Benutzer mit Benutzernamen, Passwort und TOTP an.\r\nEs wird ein Bearer Token zurückgegeben, der für die weiteren Anfragen verwendet werden kann.\r\n\r\n__Wichtig__: Der Bearer Token ist grundsätzlich 30 min gültig, wenn er nicht verwendet wird. Die maximale Gültigkeit beträgt 24 h.",
+        "operationId": "login-otp",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginOtpRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginOtpRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginOtpRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginOtpRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginOtpResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginOtpResult"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginOtpResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/loginEncrypted": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login mit Benutzername und Passwort",
+        "description": "Mit dieser Methode meldet sich ein Benutzer mit Benutzernamen und Passwort an.\r\nEs wird ein verschlüsselter Bearer Token zurückgegeben, der für die weiteren Anfragen verwendet werden kann.\r\n\r\n__Wichtig__: Der Bearer Token ist grundsätzlich 30 min gültig, wenn er nicht verwendet wird. Die maximale Gültigkeit beträgt 24 h.",
+        "operationId": "login-encrypted",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginEncryptedRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginEncryptedRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginEncryptedRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginEncryptedResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginEncryptedResult"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginEncryptedResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/isAlive": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Zustandsprüfung des Tokens",
+        "description": "Der Bearer Token hat nur eine begrenzte Lebensdauer. Sobald IsAlive aufgerufen wird, wird die Lebensdauer des Bearer Tokens verlängert. Gleichzeitig wird zurückgegeben, ob die Session noch aktiv ist.",
+        "operationId": "is-alive",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/logout": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Abmeldung von der Lohnbits Api",
+        "description": "Mit dieser Methode kann sich der Benutzer ausdrücklich vom Server abmelden. Auch wenn der Token automatisch abläuft, wird die explizite Abmeldung empfohlen sobald der Zugang nicht mehr benötigt wird, um den Token direkt ungeültig zu machen.",
+        "operationId": "logout",
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selectCustomers": {
+      "get": {
+        "tags": [
+          "Stammdaten"
+        ],
+        "summary": "Gibt alle Mandanten zurück, auf die der Benutzer Zugriff hat",
+        "description": "Diese Methode immer am Anfang aufrufen, um zu wissen, wie der Paramater `clientId` zu füllen ist",
+        "operationId": "select-customers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectCustomersResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectCustomersResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectCustomersResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selectDocumentTypes": {
+      "post": {
+        "tags": [
+          "Stammdaten"
+        ],
+        "summary": "Gibt alle Dokumenttypen zurück",
+        "description": "Mit dieser Methode kann der Benutzer eine Liste aller Dokumenttypen ermitteln.\n\nDie Zuordnung zum Mandanten erfolgt entweder über `clientId` oder die `clientNumber` - die anderen Felder werden ignoriert.\n\nDas Feld `specialFunction` ist ein optionales Feld. \n\nDie Kennung muss Zugriff auf die Personalakte haben.",
+        "operationId": "select-document-types",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectDocumentTypesRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectDocumentTypesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectDocumentTypesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectDocumentTypesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectDocumentTypesResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectDocumentTypesResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectDocumentTypesResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selectEmployees": {
+      "post": {
+        "tags": [
+          "Stammdaten"
+        ],
+        "summary": "Gibt alle Mitarbeiter zurück",
+        "description": "Mit dieser Methode kann der Benutzer eine Liste aller Mitarbeiter ermitteln.\n\nDie Selektion erfolgt entweder über das Feld `clientId` oder über das Feld `clientNumber` oder über das Feld `clientGroupId`.\n\nWenn `onlyActiveEmployee` gesetzt ist, werden nur die Mitarbeiter mit dem Status Aktiv zurückgegeben.\n\r__Wichtig__: ein Mitarbeiter ist aktiv, wenn das Onboarding abgeschlossen ist und das Austrittsdatum weniger als zwei Monate vorbei ist.",
+        "operationId": "select-employees",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeesRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectDocumentTypesResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectDocumentTypesResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectDocumentTypesResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/insertDocumentPersonnelFile": {
+      "post": {
+        "tags": [
+          "Dokumente"
+        ],
+        "summary": "Upload eines Dokuments in die Personalakte",
+        "description": "Dieses Dokument wird in der Personalakte abgelegt.\n\nDer Mitarbeiter wird über das Feld MandantMitarbeiterLfdNr oder über die Konbination aus `clientNumber`  / `clientId` / `clientGroupId` und wahlweise `personnelNumber` / `companyPersonnelNumber` / `timeTrackingPpersonnelNumber` ausgewählt.\n\nDer Dokumenttyp ist anzugeben. Gültige Dokumenttypen können mit `selectDocumentTypes` abgefragt werden.\n\nDie Vorbelegung für das Dateiformat ist PDF.\n\n`note` ist KEIN Pflichtfeld.\n\nDer Zeitraum für die Monatsdatenerfassung ist wichtig - es ist der Abrechnungszeitraum, in dem das Dokument berücksichtigt werden soll.",
+        "operationId": "insert-document-personnel-file",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentPersonnelFileRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentPersonnelFileRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentPersonnelFileRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentPersonnelFileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertDocumentPersonnelFileResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertDocumentPersonnelFileResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertDocumentPersonnelFileResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/insertDocumentInbox": {
+      "post": {
+        "tags": [
+          "Dokumente"
+        ],
+        "summary": "Upload eines Dokuments für den Posteingang",
+        "description": "Dieses Dokument wird der Personalabteilung als Aufgabe angezeigt. Dabei ist der richtige Mitarbeiter schon zugeordnet.\n\nDer Mitarbeiter wird über das Feld MandantMitarbeiterLfdNr oder über die Konbination aus `clientNumber`  / `clientId` / `clientGroupId` und wahlweise `personnelNumber` / `companyPersonnelNumber` / `timeTrackingPpersonnelNumber` ausgewählt.\n\nDie Vorbelegung für das Dateiformat ist PDF.\n\n`note` ist __kein__ Pflichtfeld.\n\n`documentDate` ist ebenfalls __kein__ Pflcihtfeld.",
+        "operationId": "insert-document-inbox",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentInboxRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentInboxRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentInboxRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentInboxRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertDocumentInboxResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertDocumentInboxResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertDocumentInboxResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selectReports": {
+      "post": {
+        "tags": [
+          "Auswertungen"
+        ],
+        "summary": "Gibt alle Reports zurück",
+        "description": "Mit dieser Methode kann der Benutzer eine Liste aller Reports ermitteln.\n\nDer Mitarbeiter wird über das Feld `employeeId` oder über die Konbination aus `clientNumber`  / `clientId` / `clientGroupId` und wahlweise `personnelNumber` / `companyPersonnelNumber` / `timeTrackingPpersonnelNumber` ausgewählt.\n\nDie Selektion erfolgt entweder über das Feld `clientId` oder über das Feld `clientNumber` oder über das Feld `clientGroupId`.",
+        "operationId": "select-reports",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectReportsRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectReportsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectReportsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectReportsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectReportsResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectReportsResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectReportsResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/executeReportEmployeeList": {
+      "post": {
+        "tags": [
+          "Auswertungen"
+        ],
+        "summary": "Erstellt eine Mitarbeiterliste",
+        "description": "Mit dieser Methode kann der Benutzer eine Mitarbeiterliste anfordern.\n\nDie Selektion erfolgt entweder über `clientId`, `clientNumber` oder `clientGroupId`.\n\nBei den meisten Listen wird der Datumsbereich (`reportPeriodBegin` und `reportPeriodEnd`) nicht benötigt.",
+        "operationId": "execute-report-employee-list",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteReportEmployeeListRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteReportEmployeeListRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteReportEmployeeListRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteReportEmployeeListRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteReportEmployeeListResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteReportEmployeeListResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteReportEmployeeListResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/openMonthlyData": {
+      "post": {
+        "tags": [
+          "Monatsdaten"
+        ],
+        "summary": "Öffnet die Monatsdatenerfassung für weitere Operationen",
+        "description": "Wenn die Daten innerhalb einer Vorerfassung mittels API verändert werden sollen, muss im ersten Schritt die Vorerfassung geöffent werden.\n\nDie Zuordnung zum Mandanten erfolgt entweder über `clientId` oder die `clientNumber` - die anderen Felder werden ignoriert.\n\nEs wird der Name der Vorerfassung (`preRecordingTitle`) und der Zeitraum (`period`) angegeben.\n\nAls Ergebnis wird eine UUID zurückgegeben, mit der auf die Daten zugegriffen werden kann.",
+        "operationId": "open-monthly-data",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenMonthlyDataRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenMonthlyDataRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenMonthlyDataRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenMonthlyDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenMonthlyDataResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenMonthlyDataResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenMonthlyDataResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/closeMonthlyData": {
+      "put": {
+        "tags": [
+          "Monatsdaten"
+        ],
+        "summary": "Schliesst die Monatsdatenerfassung",
+        "description": "Gibt den für die Monatsdatenerfassung reservierten Speichert wieder frei.",
+        "operationId": "close-monthly-data",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloseMonthlyDataRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloseMonthlyDataRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloseMonthlyDataRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloseMonthlyDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloseMonthlyDataResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloseMonthlyDataResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloseMonthlyDataResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/readMonthlyDataValue": {
+      "post": {
+        "tags": [
+          "Monatsdaten"
+        ],
+        "summary": "Liest eine Variable aus der geöffneten Monatsdatenerfassung für einen Mitarbeiter",
+        "description": "Die Monatsdatenerfassung muss vorher mit openMonthyData geöffnet worden sein.",
+        "operationId": "read-monthly-data-value",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadMonthlyDataValueRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadMonthlyDataValueRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadMonthlyDataValueRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadMonthlyDataValueRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadMonthlyDataValueResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadMonthlyDataValueResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadMonthlyDataValueResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/writeMonthlyDataValue": {
+      "post": {
+        "tags": [
+          "Monatsdaten"
+        ],
+        "summary": "Schreibt eine Variable aus der geöffneten Monatsdatenerfassung für einen Mitarbeiter",
+        "description": "Die Monatsdatenerfassung muss vorher mit openMonthyData geöffnet worden sein.",
+        "operationId": "write-monthly-data-value",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteMonthlyDataValueRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteMonthlyDataValueRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteMonthlyDataValueRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WriteMonthlyDataValueRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteMonthlyDataValueResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteMonthlyDataValueResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteMonthlyDataValueResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/hello": {
+      "get": {
+        "tags": [
+          "Info"
+        ],
+        "summary": "Verbindungsprüfung",
+        "description": "Diese Methode kann genutzt werden, um zu überprüfen, ob der LOHNBITS Server erreichbar ist.",
+        "operationId": "hello",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": { }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CloseMonthlyDataRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string",
+            "description": "Identifikationsnummer der Monatsdatenerfassung. Diese Monatsdatenerfassung soll geschlossen werden.",
+            "format": "uuid"
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          }
+        }
+      },
+      "CloseMonthlyDataResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "DataCustomer": {
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten",
+            "format": "int32"
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Mandantennummer",
+            "format": "int32"
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Bezeichnung des Betriebs"
+          }
+        }
+      },
+      "DataDocumentType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Dokumenttpys",
+            "format": "int32"
+          },
+          "documentTitle": {
+            "type": "string",
+            "description": "Bezeichnung des Dokumenttypes"
+          },
+          "isWriteAccess": {
+            "type": "boolean",
+            "description": "Darf dieser Dokumenttyp erstellt / verändert werden\n\n__Hinweis__: aufgrund der internen Struktur von Lohnbits gibt es Dokumenttypen, die selbst als Administrator nicht verändert werden dürfen"
+          }
+        }
+      },
+      "DataLohnAuswertungFelderMitarbeiterliste": {
+        "type": "object",
+        "properties": {
+          "geburtstagAktjahrDatum": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "geburtstagAktjahrJahre": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lohnMonatsdatenVorerfassungMitarbeiterNeuanlageTemplateBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "lohnMonatsdatenVorerfassungMitarbeiterNeuanlageTemplateLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mitarbeiterjubilaeumAktjahrDatum": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "mitarbeiterjubilaeumAktjahrJahre": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "msAnstellungsartAbweichend": {
+            "$ref": "#/components/schemas/eAnstellungsartMitarbeiter"
+          },
+          "msAusweisArt": {
+            "$ref": "#/components/schemas/eAusweisArt"
+          },
+          "msAusweisNummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "msBeschaeftigungsstatusMitarbeiterAbweichend": {
+            "$ref": "#/components/schemas/eBeschaeftigungsstatusMitarbeiter"
+          },
+          "msIsAenderungenGesellschafterbeschluss": {
+            "type": "boolean"
+          },
+          "msIsKeineFehlzeitenverwaltung": {
+            "type": "boolean"
+          },
+          "msGfosOrganisationseinheitAbweichend": {
+            "type": "string",
+            "nullable": true
+          },
+          "msIsKeineZeiterfassung": {
+            "type": "boolean"
+          },
+          "msMitarbeiterfoto": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "msMitarbeiternummerZeiterfassungAbweichend": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsArbeitnehmertyp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsArbeitnehmertypBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsArbeitszeitkontoStammNummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsBankverbindungBic": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBankverbindungIban": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBankverbindungInhaber": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBeginnStudienbescheinigung": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsBundeslandnummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsBundeslandnummerBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsFinanzamtnummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsIdentifikationsnummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsIsAktiv": {
+            "type": "boolean"
+          },
+          "vmsIsGeringfuegigEntlohntPauschalversteuerung": {
+            "type": "boolean"
+          },
+          "vmsIsHauptbeschaeftigung": {
+            "type": "boolean"
+          },
+          "vmsKinderfreibetrag": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsKonfessionNummerMitarbeiter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsKonfessionNummerMitarbeiterBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsLohnMonatsdatenVorerfassungMitarbeiterStammdatenLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsStandardentlohnungBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsStandardentlohnungNummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsSteuerklasse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsSteuerklasseFaktor": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsUrlaubsanspruchTageVollesJahr": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsWeiteresArbeitsverhaeltnis": {
+            "$ref": "#/components/schemas/eWeiteresArbeitsverhaeltnis"
+          },
+          "vmsWeiteresArbeitsverhaeltnisBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsZahlungsart": {
+            "$ref": "#/components/schemas/eZahlungsart"
+          },
+          "vmsEntgeltgruppe": {
+            "type": "string",
+            "nullable": true
+          },
+          "msAustrittsgrund": {
+            "$ref": "#/components/schemas/eAustrittsgrund"
+          },
+          "msEintrittAbweichend": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msEintrittAbweichendUrlaub": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msEndeProbezeit": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msVollzeitaequivalent": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitDienstag": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitDonnerstag": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitFreitag": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitMittwoch": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitMontag": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitSamstag": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitSonntag": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitVollzeit": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsArbeitszeitWoche": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsAustritt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsBefristung": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsBeginnAusbildung": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsBerufsbezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBetriebsstaetteLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsBetriebsstaetteBetriebsnummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsBetriebsstaetteBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsDatumArbeitserlaubnisBis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsDatumAufenthaltserlaubnisBis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsEintritt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsEndeAusbildung": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsEndeStudienbescheinigung": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsErsteintrittsdatum": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsVoraussichtlichesEndeAusbildung": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsHauptbetriebBetriebsnummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsHauptbetriebLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calcAlter": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcFluktuationEintritt": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcFluktuationAustritt": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcFluktuationBeschaeftigung": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnstellungsartMitarbeiter": {
+            "$ref": "#/components/schemas/eAnstellungsartMitarbeiter"
+          },
+          "calcBeschaeftigungsstatusMitarbeiter": {
+            "$ref": "#/components/schemas/eBeschaeftigungsstatusMitarbeiter"
+          },
+          "calcBetriebszugehoerigkeit": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcEintritt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcFte": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcFteAktiv": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcIsKinderVorhanden": {
+            "type": "boolean"
+          },
+          "calcAnzahlKinder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calcAnzahlKinderUnter12": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calcAnzahlKinderUnter18": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calcAnzahlKinderUnter25": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calcAnzahlAnhangHgbQuartal1": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAnhangHgbQuartal2": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAnhangHgbQuartal3": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAnhangHgbQuartal4": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAnhangHgbQuartal1Alle": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAnhangHgbQuartal2Alle": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAnhangHgbQuartal3Alle": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAnhangHgbQuartal4Alle": {
+            "type": "number",
+            "format": "double"
+          },
+          "msFamilieGeschiedenSeit": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msFamiliePartnerGeburtstag": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msFamiliePartnerGeschlechtLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "msFamiliePartnerGeschlechtLfdNrBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "msFamiliePartnerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "msFamiliePartnerVorname": {
+            "type": "string",
+            "nullable": true
+          },
+          "msFamilieVerheiratetSeit": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msIsAlleinerziehend": {
+            "type": "boolean"
+          },
+          "vmsFamilienstandNummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsFamilienstandNummerBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsKonfessionNummerEhegatte": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsKonfessionNummerEhegatteBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "auswertungsintervallListen": {
+            "$ref": "#/components/schemas/eAuswertungsintervallListen"
+          },
+          "auswertungZeilenart": {
+            "$ref": "#/components/schemas/eAuswertungZeilenart"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "fkInternetMandantMitarbeiterLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fkInternetMandantMitarbeiterStammLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fkMandantLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gruppierung01Hash": {
+            "type": "string",
+            "nullable": true
+          },
+          "gruppierung02Hash": {
+            "type": "string",
+            "nullable": true
+          },
+          "sortierungHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isMitarbeiterBeschaeftigt": {
+            "type": "boolean"
+          },
+          "leeresFeld": {
+            "type": "string",
+            "nullable": true
+          },
+          "isZeileAnzeigen": {
+            "type": "boolean"
+          },
+          "mandantenname": {
+            "type": "string",
+            "nullable": true
+          },
+          "mandantennummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "personioId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stichtagDaten": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dictAnzahl": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "dictProzent": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "dictSumme": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "dictDurchschnitt": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "msGemeindeGewSt": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe01": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe02": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe03": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe04": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe05": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe06": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe07": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe08": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe09": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGruppe10": {
+            "type": "string",
+            "nullable": true
+          },
+          "msMitarbeitergruppeJahresabschlussAnhang": {
+            "$ref": "#/components/schemas/eMitarbeitergruppeHgb"
+          },
+          "vmsAbteilungBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsAbteilungsnummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsFibugruppeBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsGruppennummerFibu": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsKostenstelleBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsKostenstelleNummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsKostentraegerBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsKostentraegerNummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsLeistungsgruppeStatistischeAemter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsMitarbeitergruppeBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsMitarbeitergruppennnummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsOrganisationseinheitNummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsKostenstellenverteilungsbezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsKostenstellenverteilungsdetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "msHeadcount": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount01": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount02": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount03": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount04": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount05": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount06": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount07": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount08": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount09": {
+            "type": "number",
+            "format": "double"
+          },
+          "msHeadcount10": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertBool01": {
+            "type": "boolean"
+          },
+          "msWertBool02": {
+            "type": "boolean"
+          },
+          "msWertBool03": {
+            "type": "boolean"
+          },
+          "msWertBool04": {
+            "type": "boolean"
+          },
+          "msWertBool05": {
+            "type": "boolean"
+          },
+          "msWertBool06": {
+            "type": "boolean"
+          },
+          "msWertBool07": {
+            "type": "boolean"
+          },
+          "msWertBool08": {
+            "type": "boolean"
+          },
+          "msWertBool09": {
+            "type": "boolean"
+          },
+          "msWertBool10": {
+            "type": "boolean"
+          },
+          "msWertDateTime01": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msWertDateTime02": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msWertDateTime03": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msWertDateTime04": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msWertDateTime05": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "msWertDecimal01": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal02": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal03": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal04": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal05": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal06": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal07": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal08": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal09": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal10": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal11": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal12": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal13": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal14": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal15": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal16": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal17": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal18": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal19": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertDecimal20": {
+            "type": "number",
+            "format": "double"
+          },
+          "msWertString01": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString02": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString03": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString04": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString05": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString06": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString07": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString08": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString09": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString10": {
+            "type": "string",
+            "nullable": true
+          },
+          "msDurchwahlBetrieb": {
+            "type": "string",
+            "nullable": true
+          },
+          "msEmailAdresse": {
+            "type": "string",
+            "nullable": true
+          },
+          "msEmailAdressePrivat": {
+            "type": "string",
+            "nullable": true
+          },
+          "msHandynummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "msHandynummerPrivat": {
+            "type": "string",
+            "nullable": true
+          },
+          "msNotfallkontakt1Bemerkung": {
+            "type": "string",
+            "nullable": true
+          },
+          "msNotfallkontakt1Erreichbarkeit1": {
+            "type": "string",
+            "nullable": true
+          },
+          "msNotfallkontakt1Erreichbarkeit2": {
+            "type": "string",
+            "nullable": true
+          },
+          "msNotfallkontakt1Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "msNotfallkontakt2Bemerkung": {
+            "type": "string",
+            "nullable": true
+          },
+          "msNotfallkontakt2Erreichbarkeit1": {
+            "type": "string",
+            "nullable": true
+          },
+          "msNotfallkontakt2Erreichbarkeit2": {
+            "type": "string",
+            "nullable": true
+          },
+          "msNotfallkontakt2Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "msTelefonPrivat": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWhatsappNummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "msGfosPersonalnummerKopiervorlage": {
+            "type": "string",
+            "nullable": true
+          },
+          "msBetriebsnummerKrankenkasseA1Abweichend": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "msBetriebsnummerKrankenkasseA1AbweichendBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "msIsKeinKrankengeldInDenErstenVierWochen": {
+            "type": "boolean"
+          },
+          "msIsKeineAbrechnungsdatenAusZeiterfassungUebernehmen": {
+            "type": "boolean"
+          },
+          "msIsKeineSynchronisationFehlzeitenMitZeiterfassung": {
+            "type": "boolean"
+          },
+          "vmsArbeitnehmerueberlassung": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsArbeitnehmerueberlassungBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsAusgeuebteTaetigkeitLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsAusgeuebteTaetigkeitLfdNrBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBeitragsgruppenschluesselAv": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBeitragsgruppenschluesselKv": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBeitragsgruppenschluesselPv": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBeitragsgruppenschluesselRv": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBerufsgenossenschaftGefahrenTarifstelle1": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBerufsgenossenschaftGefahrenTarifstelle1Prozent": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsBerufsgenossenschaftGefahrenTarifstelle2": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBerufsgenossenschaftGefahrenTarifstelle2Prozent": {
+            "type": "number",
+            "format": "double"
+          },
+          "vmsBerufsgenossenschaftStrukturschluessel1": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBerufsgenossenschaftStrukturschluessel2": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsDatumA1BescheinigungBis": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsHoechsteBerufsausbildung": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsHoechsteBerufsausbildungBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsIsKeinZusatzbeitragPflegeversicherung": {
+            "type": "boolean"
+          },
+          "vmsIsPrivatversichert": {
+            "type": "boolean"
+          },
+          "vmsIsSchwerbehindert": {
+            "type": "boolean"
+          },
+          "vmsIsUnstaendigeBeschaeftigung": {
+            "type": "boolean"
+          },
+          "vmsIsZusatzbeitragPflegeversicherung": {
+            "type": "boolean"
+          },
+          "vmsKrankenkasseBeitragskontonummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsKrankenkasseBetriebsnummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsKrankenkasseBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsKrankenkasseGeschaeftsstelle": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsKrankenkasseHauptversicherungBetriebsnummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsKrankenkasseHauptversicherungBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsPersonengruppenschluessel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsPersonengruppenschluesselBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsSchulabschluss": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsSchulabschlussBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsSozialversicherungsnummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsTaetigkeitsschluesselNummerBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsVersorgungswerkMitgliedsnummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsVersorgungswerkNummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsVertragsform": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsVertragsformBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcPlzOrt": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcStrasseHausnummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "msMitarbeiterKuerzel": {
+            "type": "string",
+            "nullable": true
+          },
+          "msSprache": {
+            "$ref": "#/components/schemas/eSprache"
+          },
+          "msSpracheBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "msStatusDerAushilfe": {
+            "$ref": "#/components/schemas/eStatusDerAushilfe"
+          },
+          "msStatusDerAushilfeBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "msStatusMitarbeiter": {
+            "$ref": "#/components/schemas/eStatusMitarbeiter"
+          },
+          "msStatusMitarbeiterBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsAkademischerGrad": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsAnschriftenzusatz": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsBetrieblichePersonalnummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsFamilienname": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsGeburtsdatum": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsGeburtslandIso3166Kz3stellig": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsGeburtslandLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsGeburtslandLfdNrBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsGeburtsname": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsGeburtsort": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsGeschlecht": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsGeschlechtBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsHausnummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsMitarbeiternummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsNamenszusatzBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsNamenszusatzGeburtsnameBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsNamenszusatzNummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsNationNummerStaatsangehoerigkeitBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsNationNummerStaatsangehoerigkeitLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsNationNummerStaatsangehoerigkeitNummer": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsNationNummerWohnort": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsNationNummerWohnortBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsNationWohnortIso3166Kz3stellig": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsOrt": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsPostleitzahl": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsStrassePostfach": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsTodestag": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsVorname": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsVorsatzwortBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsVorsatzwortGeburtsnameBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
+          "vmsVorsatzwortNummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calcWertDateTime01": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime02": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime03": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime04": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime05": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime06": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime07": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime08": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime09": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertDateTime10": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "calcWertString01": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString02": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString03": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString04": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString05": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString06": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString07": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString08": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString09": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWertString10": {
+            "type": "string",
+            "nullable": true
+          },
+          "calcWerteDecimal01": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal02": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal03": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal04": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal05": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal06": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal07": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal08": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal09": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal10": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal11": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal12": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal13": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal14": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal15": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal16": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal17": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal18": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal19": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal20": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal21": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal22": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal23": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal24": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal25": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal26": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal27": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal28": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal29": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal30": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal31": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal32": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal33": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal34": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal35": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal36": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal37": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal38": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal39": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal40": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal41": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal42": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal43": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal44": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal45": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal46": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal47": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal48": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal49": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcWerteDecimal50": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "DataReport": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Auswertung",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "description": "Bezeichnung der Auswertung"
+          },
+          "reportType": {
+            "type": "string",
+            "description": "Art der Auswertung"
+          },
+          "code": {
+            "type": "string",
+            "description": "Eindeutiger Code, mit welchem die Liste eindeutig identifiziert werden kann."
+          }
+        }
+      },
+      "eAnstellungsartMitarbeiter": {
+        "type": "integer"
+      },
+      "eAustrittsgrund": {
+        "type": "integer"
+      },
+      "eAusweisArt": {
+        "type": "integer"
+      },
+      "eAuswertungsintervallListen": {
+        "type": "integer"
+      },
+      "eAuswertungZeilenart": {
+        "type": "integer"
+      },
+      "eBeschaeftigungsstatusMitarbeiter": {
+        "type": "integer"
+      },
+      "eErrorCode": {
+        "enum": [
+          "None",
+          "UnknownError",
+          "InvalidLogin",
+          "InternalError",
+          "InvalidBeaer",
+          "AccessDenied",
+          "InvalidParameter",
+          "InvalidCustomer",
+          "InvalidContent",
+          "InvalidEmployee",
+          "InvalidDocumentType",
+          "DocumentUploadError",
+          "InvalidFirm",
+          "InvalidAction",
+          "InvalidEmployeeNumber",
+          "DocumentStorageExceeded",
+          "UnableToOpenMonthlyData",
+          "InvalidMonthlyDataId",
+          "InvalidVariable",
+          "InvalidCombinationVariableEmployee",
+          "InvalidPeriodForMonthlyData",
+          "UnableToWriteValue",
+          "ReportNotFound"
+        ],
+        "description": "Fehlercode des aufgetretenen Fehlers"
+      },
+      "eMitarbeitergruppeHgb": {
+        "type": "integer"
+      },
+      "eSprache": {
+        "type": "integer"
+      },
+      "eStatusDerAushilfe": {
+        "type": "integer"
+      },
+      "eStatusMitarbeiter": {
+        "type": "integer"
+      },
+      "eWeiteresArbeitsverhaeltnis": {
+        "type": "integer"
+      },
+      "ExecuteReportEmployeeListRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "code": {
+            "type": "string",
+            "description": "Eindeutiger Code der Auswertung, welche ausgeführt werden soll. Die Identifizierung erfolgt nicht über eine Identifikationsnummer, sondern den Code"
+          },
+          "reportPeriodBegin": {
+            "type": "string",
+            "description": "Beginn des Auswertungszeitraums",
+            "format": "date-time"
+          },
+          "reportPeriodEnd": {
+            "type": "string",
+            "description": "Ende des Auswertungszeitraums",
+            "format": "date-time"
+          }
+        }
+      },
+      "ExecuteReportEmployeeListResult": {
+        "type": "object",
+        "properties": {
+          "zeilen": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataLohnAuswertungFelderMitarbeiterliste"
+            }
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "eZahlungsart": {
+        "type": "integer"
+      },
+      "InsertDocumentInboxRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.Soweit die Werte eindeutig sind, ist es auch möglich, `clientGroupId` und eine eindeutige Mitarbeiternummer (`personnelNumber`, `companyPersonnelNumber` oder `timeTrackingPersonnelNumber`) anzugeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "note": {
+            "type": "string",
+            "description": "Bemerkung"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Optionaler Dateiname des Dokuments",
+            "nullable": true
+          },
+          "fileFormat": {
+            "type": "string",
+            "description": "Format der beigefügten Datei. Folgende Formate sind zulässig:\n* PDF\n* TIFF\n* JPG\n* PNG\n\nDas präferierte Dateiformat ist PDF.",
+            "nullable": true
+          },
+          "documentDate": {
+            "type": "string",
+            "description": "Belegdatum des Dokuments",
+            "format": "date-time",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "description": "Inhalt des Dokuments als Byte-Array",
+            "format": "byte",
+            "nullable": true
+          }
+        }
+      },
+      "InsertDocumentInboxResult": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "Berechneter Hash des hochgeladenen Dokuments",
+            "format": "byte",
+            "nullable": true
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "InsertDocumentPersonnelFileRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.Soweit die Werte eindeutig sind, ist es auch möglich, `clientGroupId` und eine eindeutige Mitarbeiternummer (`personnelNumber`, `companyPersonnelNumber` oder `timeTrackingPersonnelNumber`) anzugeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "note": {
+            "type": "string",
+            "description": "Bemerkung"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Optionaler Dateiname des Dokuments",
+            "nullable": true
+          },
+          "fileFormat": {
+            "type": "string",
+            "description": "Format der beigefügten Datei. Folgende Formate sind zulässig:\n* PDF\n* TIFF\n* JPG\n* PNG\n\nDas präferierte Dateiformat ist PDF.",
+            "nullable": true
+          },
+          "documentDate": {
+            "type": "string",
+            "description": "Belegdatum des Dokuments",
+            "format": "date-time"
+          },
+          "monthlyRecordingPeriod": {
+            "type": "string",
+            "description": "Abrechnungszeitraum, für welchen das Dokument berücksichtigt werden soll.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "periodAssignment": {
+            "type": "string",
+            "description": "Diesem Zeitraum soll das Dokument zugordnet werden.\n\n__Beispiel__: Ein Arbeitsvertrag, der ab dem 1. Januar 2024 gültig ist, wird am 15. Dezember 2023 unterschrieben. Dann ist DatumDokument der 15. Dezember 2023 und ZeitraumZuordnung der 1. Januar 2024.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "documentTypeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Dokumenttyps. Gültige Dokumenttypen können mit `selectDocumentTypes` abgefragt werden",
+            "format": "int32"
+          },
+          "isOldVersion": {
+            "type": "boolean",
+            "description": "Beschreibt ob es sich um eine alte Version des Dokuments handelt, welches nur zu Archivierungszwecken hochgeladen wird."
+          },
+          "isOnlyForPersonnelFile": {
+            "type": "boolean",
+            "description": "Beschreibt ob das Dokument nur für die Personalakte bestimmt ist und nicht für die Monatsdaten erfasst werden soll."
+          },
+          "isHighPriority": {
+            "type": "boolean",
+            "description": "Beschreibt ob das Dokument außerhalb der normalen Lohnabrechnung schnellstmöglich bearbeitet werden soll."
+          },
+          "content": {
+            "type": "string",
+            "description": "Inhalt des Dokuments als Byte-Array",
+            "format": "byte",
+            "nullable": true
+          }
+        }
+      },
+      "InsertDocumentPersonnelFileResult": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "Berechneter Hash des hochgeladenen Dokuments",
+            "format": "byte",
+            "nullable": true
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "LoginEncryptedRequest": {
+        "required": [
+          "username",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Benutzername mit dem die Anmeldung durchgeführt werden soll."
+          },
+          "password": {
+            "type": "string",
+            "description": "Passwort für den angegebenen Benutzernamen."
+          }
+        }
+      },
+      "LoginEncryptedResult": {
+        "type": "object",
+        "properties": {
+          "encryptedToken": {
+            "type": "string",
+            "description": "Verschlüsselter Zugangstoken. Der Zugangstokens hat nach der Entschlüsselung das Format eines JWT. Für den Zugriff auf die weiteren Endpunkte zu erhalten, muss der Zugangstoken in den Authorization Request Header nach dem Bearer Schema verwendet werden [[RFC6750]](https://datatracker.ietf.org/doc/html/rfc6750#section-2.1)."
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "LoginOtpRequest": {
+        "required": [
+          "username",
+          "password",
+          "otp"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Benutzername mit dem die Anmeldung durchgeführt werden soll."
+          },
+          "password": {
+            "type": "string",
+            "description": "Passwort für den angegebenen Benutzernamen."
+          },
+          "otp": {
+            "type": "string",
+            "description": "Einmalkennwort für die 2-Faktor-Authentifizierung."
+          }
+        }
+      },
+      "LoginOtpResult": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Zugangstoken im JWT-Format. Für den Zugriff auf die weiteren Endpunkte zu erhalten, muss der Zugangstoken in den Authorization Request Header nach dem Bearer Schema verwendet werden [[RFC6750]](https://datatracker.ietf.org/doc/html/rfc6750#section-2.1)."
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "OpenMonthlyDataRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Darf zur Zeit nicht verwendet werden",
+            "format": "int32",
+            "nullable": true
+          },
+          "preRecordingTitle": {
+            "type": "string",
+            "description": "Bezeichnungn der Vorerfassung"
+          },
+          "period": {
+            "type": "string",
+            "description": "Beschreibt den Zeitraum, für welchen die Monatsdatenerfassung initialisiert werden soll",
+            "format": "date-time"
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          }
+        }
+      },
+      "OpenMonthlyDataResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifikationsnummer der Monatsdatenerfassung. Diese Id wird benötigt um auf die neu erstellte Monatsdatenerfassung zuzugreifen.",
+            "format": "uuid"
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ReadMonthlyDataValueRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string",
+            "description": "Identifikationsnummer der Monatsdatenerfassen, welche verwendet werden soll.",
+            "format": "uuid"
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters. Die Nummer wird von Lohnbits vergeben.",
+            "format": "int32",
+            "nullable": true
+          },
+          "variableName": {
+            "type": "string",
+            "description": "Name der Variable, welche gelesen werden soll."
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          }
+        }
+      },
+      "ReadMonthlyDataValueResult": {
+        "type": "object",
+        "properties": {
+          "valueDecimal": {
+            "type": "number",
+            "description": "Dieser Dezimalwert wurde gespeichert. Nur dann auswerten, wenn die erwartet Variable vom Typ Decimal ist.",
+            "format": "double"
+          },
+          "valueInteger": {
+            "type": "integer",
+            "description": "Dieser Integer wurde gespeichert. Nur dann auswerten, wenn die erwartet Variable vom Typ Integer ist.",
+            "format": "int32"
+          },
+          "valueString": {
+            "type": "string",
+            "description": "Dieser String wurde gespeichert. Nur dann auswerten, wenn die erwartet Variable vom Typ String ist.",
+            "nullable": true
+          },
+          "valueBoolean": {
+            "type": "boolean",
+            "description": "Dieser Boolean wurde gespeichert. Nur dann auswerten, wenn die erwartet Variable vom Typ Boolean ist."
+          },
+          "note": {
+            "type": "string",
+            "description": "Optionale Bemerkung",
+            "nullable": true
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "SelectCustomersResult": {
+        "type": "object",
+        "properties": {
+          "customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataCustomer"
+            },
+            "description": "List der Mandanten, auf welche ein Zugriff besteht."
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "SelectDocumentTypesRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Bei Dokumenttypen ist die Zuordnung über eine Mandantengruppe nicht möglich.",
+            "format": "int32",
+            "nullable": true
+          },
+          "specialFunction": {
+            "type": "string",
+            "description": "Beschreibt den Sondersachverhalt, um eine gezielte Dokumentenart zu suchen",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          }
+        }
+      },
+      "SelectDocumentTypesResult": {
+        "type": "object",
+        "properties": {
+          "documentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataDocumentType"
+            },
+            "description": "Liste der gültigen Dokumenttypen"
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "SelectEmployeesRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Alle Mitarbeiter der gesetzten Mandantengruppe werden zurückgegeben.",
+            "format": "int32",
+            "nullable": true
+          },
+          "onlyActiveEmployees": {
+            "type": "boolean",
+            "description": "Beschreibt, ob nur aktive Mitarbeiter zurückgegeben werden sollen.",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          }
+        }
+      },
+      "SelectReportsRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Alle Auswertungen zu dieser Mandantengruppe werden zurückgegeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          }
+        }
+      },
+      "SelectReportsResult": {
+        "type": "object",
+        "properties": {
+          "reports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataReport"
+            },
+            "description": "Liste der Auswertungen."
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "WriteMonthlyDataValueRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string",
+            "description": "Identifikationsnummer der Monatsdatenerfassen, welche verwendet werden soll.",
+            "format": "uuid"
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters. Die Nummer wird von Lohnbits vergeben.",
+            "format": "int32",
+            "nullable": true
+          },
+          "variableName": {
+            "type": "string",
+            "description": "Name der Variable, welche gelesen werden soll."
+          },
+          "valueDecimal": {
+            "type": "number",
+            "description": "Verwende diese Eigenschaft wenn ein Dezimalwert gerschrieben werden soll",
+            "format": "double",
+            "nullable": true
+          },
+          "valueInt": {
+            "type": "integer",
+            "description": "Verwende diese Eigenschaft wenn ein Integer gerschrieben werden soll",
+            "format": "int32",
+            "nullable": true
+          },
+          "valueBool": {
+            "type": "boolean",
+            "description": "Verwende diese Eigenschaft wenn ein Boolean gerschrieben werden soll",
+            "nullable": true
+          },
+          "valueString": {
+            "type": "string",
+            "description": "Verwende diese Eigenschaft wenn ein String gerschrieben werden soll",
+            "nullable": true
+          },
+          "bemerkung": {
+            "type": "string",
+            "description": "Optionale Bemerkung",
+            "nullable": true
+          }
+        }
+      },
+      "WriteMonthlyDataValueResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Stammdaten"
+    },
+    {
+      "name": "Dokumente"
+    },
+    {
+      "name": "Auswertungen"
+    },
+    {
+      "name": "Monatsdaten"
+    },
+    {
+      "name": "Info"
+    }
+  ]
+}
