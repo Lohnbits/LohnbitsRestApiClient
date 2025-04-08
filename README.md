@@ -20,7 +20,7 @@ Klone das Repository
 git clone https://github.com/Lohnbits/LohnbitsRestApiClient.git
 ```
 
-Ersetze die Platzhalter in CredentialProvider.cs mit deinen Zugangsdaten
+Ersetze die Platzhalter in CredentialsProvider.cs mit deinen Zugangsdaten
 ```C#
 private const string Username = "<Lohnbits-Benutzername hier eintragen>";
 private const string Password = "<Lohnbits-Password hier eintragen>";

@@ -8,8 +8,8 @@ public static class CredentialsProvider
 
     public static Credentials GetCredentialsForTotpLogin()
     {
-        var user = Environment.GetEnvironmentVariable("lohnbitsDemoUser", EnvironmentVariableTarget.User);
-        var password = Environment.GetEnvironmentVariable("lohnbitsDemoPassword", EnvironmentVariableTarget.User);
+        var user = Environment.GetEnvironmentVariable("lohnbitsDemoUser", EnvironmentVariableTarget.Process);
+        var password = Environment.GetEnvironmentVariable("lohnbitsDemoPassword", EnvironmentVariableTarget.Process);
 
         if (string.IsNullOrEmpty(user))
         {
@@ -18,7 +18,7 @@ public static class CredentialsProvider
 
         if (string.IsNullOrEmpty(password))
         {
-            password = "<Lohnbits-Passwort>";
+            password = Password;
         }
 
         return new Credentials
