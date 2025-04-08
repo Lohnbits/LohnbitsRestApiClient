@@ -59,7 +59,7 @@ var token = loginResult?.Token ?? "";
 
 ### Benutzername, Passwort, AES-Key
 Dieses Verfahren nutzt neben dem Benutzernamen und Passwort einen AES-Key. Dieser Key wird benötigt um den verschlüsselten JWT, welcher nach einer erfolgreichen
-Authentifizierung zurückgeliefert wird, zu entschlüsseln. Daher ist es wichtig, diesen Key nur Systemen zu speichern, welche diesen sicher aufbewahremn können.
+Authentifizierung zurückgeliefert wird, zu entschlüsseln. Daher ist es wichtig, diesen Key nur in Systemen zu speichern, welche diesen sicher aufbewahren können.
 
 ```C#
 var aesKeyBytes = Convert.FromBase64String(credentials.AesKey!);
@@ -74,8 +74,8 @@ var token = ModelHelper.DecryptStringAES(encryptedBearerToken, aesKeyBytes);
 [ModelHelper.cs](https://github.com/Lohnbits/LohnbitsRestApiClient/blob/master/Model/ModelHelper.cs) demonstriert mit welchem Verfahren der JWT mithilfe des AES-Keys entschlüsselt werden kann.
 
 ## Einmalpasswort generieren
-Bei den Einmalpasswörtern handelt es sich um Time-Base One-Time Password oder kurz TOTP [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238). 
-Sollte der Bedarf bestehen, diese Passwörter eigentständig zu generieren, muss der Alorithmus wie er IETF-Dokument beschrieben ist implementiert werden.
+Bei dem Einmalpasswort handelt es sich um ein Time-Base One-Time Password oder kurz TOTP [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238). 
+Sollte der Bedarf bestehen, dieses Passwort eigentständig zu generieren, muss der Alorithmus wie er im IETF-Dokument beschrieben ist implementiert werden.
 Wir empfehlen die Verwendung von etablierten und gepflegten Bibliotheken für diesen Vorgang. Die folgende Liste enthält einige bekannte Bibliotheken für 
 unterschiedliche Umgebungen.
 * .NET - [Otp.NET](https://github.com/kspearrin/Otp.NET)
