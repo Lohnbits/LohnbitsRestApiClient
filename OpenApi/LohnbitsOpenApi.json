@@ -649,6 +649,73 @@
         }
       }
     },
+    "/api/v1/executeReportWageTrendList": {
+      "post": {
+        "tags": [
+          "Auswertungen"
+        ],
+        "summary": "Erstellt eine Liste zur Lohnentwicklung.",
+        "description": "Mit dieser Methode kann der Benutzer eine Liste zur Lohnentwicklung anfordern.\n\nDie Selektion erfolgt entweder über `clientId`, `clientNumber` oder `clientGroupId`.\n\n",
+        "operationId": "execute-report-wage-trend",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteReportWageTrendRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteReportWageTrendRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteReportWageTrendRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExecuteReportWageTrendRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteReportEmployeeListResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteReportEmployeeListResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteReportEmployeeListResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/openMonthlyData": {
       "post": {
         "tags": [
@@ -917,6 +984,73 @@
         }
       }
     },
+    "/api/v1/selectEmployeeAbsence": {
+      "post": {
+        "tags": [
+          "Abwesenheiten"
+        ],
+        "summary": "Liest die Abwesenheiten für einen oder alle Mitarbeiter des Mandanten.",
+        "description": "Wenn kein Mitarbeiter angegeben ist, werden die Abwesenheiten aller Mitarbeiter zurückgegeben.",
+        "operationId": "select-absences",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteMonthlyDataValueResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteMonthlyDataValueResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteMonthlyDataValueResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/hello": {
       "get": {
         "tags": [
@@ -948,7 +1082,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "id": {
@@ -1397,6 +1531,30 @@
             "format": "double"
           },
           "calcAnzahlAnhangHgbQuartal4Alle": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAlterIntervallJahr1": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAlterIntervallJahr2": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAlterIntervallJahr3": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAlterIntervallJahr4": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAlterIntervallJahr5": {
+            "type": "number",
+            "format": "double"
+          },
+          "calcAnzahlAlterIntervallJahr6": {
             "type": "number",
             "format": "double"
           },
@@ -1863,6 +2021,116 @@
           "msWertString10": {
             "type": "string",
             "nullable": true
+          },
+          "msWertString11": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString12": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString13": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString14": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString15": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString16": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString17": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString18": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString19": {
+            "type": "string",
+            "nullable": true
+          },
+          "msWertString20": {
+            "type": "string",
+            "nullable": true
+          },
+          "msDokumentWertString01": {
+            "type": "string",
+            "nullable": true
+          },
+          "msDokumentWertString02": {
+            "type": "string",
+            "nullable": true
+          },
+          "msDokumentWertString03": {
+            "type": "string",
+            "nullable": true
+          },
+          "msDokumentWertString04": {
+            "type": "string",
+            "nullable": true
+          },
+          "msDokumentWertString05": {
+            "type": "string",
+            "nullable": true
+          },
+          "msDokumentWertDecimal01": {
+            "type": "number",
+            "format": "double"
+          },
+          "msDokumentWertDecimal02": {
+            "type": "number",
+            "format": "double"
+          },
+          "msDokumentWertDecimal03": {
+            "type": "number",
+            "format": "double"
+          },
+          "msDokumentWertDecimal04": {
+            "type": "number",
+            "format": "double"
+          },
+          "msDokumentWertDecimal05": {
+            "type": "number",
+            "format": "double"
+          },
+          "msDokumentWertBool01": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool02": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool03": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool04": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool05": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool06": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool07": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool08": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool09": {
+            "type": "boolean"
+          },
+          "msDokumentWertBool10": {
+            "type": "boolean"
           },
           "msDurchwahlBetrieb": {
             "type": "string",
@@ -2619,7 +2887,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "clientNumber": {
@@ -2689,6 +2957,52 @@
           }
         }
       },
+      "ExecuteReportWageTrendRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "code": {
+            "type": "string",
+            "description": "Eindeutiger Code der Auswertung, welche ausgeführt werden soll. Die Identifizierung erfolgt nicht über eine Identifikationsnummer, sondern den Code"
+          },
+          "reportPeriodBegin": {
+            "type": "string",
+            "description": "Beginn des Auswertungszeitraums",
+            "format": "date-time"
+          },
+          "reportPeriodEnd": {
+            "type": "string",
+            "description": "Ende des Auswertungszeitraums",
+            "format": "date-time"
+          }
+        }
+      },
       "eZahlungsart": {
         "type": "integer"
       },
@@ -2697,7 +3011,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "clientNumber": {
@@ -2806,7 +3120,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "clientNumber": {
@@ -3036,7 +3350,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "clientNumber": {
@@ -3059,7 +3373,7 @@
           },
           "preRecordingTitle": {
             "type": "string",
-            "description": "Bezeichnungn der Vorerfassung"
+            "description": "Bezeichnungen der Vorerfassung"
           },
           "period": {
             "type": "string",
@@ -3131,7 +3445,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "id": {
@@ -3253,7 +3567,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "clientNumber": {
@@ -3315,12 +3629,78 @@
           }
         }
       },
+      "SelectEmployeeAbsenceRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.Soweit die Werte eindeutig sind, ist es auch möglich, `clientGroupId` und eine eindeutige Mitarbeiternummer (`personnelNumber`, `companyPersonnelNumber` oder `timeTrackingPersonnelNumber`) anzugeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "requestPeriodBegin": {
+            "type": "string",
+            "description": "Beginn des abgefragten Zeitraums",
+            "format": "date-time",
+            "nullable": true
+          },
+          "requestPeriodEnd": {
+            "type": "string",
+            "description": "Ende des abgefragten Zeitraums",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
       "SelectEmployeesRequest": {
         "type": "object",
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "clientNumber": {
@@ -3357,7 +3737,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "clientNumber": {
@@ -3419,7 +3799,7 @@
         "properties": {
           "lohnbitsSyncApiLogLfdNr": {
             "type": "integer",
-            "description": "Identifikiationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
             "format": "int32"
           },
           "id": {
@@ -3526,6 +3906,9 @@
     },
     {
       "name": "Monatsdaten"
+    },
+    {
+      "name": "Abwesenheiten"
     },
     {
       "name": "Info"
