@@ -9,6 +9,7 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
     {
         public DataEmployeeAbsence()
         {
+            Id = 0;
             ClientId = 0;
             EmployeeId = 0;
             ClientNumber = 0;
@@ -26,6 +27,11 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
             HoursAbsent = 0;
             DaysAbsent = 0;
         }
+
+        [Description("Identifikationsnummer der Abwesenheit für diesen Tag.\n" +
+            "_Achtung:_\n" +
+            "Sollten am selben Tag für den selben Mitarbeiter unterschiedliche Abwesenheiten für den Vor- und Nachmittag existieren, haben beide Datensätze die gleiche `Id`.")]
+        public int Id { get; set; }
 
         [Description("Identifikationsnummer des Mandanten")]
         public int ClientId { get; set; }

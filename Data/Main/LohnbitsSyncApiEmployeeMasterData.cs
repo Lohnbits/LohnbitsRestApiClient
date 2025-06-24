@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace gv3kServerFibuLohn.Api.Data.Main
@@ -7,27 +8,7 @@ namespace gv3kServerFibuLohn.Api.Data.Main
     {
         public LohnbitsSyncApiEmployeeMasterData()
         {
-            LohnbitsSyncApiMitarbeiterStammLfdNr = 0;
-            ClientId = 0;
-            EmployeeId = 0;
-            PersonnelNumber = 0;
-            Surname = string.Empty;
-            FirstName = string.Empty;
-            Street = string.Empty;
-            HouseNumber = string.Empty;
-            Postcode = string.Empty;
-            City = string.Empty;
-            Country = string.Empty;
-            MartialStatus = string.Empty;
-            Citizenship = string.Empty;
-            EmploymentStatus = string.Empty;
-            JobTitle = string.Empty;
-            Nationality = string.Empty;
-            EmployeeGroup = string.Empty;
-            Department = string.Empty;
-            CostCentre = string.Empty;
-            Iban = string.Empty;
-            Gender = string.Empty;
+            Clear();
         }
 
         public void Clear()

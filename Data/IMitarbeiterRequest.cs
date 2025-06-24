@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 
+#nullable enable
+
 namespace gv3kServerFibuLohn.Api.Data
 {
     public interface IMitarbeiterRequest
