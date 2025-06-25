@@ -1308,9 +1308,9 @@
             "description": "Ausgefallene Arbeitszeit des Mitarbeiters in Arbeitstagen",
             "format": "double"
           },
-          "updatedAt": {
+          "modificationDate": {
             "type": "string",
-            "description": "Datum und Zeit der letzten Änderung des Datensatzes in Lohnbits",
+            "description": "Datum der letzten Änderung des Datensatzes in Lohnbits",
             "format": "date-time"
           }
         }
