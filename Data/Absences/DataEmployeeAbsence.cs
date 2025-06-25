@@ -26,6 +26,7 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
             DailyTargetWorkingHours = 0;
             HoursAbsent = 0;
             DaysAbsent = 0;
+            UpdatedAt = DateTime.MinValue;
         }
 
         [Description("Identifikationsnummer der Abwesenheit für diesen Tag.\n" +
@@ -142,5 +143,12 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
         /// </summary>
         [Description("Ausgefallene Arbeitszeit des Mitarbeiters in Arbeitstagen")]
         public decimal DaysAbsent { set; get; }
+
+        /// <summary>
+        /// Datum und Zeit der letzten Änderung des Datensatzes; wird auch gesetzt, wenn sich in der Vergangenheit Werte geändert
+        /// haben, die Auswirkungen auf Summen haben (z.B. Krankheitstage)
+        /// </summary>
+        [Description("Datum und Zeit der letzten Änderung des Datensatzes in Lohnbits")]
+        public DateTime UpdatedAt { set; get; }
     }
 }

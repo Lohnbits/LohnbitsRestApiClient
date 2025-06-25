@@ -1307,6 +1307,11 @@
             "type": "number",
             "description": "Ausgefallene Arbeitszeit des Mitarbeiters in Arbeitstagen",
             "format": "double"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Datum und Zeit der letzten Änderung des Datensatzes in Lohnbits",
+            "format": "date-time"
           }
         }
       },
