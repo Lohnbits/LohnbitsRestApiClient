@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 .spectral.yml
 c.bat
+
+.idea
+.DS_Store
