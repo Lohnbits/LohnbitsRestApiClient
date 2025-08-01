@@ -19,7 +19,8 @@ public class SelectAbsencesExample : BaseExample
         Console.WriteLine($"GET ../selectCustomers");
         Console.WriteLine($"Response: {{ errorCode: {customersResult?.ErrorCode}, clientId: {mandantLfdNr} }}");
 
-        var selectAbsenceRequest = new SelectEmployeeAbsenceRequest() { ClientId = mandantLfdNr, RequestPeriodBegin = new DateTime(2025, 1, 1), RequestPeriodEnd = new DateTime(2025, 5, 31) };
+        var (startDate, endDate) = SelectDateRange();
+        var selectAbsenceRequest = new SelectEmployeeAbsenceRequest { ClientId = mandantLfdNr, PersonnelNumber = 54, RequestPeriodBegin = startDate, RequestPeriodEnd = endDate };
         var selectAbsenceResult = WebApiBase.RequestPost<SelectEmployeeAbsenceResult>("selectEmployeeAbsence", bearerToken, selectAbsenceRequest);
 
         Console.WriteLine($"POST ../selectEmployeeAbsence");
@@ -29,6 +30,63 @@ public class SelectAbsencesExample : BaseExample
 
         // Abmeldung vom REST API Gateway
         WebApiBase.RequestGet<Task>("session/logout", bearerToken);
+    }
+
+    
+    private static (DateTime start, DateTime end) SelectDateRange()
+    {
+        Console.WriteLine("Gib den Datumsbereich für Abwesenheitsanfragen ein (Format: tt.mm.jj)");
+    
+        DateTime startDate, endDate;
+    
+        // Get start date
+        while (true)
+        {
+            Console.Write("Startdatum (tt.mm.jj): ");
+            var input = Console.ReadLine()?.Trim();
+        
+            if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
+            {
+                Environment.Exit(0);
+            }
+        
+            if (DateTime.TryParseExact(input, "dd.MM.yy", null, System.Globalization.DateTimeStyles.None, out startDate))
+            {
+                break;
+            }
+        
+            Console.WriteLine("Ungültiges Datumsformat. Bitte verwende das Format tt.mm.jj (z.B. 15.03.25)");
+        }
+    
+        // Get end date
+        while (true)
+        {
+            Console.Write("Enddatum (tt.mm.jj): ");
+            var input = Console.ReadLine()?.Trim();
+        
+            if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
+            {
+                Environment.Exit(0);
+            }
+        
+            if (DateTime.TryParseExact(input, "dd.MM.yy", null, System.Globalization.DateTimeStyles.None, out endDate))
+            {
+                if (endDate >= startDate)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Das Enddatum muss gleich oder nach dem Startdatum liegen. Bitte gib ein gültiges Enddatum ein.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Ungültiges Datumsformat. Bitte verwende das Format tt.mm.jj (z.B. 24.06.25)");
+            }
+        }
+    
+        return (startDate, endDate);
     }
 
 }

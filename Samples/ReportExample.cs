@@ -1,5 +1,6 @@
 ﻿using gv3kServerFibuLohn.Api.Data.MasterData;
 using gv3kServerFibuLohn.Api.Data.Reports;
+using LohnbitsRestApiClient.Helper;
 using LohnbitsRestApiClient.Model;
 
 namespace LohnbitsRestApiClient.Samples;
@@ -19,14 +20,24 @@ public class ReportExample : BaseExample
         Console.WriteLine($"GET ../selectCustomers");
         Console.WriteLine($"Response: {{ errorCode: {customersResult?.ErrorCode}, clientId: {mandantLfdNr} }}");
 
-        var reportRequests = new SelectReportsRequest() { ClientId = mandantLfdNr };
+        var reportRequests = new SelectReportsRequest { ClientId = mandantLfdNr };
         var reportResult = WebApiBase.RequestPost<SelectReportsResult>("selectReports", token, reportRequests);
 
         Console.WriteLine($"POST ../selectReports");
         Console.WriteLine($"Request: {{ clientId: {reportRequests.ClientId} }}");
-        Console.WriteLine($"Response: {{ errorCode: {reportResult?.ErrorCode}, reportCount: {reportResult?.Reports.Count} }}");
+        Console.WriteLine(
+            $"Response: {{ errorCode: {reportResult?.ErrorCode}, reportCount: {reportResult?.Reports.Count} }}");
 
-        var reportMitarbeiterlisteRequest = new ExecuteReportEmployeeListRequest() { ClientId = mandantLfdNr, Code = "Geburtstag" };
+        Console.WriteLine($"{reportResult?.AsJsonString()}");
+        var selectedReport = SelectReport(reportResult);
+
+        if (selectedReport is null)
+        {
+            Console.WriteLine("Kein Report ausgewählt.");
+            return;
+        }
+
+        var reportMitarbeiterlisteRequest = new ExecuteReportEmployeeListRequest { ClientId = mandantLfdNr, Code = selectedReport.Code };
         var reportMitarbeiterlisteResult = WebApiBase.RequestPost<ExecuteReportEmployeeListResult>("executeReportEmployeeList", token, reportMitarbeiterlisteRequest);
 
         Console.WriteLine($"POST ../executeReportEmployeeList");
@@ -42,5 +53,45 @@ public class ReportExample : BaseExample
 
         // Abmeldung vom REST API Gateway
         WebApiBase.RequestGet<Task>("session/logout", token);
+    }
+
+    private static DataReport? SelectReport(SelectReportsResult? reportsResult)
+    {
+        while (true)
+        {
+            if (reportsResult is null || reportsResult.Reports.Count == 0)
+            {
+                return null;
+            }
+
+            Console.WriteLine("Gib die ID des Reports ein, den du ausführen möchtest (Tippe 'exit' zum Beenden):");
+            var input = Console.ReadLine();
+            if (input == "exit")
+            {
+                return null;
+            }
+
+            if (!int.TryParse(input, out var id))
+            {
+                continue;
+            }
+
+            var selectedReport =
+                reportsResult.Reports.FirstOrDefault(r => r.LohnbitsAuswertungenEinstellungenLfdNr == id);
+            if (selectedReport is null)
+            {
+                Console.WriteLine($"Report mit ID {id} nicht gefunden.");
+                continue;
+            }
+
+            if (string.IsNullOrWhiteSpace(selectedReport.Code))
+            {
+                Console.WriteLine("Der ausgewählte Report kann nicht über die Lohnbits API ausgeführt werden.");
+                continue;
+            }
+
+            return selectedReport;
+        }
+
     }
 }

@@ -20,17 +20,25 @@ public abstract class BaseExample
 
     private static string GetTokenWithSimpleLogin()
     {
-        var credentials = CredentialsProvider.GetCredentialsForTotpLogin();
+        while (true)
+        {
+            var credentials = CredentialsProvider.GetCredentialsForTotpLogin();
 
-        Console.WriteLine("Bitte TOTP-Code eingeben:");
-        var totp = Console.ReadLine() ?? "";
+            Console.WriteLine("Bitte TOTP-Code eingeben:");
+            var totp = Console.ReadLine() ?? "";
 
-        // Anmeldung bei LOHNBITS mit Benutzername, Passwort und OTP und Erhalt des Bearer Tokens
-        var loginRequest = new LoginOtpRequest(credentials.Username, credentials.Password, totp);
-        var loginResult = WebApiBase.RequestPost<LoginOtpResult>("loginOtp", loginRequest);
-        var token = loginResult?.Token ?? "";
+            if (totp.Length != 6)
+            {
+                continue;
+            }
 
-        return token;
+            // Anmeldung bei LOHNBITS mit Benutzername, Passwort und OTP und Erhalt des Bearer Tokens
+            var loginRequest = new LoginOtpRequest(credentials.Username, credentials.Password, totp);
+            var loginResult = WebApiBase.RequestPost<LoginOtpResult>("loginOtp", loginRequest);
+            var token = loginResult?.Token ?? "";
+
+            return token;
+        }
     }
 
     private static string GetTokenWithEncryptedLogin()
