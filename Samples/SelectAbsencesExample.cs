@@ -1,5 +1,6 @@
 ﻿using gv3kServerFibuLohn.Api.Data.Absences;
 using gv3kServerFibuLohn.Api.Data.MasterData;
+using LohnbitsRestApiClient.Helper;
 using LohnbitsRestApiClient.Model;
 
 namespace LohnbitsRestApiClient.Samples;
@@ -19,13 +20,30 @@ public class SelectAbsencesExample : BaseExample
         Console.WriteLine($"GET ../selectCustomers");
         Console.WriteLine($"Response: {{ errorCode: {customersResult?.ErrorCode}, clientId: {mandantLfdNr} }}");
 
+        var employeeRequest = new SelectEmployeesRequest { ClientId = mandantLfdNr };
+        var employeeResult = WebApiBase.RequestPost<SelectEmployeesResult>("selectEmployees", bearerToken, employeeRequest);
+        
+        Console.WriteLine($"POST ../selectEmployees");
+        Console.WriteLine($"Request: {{ clientId: {employeeRequest.ClientId} }}");
+        Console.WriteLine($"Response: {{ errorCode: {employeeResult?.ErrorCode}, count: {employeeResult?.Employees.Count} }}");
+
+        
+        var personnelNumber = SelectPersonnelNumber(employeeResult);
+        if (personnelNumber == -1)
+        {
+            Console.WriteLine("Kein Mitarbeiter gefunden.");
+            return;
+        }
+        
         var (startDate, endDate) = SelectDateRange();
-        var selectAbsenceRequest = new SelectEmployeeAbsenceRequest { ClientId = mandantLfdNr, PersonnelNumber = 54, RequestPeriodBegin = startDate, RequestPeriodEnd = endDate };
+        
+        var selectAbsenceRequest = new SelectEmployeeAbsenceRequest { ClientId = mandantLfdNr, PersonnelNumber = personnelNumber, RequestPeriodBegin = startDate, RequestPeriodEnd = endDate };
         var selectAbsenceResult = WebApiBase.RequestPost<SelectEmployeeAbsenceResult>("selectEmployeeAbsence", bearerToken, selectAbsenceRequest);
 
         Console.WriteLine($"POST ../selectEmployeeAbsence");
         Console.WriteLine($"Request: {{ clientId: {selectAbsenceRequest.ClientId}, requestPeriodBegin: {selectAbsenceRequest.RequestPeriodBegin}, requestPeriodEnd: {selectAbsenceRequest.RequestPeriodEnd} }}");
-        Console.WriteLine($"Response: {{ errorCode: {selectAbsenceResult?.ErrorCode}, absenceCount: {selectAbsenceResult?.Absences.Count} }}");
+        Console.WriteLine($"Response: {{ errorCode: {selectAbsenceResult?.ErrorCode} }}");
+        Console.WriteLine($"{selectAbsenceResult?.AsJsonString(10)}");
 
 
         // Abmeldung vom REST API Gateway
@@ -87,6 +105,47 @@ public class SelectAbsencesExample : BaseExample
         }
     
         return (startDate, endDate);
+    }
+
+    private static int SelectPersonnelNumber(SelectEmployeesResult? selectEmployeesResult)
+    {
+        if (selectEmployeesResult == null || selectEmployeesResult.Employees.Count == 0)
+        {
+            Console.WriteLine("Keine Mitarbeiter verfügbar.");
+            return -1;
+        }
+
+        Console.WriteLine("Verfügbare Mitarbeiter:");
+        Console.WriteLine(selectEmployeesResult.AsJsonString(10));
+
+        while (true)
+        {
+            Console.Write("Gib die Personalnummer des gewünschten Mitarbeiters ein (Tippe 'exit' zum Beenden): ");
+            var input = Console.ReadLine()?.Trim();
+
+            if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
+            {
+                return -1;
+            }
+
+            if (!int.TryParse(input, out var personnelNumber))
+            {
+                Console.WriteLine("Ungültige Eingabe. Bitte gib eine gültige Personalnummer ein.");
+                continue;
+            }
+
+            var selectedEmployee = selectEmployeesResult.Employees
+                .FirstOrDefault(e => e.PersonnelNumber == personnelNumber);
+
+            if (selectedEmployee == null)
+            {
+                Console.WriteLine($"Mitarbeiter mit Personalnummer {personnelNumber} nicht gefunden.");
+                continue;
+            }
+
+            Console.WriteLine($"Mitarbeiter ausgewählt: {selectedEmployee.FullName}");
+            return personnelNumber;
+        }
     }
 
 }
