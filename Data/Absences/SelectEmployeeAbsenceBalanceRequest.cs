@@ -5,9 +5,9 @@ using System.ComponentModel;
 
 namespace gv3kServerFibuLohn.Api.Data.Absences
 {
-    public class SelectEmployeeAbsenceRequest : IMandantRequest, IMitarbeiterRequest, ITransactionId
+    public class SelectEmployeeAbsenceBalanceRequest : IMandantRequest, IMitarbeiterRequest, ITransactionId
     {
-        public SelectEmployeeAbsenceRequest()
+        public SelectEmployeeAbsenceBalanceRequest()
         {
             LohnbitsSyncApiLogLfdNr = 0;
 
@@ -58,4 +58,5 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
         public DateTime? RequestPeriodEnd { set; get; }
     }
 }
+
 

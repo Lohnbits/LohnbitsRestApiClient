@@ -1,13 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 #nullable enable
 
-namespace gv3kServerFibuLohn.Api.Data.Absences
+namespace gv3kServerFibuLohn.Api.Data.MasterData
 {
-    public class SelectEmployeeAbsenceRequest : IMandantRequest, IMitarbeiterRequest, ITransactionId
+    public class SelectEmployeeWorkingHoursRequest : IMandantRequest, IMitarbeiterRequest, ITransactionId
     {
-        public SelectEmployeeAbsenceRequest()
+        public SelectEmployeeWorkingHoursRequest()
         {
             LohnbitsSyncApiLogLfdNr = 0;
 
@@ -19,9 +18,6 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
             TimeTrackingPersonnelNumber = null;
             EmployeeId = null;
             TransactionId = string.Empty;
-
-            RequestPeriodBegin = null;
-            RequestPeriodEnd = null;
         }
 
         [Description("Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.")]
@@ -50,12 +46,5 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
 
         [Description("Identifikationsnummer der durchführenden Transaktion.")]
         public string TransactionId { set; get; }
-
-        [Description("Beginn des abgefragten Zeitraums")]
-        public DateTime? RequestPeriodBegin { set; get; }
-
-        [Description("Ende des abgefragten Zeitraums")]
-        public DateTime? RequestPeriodEnd { set; get; }
     }
 }
-
