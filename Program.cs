@@ -47,6 +47,8 @@ public class Program
         builder.AppendLine("3\tAbwesenheiten laden");
         builder.AppendLine("4\tDokument hochladen");
         builder.AppendLine("5\tDokument in Posteingang hochladen");
+        builder.AppendLine("6\tAbwesenheitssalden laden");
+        builder.AppendLine("7\tArbeitszeiten laden");
 
         Console.WriteLine(builder.ToString());
     }
@@ -103,6 +105,16 @@ public class Program
             case ConsoleKey.NumPad5:
                 Console.WriteLine("\tDokument in Posteingang hochladen");
                 UploadDocumentInboxExample.Execute(_loginMethod);
+                return true;
+            case ConsoleKey.D6:
+            case ConsoleKey.NumPad6:
+                Console.WriteLine("\tAbwesenheitssalden laden");
+                GetAbsenceBalancesExample.Execute(_loginMethod);
+                return true;
+            case ConsoleKey.D7:
+            case ConsoleKey.NumPad7:
+                Console.WriteLine("\tArbeitszeiten laden");
+                GetEmployeesWorkingHoursExample.Execute(_loginMethod);
                 return true;
             default:
                 return true;
