@@ -1446,6 +1446,24 @@
             "type": "string",
             "description": "Datum und Zeit der letzten Änderung des Datensatzes in Lohnbits",
             "format": "date-time"
+          },
+          "tageFeiertag": {
+            "type": "number",
+            "description": "Dauer des Feiertages in Arbeitstagen (wichtig bei betrieblichen Feiertagen)?",
+            "format": "double"
+          },
+          "stundenFeiertag": {
+            "type": "number",
+            "description": "Dauer des Feiertages in Stunden (wichtig bei betrieblichen Feiertagen)?",
+            "format": "double"
+          },
+          "artFeiertag": {
+            "type": "string",
+            "description": "Art des Feiertags, z.B. 'gesetzlicher Feiertag', 'betrieblicher Feiertag'"
+          },
+          "nameFeiertag": {
+            "type": "string",
+            "description": "Die Bezeichnung des Feiertages"
           }
         }
       },
@@ -5747,7 +5765,8 @@
           "InvalidCombinationVariableEmployee",
           "InvalidPeriodForMonthlyData",
           "UnableToWriteValue",
-          "ReportNotFound"
+          "ReportNotFound",
+          "InvalidReportCode"
         ],
         "description": "Fehlercode des aufgetretenen Fehlers"
       },

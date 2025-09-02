@@ -76,6 +76,7 @@ namespace gv3kServerFibuLohn.Api.Data
                     eErrorCode.InvalidPeriodForMonthlyData => "Ausgewählte Monatsdatenerfassung in diesem Zeitraum nicht zulässig.",
                     eErrorCode.UnableToWriteValue => "Der Wert konnte nicht geschrieben werden.",
                     eErrorCode.ReportNotFound => "Der Bericht wurde nicht gefunden.",
+                    eErrorCode.InvalidReportCode => "Ungültiger Report Code",
                     _ => "Unbekannter Fehler"
                 };
         }
@@ -108,7 +109,8 @@ namespace gv3kServerFibuLohn.Api.Data
             InvalidCombinationVariableEmployee,
             InvalidPeriodForMonthlyData,
             UnableToWriteValue,
-            ReportNotFound
+            ReportNotFound,
+            InvalidReportCode
         }
     }
 }
