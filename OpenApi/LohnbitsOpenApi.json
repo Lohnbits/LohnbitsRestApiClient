@@ -1447,21 +1447,21 @@
             "description": "Datum und Zeit der letzten Änderung des Datensatzes in Lohnbits",
             "format": "date-time"
           },
-          "tageFeiertag": {
+          "holidayDays": {
             "type": "number",
             "description": "Dauer des Feiertages in Arbeitstagen (wichtig bei betrieblichen Feiertagen)?",
             "format": "double"
           },
-          "stundenFeiertag": {
+          "holidayHours": {
             "type": "number",
             "description": "Dauer des Feiertages in Stunden (wichtig bei betrieblichen Feiertagen)?",
             "format": "double"
           },
-          "artFeiertag": {
+          "holidayType": {
             "type": "string",
             "description": "Art des Feiertags, z.B. 'gesetzlicher Feiertag', 'betrieblicher Feiertag'"
           },
-          "nameFeiertag": {
+          "holidayName": {
             "type": "string",
             "description": "Die Bezeichnung des Feiertages"
           }

@@ -27,10 +27,10 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
             HoursAbsent = 0;
             DaysAbsent = 0;
             ModificationDate = DateTime.MinValue;
-            TageFeiertag = 0;
-            StundenFeiertag = 0;
-            ArtFeiertag = "";
-            NameFeiertag = "";
+            HolidayDays = 0;
+            HolidayHours = 0;
+            HolidayType = "";
+            HolidayName = "";
         }
 
         [Description("Identifikationsnummer der Abwesenheit für diesen Tag.\n" +
@@ -156,15 +156,15 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
         public DateTime ModificationDate { set; get; }
 
         [Description("Dauer des Feiertages in Arbeitstagen (wichtig bei betrieblichen Feiertagen)?")]
-        public decimal TageFeiertag { set; get; }
+        public decimal HolidayDays { set; get; }
 
         [Description("Dauer des Feiertages in Stunden (wichtig bei betrieblichen Feiertagen)?")]
-        public decimal StundenFeiertag { set; get; }
+        public decimal HolidayHours { set; get; }
 
         [Description("Art des Feiertags, z.B. 'gesetzlicher Feiertag', 'betrieblicher Feiertag'")]
-        public string ArtFeiertag { set; get; }
+        public string HolidayType { set; get; }
 
         [Description("Die Bezeichnung des Feiertages")]
-        public string NameFeiertag { set; get; }
+        public string HolidayName { set; get; }
     }
 }
