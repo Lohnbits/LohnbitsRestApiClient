@@ -39,6 +39,8 @@ namespace gv3kServerFibuLohn.Api.Data
                         return 401;
                     case eErrorCode.AccessDenied:
                         return 403;
+                    case eErrorCode.ReportNotFound:
+                        return 404;
                     case eErrorCode.InternalError:
                         return 500;
                     default:
@@ -77,6 +79,7 @@ namespace gv3kServerFibuLohn.Api.Data
                     eErrorCode.UnableToWriteValue => "Der Wert konnte nicht geschrieben werden.",
                     eErrorCode.ReportNotFound => "Der Bericht wurde nicht gefunden.",
                     eErrorCode.InvalidReportCode => "Ungültiger Report Code",
+                    eErrorCode.ReportTemplateNotSupported => "Reporttyp ist nicht unterstützt.",
                     _ => "Unbekannter Fehler"
                 };
         }
@@ -110,7 +113,8 @@ namespace gv3kServerFibuLohn.Api.Data
             InvalidPeriodForMonthlyData,
             UnableToWriteValue,
             ReportNotFound,
-            InvalidReportCode
+            InvalidReportCode,
+            ReportTemplateNotSupported,
         }
     }
 }

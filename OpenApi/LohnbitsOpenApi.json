@@ -655,7 +655,7 @@
           "Auswertungen"
         ],
         "summary": "Erstellt eine Mitarbeiterliste",
-        "description": "Mit dieser Methode kann der Benutzer eine Mitarbeiterliste anfordern.\n\nDie Selektion erfolgt entweder über `clientId`, `clientNumber` oder `clientGroupId`.\n\nBei den meisten Listen wird der Datumsbereich (`reportPeriodBegin` und `reportPeriodEnd`) nicht benötigt.",
+        "description": "Mit dieser Methode kann der Benutzer eine Mitarbeiterliste anfordern.\n\nDie Selektion erfolgt entweder über `clientId`, `clientNumber` oder `clientGroupId`.\n\nBei den meisten Listen wird der Datumsbereich (`reportPeriodBegin` und `reportPeriodEnd`) nicht benötigt.\n\nDie Antwort enthält nur die ausgewählten Felder des Reports und nicht alle möglichen Felder aus `DataLohnAuswertungFelderMitarbeiterliste`.\n\nEs können nur Reports mit dem `reportType` 'MitarbeiterlisteMaui' ausgeführt werden.",
         "operationId": "execute-report-employee-list",
         "requestBody": {
           "content": {
@@ -712,6 +712,16 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteReportEmployeeListResult"
+                }
+              }
+            }
           }
         }
       }
@@ -722,7 +732,7 @@
           "Auswertungen"
         ],
         "summary": "Erstellt eine Liste zur Lohnentwicklung.",
-        "description": "Mit dieser Methode kann der Benutzer eine Liste zur Lohnentwicklung anfordern.\n\nDie Selektion erfolgt entweder über `clientId`, `clientNumber` oder `clientGroupId`.\n\n",
+        "description": "Mit dieser Methode kann der Benutzer eine Liste zur Lohnentwicklung anfordern.\n\nDie Selektion erfolgt entweder über `clientId`, `clientNumber` oder `clientGroupId`.\n\nDie Antwort enthält nur die ausgewählten Felder des Reports und nicht alle möglichen Felder aus `DataLohnAuswertungFelderMitarbeiterLohnentwicklung`.\n\nEs können nur Reports mit dem `reportType` 'Lohnentwicklung' ausgeführt werden.",
         "operationId": "execute-report-wage-trend",
         "requestBody": {
           "content": {
@@ -772,6 +782,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecuteReportWageTrendResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -5766,7 +5786,8 @@
           "InvalidPeriodForMonthlyData",
           "UnableToWriteValue",
           "ReportNotFound",
-          "InvalidReportCode"
+          "InvalidReportCode",
+          "ReportTemplateNotSupported"
         ],
         "description": "Fehlercode des aufgetretenen Fehlers"
       },

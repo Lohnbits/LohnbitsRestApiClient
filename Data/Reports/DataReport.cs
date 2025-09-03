@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
@@ -15,6 +16,7 @@ namespace gv3kServerFibuLohn.Api.Data.Reports
             Code = string.Empty;
         }
 
+        [JsonProperty("id")]
         [JsonPropertyName("id")]
         [Description("Identifikationsnummer der Auswertung")]
         public int LohnbitsAuswertungenEinstellungenLfdNr { set; get; }
