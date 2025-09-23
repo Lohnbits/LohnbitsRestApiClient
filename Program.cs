@@ -49,6 +49,10 @@ public class Program
         builder.AppendLine("5\tDokument in Posteingang hochladen");
         builder.AppendLine("6\tAbwesenheitssalden laden");
         builder.AppendLine("7\tArbeitszeiten laden");
+        builder.AppendLine("8\tAbwesenheit eintragen");
+        builder.AppendLine("9\tAbwesenheit löschen");
+        builder.AppendLine("10\tAbwesenheiten neu berechnen");
+        builder.AppendLine("11\tAbwesenheitsanpassungen anzeigen");
 
         Console.WriteLine(builder.ToString());
     }
@@ -74,50 +78,70 @@ public class Program
 
     private static bool EvaluateExample()
     {
-        switch (Console.ReadKey().Key)
+        Console.Write("Bitte Nummer des Beispiels eingeben und Enter drücken: ");
+        var input = Console.ReadLine()?.Trim();
+        if (!int.TryParse(input, out int exampleNumber))
         {
-            case ConsoleKey.D0:
-            case ConsoleKey.NumPad0:
+            Console.WriteLine("Ungültige Eingabe. Bitte eine Zahl eingeben.");
+            return true;
+        }
+
+        ExampleType exampleType = (ExampleType)exampleNumber;
+        switch (exampleType)
+        {
+            case ExampleType.FirstSteps:
                 Console.WriteLine("\tErster Schritt");
                 FirstStepsExample.Execute(_loginMethod);
-                    return true;
-            case ConsoleKey.D1:
-            case ConsoleKey.NumPad1:
+                break;
+            case ExampleType.MonthlyData:
                 Console.WriteLine("\tMonatsdatenerfassung");
                 MonthlyDataExample.Execute(_loginMethod);
-                return true;
-            case ConsoleKey.D2:
-            case ConsoleKey.NumPad2:
+                break;
+            case ExampleType.Report:
                 Console.WriteLine("\tAuswertung generieren");
                 ReportExample.Execute(_loginMethod);
-                return true;
-            case ConsoleKey.D3:
-            case ConsoleKey.NumPad3:
+                break;
+            case ExampleType.SelectAbsences:
                 Console.WriteLine("\tAbwesenheiten laden");
                 SelectAbsencesExample.Execute(_loginMethod);
-                return true;
-            case ConsoleKey.D4:
-            case ConsoleKey.NumPad4:
+                break;
+            case ExampleType.UploadDocument:
                 Console.WriteLine("\tDokument hochladen");
                 UploadDocumentExample.Execute(_loginMethod);
-                return true;
-            case ConsoleKey.D5:
-            case ConsoleKey.NumPad5:
+                break;
+            case ExampleType.UploadDocumentInbox:
                 Console.WriteLine("\tDokument in Posteingang hochladen");
                 UploadDocumentInboxExample.Execute(_loginMethod);
-                return true;
-            case ConsoleKey.D6:
-            case ConsoleKey.NumPad6:
+                break;
+            case ExampleType.GetAbsenceBalances:
                 Console.WriteLine("\tAbwesenheitssalden laden");
                 GetAbsenceBalancesExample.Execute(_loginMethod);
-                return true;
-            case ConsoleKey.D7:
-            case ConsoleKey.NumPad7:
+                break;
+            case ExampleType.GetEmployeesWorkingHours:
                 Console.WriteLine("\tArbeitszeiten laden");
                 GetEmployeesWorkingHoursExample.Execute(_loginMethod);
-                return true;
+                break;
+            case ExampleType.InsertAbsence:
+                Console.WriteLine("\tAbwesenheit eintragen");
+                InsertAbsenceExample.Execute(_loginMethod);
+                break;
+            case ExampleType.DeleteAbsence:
+                Console.WriteLine("\tAbwesenheit löschen");
+                DeleteAbsenceExample.Execute(_loginMethod);
+                break;
+            case ExampleType.RecalcAbsence:
+                Console.WriteLine("\tAbwesenheiten neu berechnen");
+                RecalcAbsenceExample.Execute(_loginMethod);
+                break;
+            case ExampleType.SelectAbsenceAdjustment:
+                Console.WriteLine("\tAbwesenheitsanpassungen anzeigen");
+                SelectAbsenceAdjustmentExample.Execute(_loginMethod);
+                break;
             default:
-                return true;
+                Console.WriteLine("Beispielnummer nicht bekannt. Bitte gültige Nummer wählen.");
+                break;
         }
+        
+        return true;
     }
 }

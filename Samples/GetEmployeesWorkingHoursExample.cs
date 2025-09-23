@@ -32,9 +32,8 @@ public class GetEmployeesWorkingHoursExample : BaseExample
 
         var workingHoursResponse = GetWorkingHours(token, workingHoursRequest);
         Console.WriteLine(workingHoursResponse?.AsJsonString(10));
-        
-        // Abmeldung vom REST API Gateway
-        WebApiBase.RequestGet<Task>("logout", token);   
+
+        Logout(token);
     }
 
     private static SelectEmployeeWorkingHoursResult? GetWorkingHours(string token, SelectEmployeeWorkingHoursRequest request)
@@ -44,7 +43,7 @@ public class GetEmployeesWorkingHoursExample : BaseExample
         Console.WriteLine($"POST ../selectEmployeeWorkingHours");
         Console.WriteLine($"Request: {{ clientId: {request.ClientId}, employeeId: {request.EmployeeId} }}");
         Console.WriteLine($"Response: {{ errorCode: {workingHours?.ErrorCode} }}");
-        
+
         return workingHours;
     }
 }

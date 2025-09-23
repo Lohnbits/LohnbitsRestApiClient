@@ -1071,12 +1071,223 @@
         }
       }
     },
+    "/api/v1/deleteEmployeeAbsence": {
+      "post": {
+        "tags": [
+          "Abwesenheiten"
+        ],
+        "summary": "Löscht eine Abwesenheit.  Die Angabe einer Mandantengruppe wird zur Zeit nicht unterstützt.",
+        "description": "Wenn keine Duration angegeben wird, werden alle Abwesenheiten des Tages gelöscht. Es wird immer die gesamte Abwesenheit gelöscht und nicht nur der übergebene Tag.",
+        "operationId": "delete-absences",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteEmployeeAbsenceRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteEmployeeAbsenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteEmployeeAbsenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteEmployeeAbsenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteEmployeeAbsenceResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteEmployeeAbsenceResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteEmployeeAbsenceResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteEmployeeAbsenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/insertEmployeeAbsence": {
+      "post": {
+        "tags": [
+          "Abwesenheiten"
+        ],
+        "summary": "Fügt eine Abwesenheit hinzu. Es handelt sich um eine manuelle Buchung. Die Angabe einer Mandantengruppe wird zur Zeit nicht unterstützt.",
+        "description": "Die Angabe der Vertretung ist optional. Eine mandantenübergreifende Vertretung wird zur Zeit nicht unterstützt - eine Erweiterung der Funktionslität des Endpunkts wäre grundsätzlich möglich.",
+        "operationId": "insert-absences",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertEmployeeAbsenceRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertEmployeeAbsenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertEmployeeAbsenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertEmployeeAbsenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertEmployeeAbsenceResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertEmployeeAbsenceResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertEmployeeAbsenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recalcEmployeeAbsence": {
+      "post": {
+        "tags": [
+          "Abwesenheiten"
+        ],
+        "summary": "Aktualisiert die Abwesenheiten für einen oder alle Mitarbeiter des Mandanten. Die Angabe einer Mandantengruppe wird zur Zeit nicht unterstützt. Diese Funktion muss aufgerufen werden, wenn beim Einfügen von Abwesenheiten der Parameter IsDoNotRecalc auf true gesetzt wurde.",
+        "description": "Wenn kein Mitarbeiter angegeben ist, werden die Abwesenheiten aller Mitarbeiter neu berechnet.",
+        "operationId": "recalc-absences",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecalcEmployeeAbsenceRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecalcEmployeeAbsenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecalcEmployeeAbsenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecalcEmployeeAbsenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/selectEmployeeAbsence": {
       "post": {
         "tags": [
           "Abwesenheiten"
         ],
-        "summary": "Liest die Abwesenheiten für einen oder alle Mitarbeiter des Mandanten.",
+        "summary": "Liest die Abwesenheiten für einen oder alle Mitarbeiter des Mandanten. Die Angabe einer Mandantengruppe wird zur Zeit nicht unterstützt.",
         "description": "Wenn kein Mitarbeiter angegeben ist, werden die Abwesenheiten aller Mitarbeiter zurückgegeben.",
         "operationId": "select-absences",
         "requestBody": {
@@ -1138,12 +1349,79 @@
         }
       }
     },
+    "/api/v1/selectEmployeeAbsenceAdjustment": {
+      "post": {
+        "tags": [
+          "Abwesenheiten"
+        ],
+        "summary": "Liest die Abwesenheitsanpassungen für einen oder alle Mitarbeiter des Mandanten. Die Angabe einer Mandantengruppe wird zur Zeit nicht unterstützt.",
+        "description": "Wenn kein Mitarbeiter angegeben ist, werden die Abwesenheitsanpassungen aller Mitarbeiter zurückgegeben.",
+        "operationId": "select-absences-abjustment",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceAdjustmentRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceAdjustmentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceAdjustmentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceAdjustmentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceAdjustmentResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceAdjustmentResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceAdjustmentResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/selectEmployeeAbsenceBalance": {
       "post": {
         "tags": [
           "Abwesenheiten"
         ],
-        "summary": "Liest die Abwesenheitssalden für einen oder alle Mitarbeiter des Mandanten.",
+        "summary": "Liest die Abwesenheitssalden für einen oder alle Mitarbeiter des Mandanten. Die Angabe einer Mandantengruppe wird zur Zeit nicht unterstützt.",
         "description": "Wenn kein Mitarbeiter angegeben ist, werden die Abwesenheitssalden aller Mitarbeiter zurückgegeben.",
         "operationId": "select-absence-balance",
         "requestBody": {
@@ -1487,6 +1765,63 @@
           }
         }
       },
+      "DataEmployeeAbsenceAdjustment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Eindeutige Identifikationsnummer der Abwesenheitsanpassung.",
+            "format": "int32"
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten",
+            "format": "int32"
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Mandantennummer",
+            "format": "int32"
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV.",
+            "format": "int32"
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV."
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Identifikationsnummer des Mitarbeiters."
+          },
+          "date": {
+            "type": "string",
+            "description": "Buchungsdatum",
+            "format": "date-time"
+          },
+          "artBuchung": {
+            "type": "string",
+            "description": "Es gibt folgende Buchungsarten:\n- Kalkulatorisch\n- KorrekturGrundurlaubsanspruch\n- KorrekturZusatzurlaubsanspruch\n- KorrekturSchwerbehindertenurlaubsanspruch"
+          },
+          "fehlzeitStunden": {
+            "type": "number",
+            "description": "Fehlzeit in Stunden",
+            "format": "double"
+          },
+          "fehlzeitTage": {
+            "type": "number",
+            "description": "Fehlzeit in Tagen",
+            "format": "double"
+          }
+        }
+      },
       "DataEmployeeAbsenceBalance": {
         "type": "object",
         "properties": {
@@ -1738,7 +2073,7 @@
       "DataEmployeeWorkingHours": {
         "type": "object",
         "properties": {
-          "id": {
+          "internetMandantLohnMitarbeiterArbeitszeitLfdNr": {
             "type": "integer",
             "description": "Identifikationsnummer der Datensatzes",
             "format": "int32"
@@ -1904,6 +2239,10 @@
           "vmsArbeitszeitkontoStammNummer": {
             "type": "integer",
             "format": "int32"
+          },
+          "vmsBankverbindungBankname": {
+            "type": "string",
+            "nullable": true
           },
           "vmsBankverbindungBic": {
             "type": "string",
@@ -2171,6 +2510,14 @@
           "calcAnzahlKinderUnter25": {
             "type": "integer",
             "format": "int32"
+          },
+          "calcAnzahlKinderRueckmeldung": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calcAnzahlKinderAbweichung": {
+            "type": "string",
+            "nullable": true
           },
           "calcAnzahlAnhangHgbQuartal1": {
             "type": "number",
@@ -2891,6 +3238,14 @@
             "type": "string",
             "nullable": true
           },
+          "vmsArtKinderAbweichendVerwenden": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsArtKinderAbweichendVerwendenBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
           "vmsAusgeuebteTaetigkeitLfdNr": {
             "type": "integer",
             "format": "int32"
@@ -2952,6 +3307,9 @@
             "nullable": true
           },
           "vmsIsKeinZusatzbeitragPflegeversicherung": {
+            "type": "boolean"
+          },
+          "vmsIsKinderAbweichendVerwenden": {
             "type": "boolean"
           },
           "vmsIsPrivatversichert": {
@@ -4157,6 +4515,10 @@
             "type": "integer",
             "format": "int32"
           },
+          "vmsBankverbindungBankname": {
+            "type": "string",
+            "nullable": true
+          },
           "vmsBankverbindungBic": {
             "type": "string",
             "nullable": true
@@ -4423,6 +4785,14 @@
           "calcAnzahlKinderUnter25": {
             "type": "integer",
             "format": "int32"
+          },
+          "calcAnzahlKinderRueckmeldung": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "calcAnzahlKinderAbweichung": {
+            "type": "string",
+            "nullable": true
           },
           "calcAnzahlAnhangHgbQuartal1": {
             "type": "number",
@@ -5143,6 +5513,14 @@
             "type": "string",
             "nullable": true
           },
+          "vmsArtKinderAbweichendVerwenden": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vmsArtKinderAbweichendVerwendenBezeichnung": {
+            "type": "string",
+            "nullable": true
+          },
           "vmsAusgeuebteTaetigkeitLfdNr": {
             "type": "integer",
             "format": "int32"
@@ -5204,6 +5582,9 @@
             "nullable": true
           },
           "vmsIsKeinZusatzbeitragPflegeversicherung": {
+            "type": "boolean"
+          },
+          "vmsIsKinderAbweichendVerwenden": {
             "type": "boolean"
           },
           "vmsIsPrivatversichert": {
@@ -5743,6 +6124,93 @@
           }
         }
       },
+      "DeleteEmployeeAbsenceRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.Soweit die Werte eindeutig sind, ist es auch möglich, `clientGroupId` und eine eindeutige Mitarbeiternummer (`personnelNumber`, `companyPersonnelNumber` oder `timeTrackingPersonnelNumber`) anzugeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters.",
+            "format": "int32",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "description": "Abwesenheitsdatum",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "string",
+            "description": "Abwesenheitsdauer für den Tag in 'date'. Folgende Werte sind möglich:\n* Ganztags\n* Vormittags\n* Nachmittags",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          }
+        }
+      },
+      "DeleteEmployeeAbsenceResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
       "eAnstellungsartMitarbeiter": {
         "type": "integer"
       },
@@ -5787,7 +6255,12 @@
           "UnableToWriteValue",
           "ReportNotFound",
           "InvalidReportCode",
-          "ReportTemplateNotSupported"
+          "ReportTemplateNotSupported",
+          "AbsenceNotFound",
+          "InvalidAbsence",
+          "InvalidAbsenceDuration",
+          "InvalidHalfDayFlag",
+          "InvalidDateRange"
         ],
         "description": "Fehlercode des aufgetretenen Fehlers"
       },
@@ -6205,6 +6678,143 @@
           }
         }
       },
+      "InsertEmployeeAbsenceRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.Soweit die Werte eindeutig sind, ist es auch möglich, `clientGroupId` und eine eindeutige Mitarbeiternummer (`personnelNumber`, `companyPersonnelNumber` oder `timeTrackingPersonnelNumber`) anzugeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "absencePeriodBegin": {
+            "type": "string",
+            "description": "Beginn des Abwesenheit. Uhrzeit und Zeitzone werden ignoriert. (2025-09-22T15:12:08+02:00 -> 2025-09-22T00:00:00+00:00",
+            "format": "date-time"
+          },
+          "absencePeriodEnd": {
+            "type": "string",
+            "description": "Ende der Abwesenheit. Uhrzeit und Zeitzone werden ignoriert. (2025-09-22T15:12:08+02:00 -> 2025-09-22T00:00:00+00:00",
+            "format": "date-time"
+          },
+          "absenceKeyLohnbits": {
+            "type": "string",
+            "description": "Lohnbits Ausfallschlüssel der Abwesenheit"
+          },
+          "absenceKeyDatev": {
+            "type": "string",
+            "description": "DATEV (normierte) Ausfallschlüssel der Abwesenheit"
+          },
+          "absenceKeyTimeTracking": {
+            "type": "string",
+            "description": "Abweichender Ausfallschlüssel der Abwesenheit für die Zeiterfassung"
+          },
+          "substitutePersonnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer der Vertretung in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "substituteCompanyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer der Vertretung in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "substituteTimeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern der Vertretung in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "substituteEmployeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Vertretung des Mitarbeiters.",
+            "format": "int32",
+            "nullable": true
+          },
+          "isFirstDayAfternoonOnly": {
+            "type": "boolean",
+            "description": "Am ersten Tag nur nachmittags abwesend."
+          },
+          "isLastDayMorningOnly": {
+            "type": "boolean",
+            "description": "Am letzten Tag nur vormittags abwesend."
+          },
+          "preventRecalc": {
+            "type": "boolean",
+            "description": "Der Datensatz wird nur eingefügt und der Kalender wird aus Performancegründen nicht neu berechnet. Anschließend bitte die Methode RecalcEmployeeAbsence aufrufen."
+          },
+          "remark": {
+            "type": "string",
+            "description": "Bemerkung zur Abwesenheit"
+          }
+        }
+      },
+      "InsertEmployeeAbsenceResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
       "LoginEncryptedRequest": {
         "required": [
           "username",
@@ -6485,6 +7095,70 @@
           }
         }
       },
+      "RecalcEmployeeAbsenceRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.Soweit die Werte eindeutig sind, ist es auch möglich, `clientGroupId` und eine eindeutige Mitarbeiternummer (`personnelNumber`, `companyPersonnelNumber` oder `timeTrackingPersonnelNumber`) anzugeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "recalcPeriodBegin": {
+            "type": "string",
+            "description": "Beginn des zu aktualisierenden Zeitraums",
+            "format": "date-time"
+          },
+          "recalcPeriodEnd": {
+            "type": "string",
+            "description": "Ende des zu aktualisierenden  Zeitraums",
+            "format": "date-time"
+          }
+        }
+      },
       "SelectCustomersResult": {
         "type": "object",
         "properties": {
@@ -6561,6 +7235,103 @@
               "$ref": "#/components/schemas/DataDocumentType"
             },
             "description": "Liste der gültigen Dokumenttypen"
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "SelectEmployeeAbsenceAdjustmentRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "type": "integer",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.Soweit die Werte eindeutig sind, ist es auch möglich, `clientGroupId` und eine eindeutige Mitarbeiternummer (`personnelNumber`, `companyPersonnelNumber` oder `timeTrackingPersonnelNumber`) anzugeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "type": "integer",
+            "description": "Identifikationsnummer der Mandantengruppe. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "personnelNumber": {
+            "type": "integer",
+            "description": "Numerische Mitarbeiternummer in DATEV. Diese Nummer muss eindeutig sein.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV. Nur verwenden wenn das Feld ohnehin verwendet wird.",
+            "nullable": true
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Sollten die Mitarbeiternummern in der Zeiterfassung von den Mitarbeiternummern in DATEV abweichen, soll dieses Feld genutzt werden.",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "description": "Identifikationsnummer des Mitarbeiters.",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "requestPeriodBegin": {
+            "type": "string",
+            "description": "Beginn des abgefragten Zeitraums",
+            "format": "date-time",
+            "nullable": true
+          },
+          "requestPeriodEnd": {
+            "type": "string",
+            "description": "Ende des abgefragten Zeitraums",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "SelectEmployeeAbsenceAdjustmentResult": {
+        "type": "object",
+        "properties": {
+          "absenceAdjustmentss": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataEmployeeAbsenceAdjustment"
+            },
+            "description": "Liste der Anpassungen der Abwesenheiten",
+            "nullable": true
           },
           "errorCode": {
             "$ref": "#/components/schemas/eErrorCode"

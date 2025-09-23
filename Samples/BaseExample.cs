@@ -7,6 +7,11 @@ namespace LohnbitsRestApiClient.Samples;
 
 public abstract class BaseExample
 {
+    protected static void Logout(string token)
+    {
+        WebApiBase.RequestGet<Task>("logout", token);
+    }
+
     protected static string GetToken(LoginMethod loginMethod)
     {
         switch (loginMethod)
@@ -121,5 +126,17 @@ public abstract class BaseExample
         var token = ModelHelper.DecryptStringAES(encryptedBearerToken, aesKeyBytes);
 
         return token;
+    }
+    protected static DateTime ReadDate()
+    {
+        while (true)
+        {
+            var input = Console.ReadLine()?.Trim();
+            if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
+                Environment.Exit(0);
+            if (DateTime.TryParseExact(input, "dd.MM.yy", null, System.Globalization.DateTimeStyles.None, out var date))
+                return date;
+            Console.WriteLine("Ungültiges Datumsformat. Bitte verwende das Format tt.mm.jj (z.B. 15.03.25)");
+        }
     }
 }

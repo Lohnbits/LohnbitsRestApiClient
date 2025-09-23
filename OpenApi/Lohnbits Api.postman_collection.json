@@ -3408,6 +3408,859 @@
 							]
 						},
 						{
+							"name": "deleteEmployeeAbsence",
+							"item": [
+								{
+									"name": "Löscht eine Abwesenheit für einen Mitarbeiter.",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"date\": \"2023-09-23T00:00:00Z\",\n  \"duration\": \"Ganztags\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/deleteEmployeeAbsence",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"deleteEmployeeAbsence"
+											]
+										},
+										"description": "Löscht eine Abwesenheit. Wenn keine Dauer angegeben wird, werden alle Abwesenheiten des Tages gelöscht. Es wird immer die gesamte Abwesenheit gelöscht und nicht nur der übergebene Tag."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"date\": \"2023-09-23T00:00:00Z\",\n  \"duration\": \"Ganztags\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/deleteEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"deleteEmployeeAbsence"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"None\",\n  \"transactionId\": 12345,\n  \"statusCode\": 200,\n  \"errorDescription\": null\n}"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"date\": \"2023-09-23T00:00:00Z\",\n  \"duration\": \"Ganztags\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/deleteEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"deleteEmployeeAbsence"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"Unauthorized\",\n  \"transactionId\": 12345,\n  \"statusCode\": 401,\n  \"errorDescription\": \"Unauthorized access\"\n}"
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"date\": \"2023-09-23T00:00:00Z\",\n  \"duration\": \"Ganztags\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/deleteEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"deleteEmployeeAbsence"
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"Forbidden\",\n  \"transactionId\": 12345,\n  \"statusCode\": 403,\n  \"errorDescription\": \"Forbidden access\"\n}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"date\": \"2023-09-23T00:00:00Z\",\n  \"duration\": \"Ganztags\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/deleteEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"deleteEmployeeAbsence"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"NotFound\",\n  \"transactionId\": 12345,\n  \"statusCode\": 404,\n  \"errorDescription\": \"Absence not found\"\n}"
+										}
+									]
+								}
+							]
+						},
+						
+						{
+							"name": "insertEmployeeAbsence",
+							"item": [
+								{
+									"name": "Fügt eine Abwesenheit hinzu.",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"absencePeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"absencePeriodEnd\": \"2023-09-24T00:00:00Z\",\n  \"absenceKeyLohnbits\": \"U\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/insertEmployeeAbsence",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"insertEmployeeAbsence"
+											]
+										},
+										"description": "Fügt eine Abwesenheit hinzu. Es handelt sich um eine manuelle Buchung. Die Angabe der Vertretung ist optional. Eine mandantenübergreifende Vertretung wird zur Zeit nicht unterstützt - eine Erweiterung der Funktionslität des Endpunkts wäre grundsätzlich möglich."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"absencePeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"absencePeriodEnd\": \"2023-09-24T00:00:00Z\",\n  \"absenceKeyLohnbits\": \"U\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/insertEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"insertEmployeeAbsence"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"None\",\n  \"transactionId\": 12345,\n  \"statusCode\": 200,\n  \"errorDescription\": null\n}"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"absencePeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"absencePeriodEnd\": \"2023-09-24T00:00:00Z\",\n  \"absenceKeyLohnbits\": \"U\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/insertEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"insertEmployeeAbsence"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"Unauthorized\",\n  \"transactionId\": 12345,\n  \"statusCode\": 401,\n  \"errorDescription\": \"Unauthorized access\"\n}"
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"absencePeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"absencePeriodEnd\": \"2023-09-24T00:00:00Z\",\n  \"absenceKeyLohnbits\": \"U\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/insertEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"insertEmployeeAbsence"
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"Forbidden\",\n  \"transactionId\": 12345,\n  \"statusCode\": 403,\n  \"errorDescription\": \"Forbidden access\"\n}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"absencePeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"absencePeriodEnd\": \"2023-09-24T00:00:00Z\",\n  \"absenceKeyLohnbits\": \"U\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/insertEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"insertEmployeeAbsence"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"NotFound\",\n  \"transactionId\": 12345,\n  \"statusCode\": 404,\n  \"errorDescription\": \"Absence not found\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "recalcEmployeeAbsence",
+							"item": [
+								{
+									"name": "Aktualisiert die Abwesenheiten für einen oder alle Mitarbeiter des Mandanten.",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"recalcPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"recalcPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/recalcEmployeeAbsence",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"recalcEmployeeAbsence"
+											]
+										},
+										"description": "Aktualisiert die Abwesenheiten für einen oder alle Mitarbeiter des Mandanten. Wenn kein Mitarbeiter angegeben ist, werden die Abwesenheiten aller Mitarbeiter neu berechnet."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"recalcPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"recalcPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/recalcEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"recalcEmployeeAbsence"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"None\",\n  \"transactionId\": 12345,\n  \"statusCode\": 200,\n  \"errorDescription\": null\n}"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"recalcPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"recalcPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/recalcEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"recalcEmployeeAbsence"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"Unauthorized\",\n  \"transactionId\": 12345,\n  \"statusCode\": 401,\n  \"errorDescription\": \"Unauthorized access\"\n}"
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"recalcPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"recalcPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/recalcEmployeeAbsence",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"recalcEmployeeAbsence"
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"Forbidden\",\n  \"transactionId\": 12345,\n  \"statusCode\": 403,\n  \"errorDescription\": \"Forbidden access\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "selectEmployeeAbsenceAdjustment",
+							"item": [
+								{
+									"name": "Liest die Abwesenheitsanpassungen für einen oder alle Mitarbeiter des Mandanten.",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"requestPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"requestPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/selectEmployeeAbsenceAdjustment",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"selectEmployeeAbsenceAdjustment"
+											]
+										},
+										"description": "Liest die Abwesenheitsanpassungen für einen oder alle Mitarbeiter des Mandanten. Wenn kein Mitarbeiter angegeben ist, werden die Abwesenheitsanpassungen aller Mitarbeiter zurückgegeben."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"requestPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"requestPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/selectEmployeeAbsenceAdjustment",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"selectEmployeeAbsenceAdjustment"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"None\",\n  \"transactionId\": 12345,\n  \"statusCode\": 200,\n  \"errorDescription\": null\n}"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"requestPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"requestPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/selectEmployeeAbsenceAdjustment",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"selectEmployeeAbsenceAdjustment"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"Unauthorized\",\n  \"transactionId\": 12345,\n  \"statusCode\": 401,\n  \"errorDescription\": \"Unauthorized access\"\n}"
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"requestPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"requestPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/selectEmployeeAbsenceAdjustment",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"selectEmployeeAbsenceAdjustment"
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"errorCode\": \"Forbidden\",\n  \"transactionId\": 12345,\n  \"statusCode\": 403,\n  \"errorDescription\": \"Forbidden access\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
 							"name": "hello",
 							"item": [
 								{

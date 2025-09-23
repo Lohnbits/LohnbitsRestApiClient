@@ -58,7 +58,6 @@ public class UploadDocumentExample : BaseExample
         Console.WriteLine($"Request: {{ clientNumber: {doc.ClientNumber}, personnelNumber: {doc.PersonnelNumber}, documentDate: {doc.DocumentDate}, monthlyRecordingPeriod: {doc.MonthlyRecordingPeriod}, documentTypeId: {doc.DocumentTypeId}, isOnlyForPersonnelFile: {doc.IsOnlyForPersonnelFile}, isOldVersion: {doc.IsOldVersion}, isHighPriority: {doc.IsHighPriority}, content: {doc.Content}, note: {doc.Note} }}");
         Console.WriteLine($"Response: {{ errorCode: {docResult?.ErrorCode}, hashLength: {docResult?.Hash?.Length} }}");
 
-        // Abmeldung vom REST API Gateway
-        WebApiBase.RequestGet<Task>("session/logout", token);
+        Logout(token);
     }
 }

@@ -44,7 +44,6 @@ public class UploadDocumentInboxExample : BaseExample
         Console.WriteLine($"Request: {{ clientNumber: {doc.ClientNumber}, personnelNumber: {doc.PersonnelNumber}, documentDate: {doc.DocumentDate}, content: {doc.Content}, note: {doc.Note} }}");
         Console.WriteLine($"Response: {{ errorCode: {docResult?.ErrorCode}, employeeId: {docResult?.Hash?.Length} }}");
 
-        // Abmeldung vom REST API Gateway
-        WebApiBase.RequestGet<Task>("session/logout", token);
+        Logout(token);
     }
 }

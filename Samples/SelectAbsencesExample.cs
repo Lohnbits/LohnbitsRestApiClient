@@ -22,21 +22,21 @@ public class SelectAbsencesExample : BaseExample
 
         var employeeRequest = new SelectEmployeesRequest { ClientId = mandantLfdNr };
         var employeeResult = WebApiBase.RequestPost<SelectEmployeesResult>("selectEmployees", bearerToken, employeeRequest);
-        
+
         Console.WriteLine($"POST ../selectEmployees");
         Console.WriteLine($"Request: {{ clientId: {employeeRequest.ClientId} }}");
         Console.WriteLine($"Response: {{ errorCode: {employeeResult?.ErrorCode}, count: {employeeResult?.Employees.Count} }}");
 
-        
+
         var personnelNumber = SelectPersonnelNumber(employeeResult);
         if (personnelNumber == -1)
         {
             Console.WriteLine("Kein Mitarbeiter gefunden.");
             return;
         }
-        
+
         var (startDate, endDate) = SelectDateRange();
-        
+
         var selectAbsenceRequest = new SelectEmployeeAbsenceRequest { ClientId = mandantLfdNr, PersonnelNumber = personnelNumber, RequestPeriodBegin = startDate, RequestPeriodEnd = endDate };
         var selectAbsenceResult = WebApiBase.RequestPost<SelectEmployeeAbsenceResult>("selectEmployeeAbsence", bearerToken, selectAbsenceRequest);
 
@@ -46,47 +46,46 @@ public class SelectAbsencesExample : BaseExample
         Console.WriteLine($"{selectAbsenceResult?.AsJsonString(10)}");
 
 
-        // Abmeldung vom REST API Gateway
-        WebApiBase.RequestGet<Task>("session/logout", bearerToken);
+        Logout(bearerToken);
     }
 
-    
+
     private static (DateTime start, DateTime end) SelectDateRange()
     {
         Console.WriteLine("Gib den Datumsbereich für Abwesenheitsanfragen ein (Format: tt.mm.jj)");
-    
+
         DateTime startDate, endDate;
-    
+
         // Get start date
         while (true)
         {
             Console.Write("Startdatum (tt.mm.jj): ");
             var input = Console.ReadLine()?.Trim();
-        
+
             if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
             {
                 Environment.Exit(0);
             }
-        
+
             if (DateTime.TryParseExact(input, "dd.MM.yy", null, System.Globalization.DateTimeStyles.None, out startDate))
             {
                 break;
             }
-        
+
             Console.WriteLine("Ungültiges Datumsformat. Bitte verwende das Format tt.mm.jj (z.B. 15.03.25)");
         }
-    
+
         // Get end date
         while (true)
         {
             Console.Write("Enddatum (tt.mm.jj): ");
             var input = Console.ReadLine()?.Trim();
-        
+
             if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
             {
                 Environment.Exit(0);
             }
-        
+
             if (DateTime.TryParseExact(input, "dd.MM.yy", null, System.Globalization.DateTimeStyles.None, out endDate))
             {
                 if (endDate >= startDate)
@@ -103,7 +102,7 @@ public class SelectAbsencesExample : BaseExample
                 Console.WriteLine("Ungültiges Datumsformat. Bitte verwende das Format tt.mm.jj (z.B. 24.06.25)");
             }
         }
-    
+
         return (startDate, endDate);
     }
 

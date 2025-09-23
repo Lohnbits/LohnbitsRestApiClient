@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
-using System.Text.Json.Serialization;
 
 namespace gv3kServerFibuLohn.Api.Data.MasterData
 {
@@ -31,7 +31,7 @@ namespace gv3kServerFibuLohn.Api.Data.MasterData
             EditingInstructions = "";
         }
 
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         [Description("Identifikationsnummer der Datensatzes")]
         public int InternetMandantLohnMitarbeiterArbeitszeitLfdNr { get; set; }
 

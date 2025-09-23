@@ -52,7 +52,6 @@ public class MonthlyDataExample : BaseExample
         Console.WriteLine($"Request: {{ id: {closeMonthlyDataRequest.Id} }}");
         Console.WriteLine($"Response: {{ errorCode: {closeMonthlyDataResult?.ErrorCode} }}");
 
-        // Abmeldung vom REST API Gateway
-        WebApiBase.RequestGet<Task>("session/logout", token);
+        Logout(token);
     }
 }

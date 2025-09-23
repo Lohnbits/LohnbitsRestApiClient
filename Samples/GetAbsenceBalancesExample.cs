@@ -31,7 +31,7 @@ public class GetAbsenceBalancesExample : BaseExample
             RequestPeriodBegin = new DateTime(DateTime.Now.Year, 1, 1),
             RequestPeriodEnd = new DateTime(DateTime.Now.Year, 12, 31)
         };
-        
+
         var absenceBalances = WebApiBase.RequestPost<SelectEmployeeAbsenceBalanceResult>("selectEmployeeAbsenceBalance", token, absenceBalancesRequest);
 
         Console.WriteLine($"POST ../selectEmployeeAbsenceBalance");
@@ -39,7 +39,6 @@ public class GetAbsenceBalancesExample : BaseExample
         Console.WriteLine($"Response: {{ errorCode: {absenceBalances?.ErrorCode} }}");
         Console.WriteLine(absenceBalances?.AsJsonString(10));
 
-        // Abmeldung vom REST API Gateway
-        WebApiBase.RequestGet<Task>("logout", token);
+        Logout(token);
     }
 }

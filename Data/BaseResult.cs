@@ -40,6 +40,7 @@ namespace gv3kServerFibuLohn.Api.Data
                     case eErrorCode.AccessDenied:
                         return 403;
                     case eErrorCode.ReportNotFound:
+                    case eErrorCode.AbsenceNotFound:
                         return 404;
                     case eErrorCode.InternalError:
                         return 500;
@@ -80,6 +81,11 @@ namespace gv3kServerFibuLohn.Api.Data
                     eErrorCode.ReportNotFound => "Der Bericht wurde nicht gefunden.",
                     eErrorCode.InvalidReportCode => "Ungültiger Report Code",
                     eErrorCode.ReportTemplateNotSupported => "Reporttyp ist nicht unterstützt.",
+                    eErrorCode.AbsenceNotFound => "Für diesen Mitarbeiter wurde an diesem Tag und zur angegebenen Abwesenheitsdauer keine Fehlzeit gefunden.",
+                    eErrorCode.InvalidAbsence => "Ungültiger Abwesenheitsschlüssel.",
+                    eErrorCode.InvalidAbsenceDuration => "Gefundene Fehlzeit passt nicht zur angegebenen Abwesenheitsdauer ('duration').",
+                    eErrorCode.InvalidHalfDayFlag => "Bitte verwende für eintägige Abwesenheiten maximal ein Halbtagskennzeichen",
+                    eErrorCode.InvalidDateRange => "Der angegebene Zeitraum ist ungültig.",
                     _ => "Unbekannter Fehler"
                 };
         }
@@ -115,6 +121,11 @@ namespace gv3kServerFibuLohn.Api.Data
             ReportNotFound,
             InvalidReportCode,
             ReportTemplateNotSupported,
+            AbsenceNotFound,
+            InvalidAbsence,
+            InvalidAbsenceDuration,
+            InvalidHalfDayFlag,
+            InvalidDateRange
         }
     }
 }

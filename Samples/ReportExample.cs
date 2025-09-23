@@ -51,8 +51,7 @@ public class ReportExample : BaseExample
         Console.WriteLine($"Request: {{ clientId: {reportLohnentwicklungRequest.ClientId}, code: {reportLohnentwicklungRequest.Code}, reportPeriodBegin: {reportLohnentwicklungRequest.ReportPeriodBegin}, reportPeriodEnd: {reportLohnentwicklungRequest.ReportPeriodEnd} }}");
         Console.WriteLine($"Response: {{ errorCode: {reportLohnentwicklungResult?.ErrorCode}, rowCount: {reportLohnentwicklungResult?.Zeilen.Count} }}");
 
-        // Abmeldung vom REST API Gateway
-        WebApiBase.RequestGet<Task>("session/logout", token);
+        Logout(token);
     }
 
     private static DataReport? SelectReport(SelectReportsResult? reportsResult)

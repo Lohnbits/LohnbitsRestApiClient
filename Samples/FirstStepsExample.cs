@@ -10,7 +10,6 @@ public class FirstStepsExample : BaseExample
 
         Console.WriteLine($"Folgenden JWT erhalten:\n{token}");
 
-        // Abmeldung vom REST API Gateway
-        WebApiBase.RequestGet<Task>("logout", token);
+        Logout(token);
     }
 }
