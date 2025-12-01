@@ -4489,7 +4489,7 @@
 		},
 		{
 			"key": "password",
-			"value": ""
+			"value": "<password>"
 		},
 		{
 			"key": "aesKey",
