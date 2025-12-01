@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "27cfcfc9-f7f7-4a73-93a8-ea9330cc0099",
-		"name": "Lohnbits Api Copy",
+		"name": "Lohnbits Api",
 		"description": "Spezifikation der Lohnbits Api\n\nContact Support:\n Name: Lohnbits",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11253371"
@@ -413,7 +413,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"date\": \"2023-09-23T00:00:00Z\",\n  \"duration\": \"Ganztags\"\n}",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 12345,\n  \"date\": \"2023-09-23T00:00:00Z\",\n  \"duration\": \"Ganztags\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -650,7 +650,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"absencePeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"absencePeriodEnd\": \"2023-09-24T00:00:00Z\",\n  \"absenceKeyLohnbits\": \"U\"\n}",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 12345,\n  \"absencePeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"absencePeriodEnd\": \"2023-09-24T00:00:00Z\",\n  \"absenceKeyLohnbits\": \"U\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -887,7 +887,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 5678,\n  \"recalcPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"recalcPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 12345,\n  \"recalcPeriodBegin\": \"2023-09-23T00:00:00Z\",\n  \"recalcPeriodEnd\": \"2023-09-24T00:00:00Z\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -1076,7 +1076,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"clientId\": 4848,\n  \"personnelNumber\": 27,\n  \"requestPeriodBegin\": \"2025-01-01T00:00:00Z\",\n  \"requestPeriodEnd\": \"2025-12-24T00:00:00Z\"\n}",
+													"raw": "{\n  \"clientId\": 1234,\n  \"personnelNumber\": 12345,\n  \"requestPeriodBegin\": \"2025-01-01T00:00:00Z\",\n  \"requestPeriodEnd\": \"2025-12-24T00:00:00Z\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -1245,6 +1245,14 @@
 											]
 										}
 									]
+								},
+								{
+									"name": "selectEmployeeWorkingHoursExternal Copy",
+									"item": []
+								},
+								{
+									"name": "updateEmployeeWorkingHoursExternal Copy",
+									"item": []
 								}
 							]
 						},
@@ -1270,7 +1278,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 9985,\n  \"clientNumber\": 662,\n  \"clientId\": 9272,\n  \"clientGroupId\": 5238,\n  \"personnelNumber\": 8426,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": 3338,\n  \"transactionId\": \"string\"\n}",
+													"raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 9985,\n  \"clientNumber\": 662,\n  \"clientId\": 9272,\n  \"clientGroupId\": 5238,\n  \"personnelNumber\": 8426,\n  \"companyPersonnelNumber\": \"string\",\n  \"rowFilterFormular\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": 3338,\n  \"transactionId\": \"string\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -2068,7 +2076,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"clientId\": 4848,\n  \"code\": \"report-2\"\n}"
+													"raw": "{\n  \"clientId\": 1234,\n  \"code\": \"string\"\n}"
 												},
 												"url": {
 													"raw": "{{baseUrl}}/api/v1/executeReportWorkEquipmentList",
@@ -2105,7 +2113,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"clientId\": 4848,\n  \"code\": \"report-1\"\n}"
+													"raw": "{\n  \"clientId\": 1234,\n  \"code\": \"code\"\n}"
 												},
 												"url": {
 													"raw": "{{baseUrl}}/api/v1/executeReportCompanyPensionScheme",

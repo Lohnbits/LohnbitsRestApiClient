@@ -13922,7 +13922,7 @@
             "format": "int32",
             "nullable": true
           },
-          "rowFilterFormula": {
+          "rowFilterFormular": {
             "type": "string",
             "description": "Formel zur Filterung der Mitarbeiter. Der Filter wird nur auf Mandanten und Mandantengruppe berücksichtigt",
             "nullable": true
