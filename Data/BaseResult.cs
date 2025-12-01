@@ -125,7 +125,8 @@ namespace gv3kServerFibuLohn.Api.Data
             InvalidAbsence,
             InvalidAbsenceDuration,
             InvalidHalfDayFlag,
-            InvalidDateRange
+            InvalidDateRange,
+            DataImmutable
         }
     }
 }

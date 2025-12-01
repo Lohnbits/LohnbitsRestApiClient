@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 
-
 namespace gv3kServerFibuLohn.Api.Data.MasterData
 {
     public class SelectEmployeeWorkingHoursResult : BaseResult

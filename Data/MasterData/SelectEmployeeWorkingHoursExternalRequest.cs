@@ -4,9 +4,9 @@
 
 namespace gv3kServerFibuLohn.Api.Data.MasterData
 {
-    public class SelectEmployeeWorkingHoursRequest : IMandantRequest, IMitarbeiterRequest, ITransactionId
+    public class SelectEmployeeWorkingHoursExternalRequest : IMandantRequest, IMitarbeiterRequest, ITransactionId
     {
-        public SelectEmployeeWorkingHoursRequest()
+        public SelectEmployeeWorkingHoursExternalRequest()
         {
             LohnbitsSyncApiLogLfdNr = 0;
 
@@ -17,7 +17,6 @@ namespace gv3kServerFibuLohn.Api.Data.MasterData
             CompanyPersonnelNumber = null;
             TimeTrackingPersonnelNumber = null;
             EmployeeId = null;
-            RowFilterFormula = null;
             TransactionId = string.Empty;
         }
 
@@ -45,10 +44,8 @@ namespace gv3kServerFibuLohn.Api.Data.MasterData
         [Description("Identifikationsnummer des Mitarbeiters.")]
         public int? EmployeeId { set; get; }
 
-        [Description("Formel zur Filterung der Mitarbeiter. Der Filter wird nur auf Mandanten und Mandantengruppe berücksichtigt")]
-        public string? RowFilterFormula { get; set; }
-
         [Description("Identifikationsnummer der durchführenden Transaktion.")]
         public string TransactionId { set; get; }
     }
 }
+

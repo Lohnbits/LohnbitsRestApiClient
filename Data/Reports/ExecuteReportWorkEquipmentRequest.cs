@@ -5,9 +5,9 @@ using System.ComponentModel;
 
 namespace gv3kServerFibuLohn.Api.Data.Reports
 {
-    public class ExecuteReportEmployeeListRequest : ITransactionId, IMandantRequest
+    public class ExecuteReportWorkEquipmentRequest : ITransactionId, IMandantRequest
     {
-        public ExecuteReportEmployeeListRequest()
+        public ExecuteReportWorkEquipmentRequest()
         {
             LohnbitsSyncApiLogLfdNr = 0;
 
@@ -46,3 +46,4 @@ namespace gv3kServerFibuLohn.Api.Data.Reports
         public DateTime ReportPeriodEnd { set; get; }
     }
 }
+

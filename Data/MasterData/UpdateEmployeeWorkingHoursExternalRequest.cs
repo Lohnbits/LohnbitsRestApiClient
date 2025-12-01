@@ -1,12 +1,14 @@
-﻿using System.ComponentModel;
+﻿#nullable enable
 
-#nullable enable
+using Newtonsoft.Json;
+using System;
+using System.ComponentModel;
 
 namespace gv3kServerFibuLohn.Api.Data.MasterData
 {
-    public class SelectEmployeeWorkingHoursRequest : IMandantRequest, IMitarbeiterRequest, ITransactionId
+    public class UpdateEmployeeWorkingHoursExternalRequest : IMandantRequest, IMitarbeiterRequest, ITransactionId
     {
-        public SelectEmployeeWorkingHoursRequest()
+        public UpdateEmployeeWorkingHoursExternalRequest()
         {
             LohnbitsSyncApiLogLfdNr = 0;
 
@@ -17,8 +19,19 @@ namespace gv3kServerFibuLohn.Api.Data.MasterData
             CompanyPersonnelNumber = null;
             TimeTrackingPersonnelNumber = null;
             EmployeeId = null;
-            RowFilterFormula = null;
             TransactionId = string.Empty;
+
+            Datum = DateTime.MinValue;
+            WorkingHours = 0;
+            ShiftStart = "";
+            ShiftEnd = "";
+            BreakStart1 = "";
+            BreakEnd1 = "";
+            BreakStart2 = "";
+            BreakEnd2 = "";
+            BreakStart3 = "";
+            BreakEnd3 = "";
+            Remark = "";
         }
 
         [Description("Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.")]
@@ -45,10 +58,44 @@ namespace gv3kServerFibuLohn.Api.Data.MasterData
         [Description("Identifikationsnummer des Mitarbeiters.")]
         public int? EmployeeId { set; get; }
 
-        [Description("Formel zur Filterung der Mitarbeiter. Der Filter wird nur auf Mandanten und Mandantengruppe berücksichtigt")]
-        public string? RowFilterFormula { get; set; }
-
         [Description("Identifikationsnummer der durchführenden Transaktion.")]
         public string TransactionId { set; get; }
+
+        [JsonProperty("Date")]
+        [Description("Datum für das die Daten gelten.")]
+        public DateTime Datum { get; set; }
+
+        [Description("Die Arbeitszeit in Stunden und Industrieminuten.")]
+        public decimal WorkingHours { get; set; }
+
+        [Description("Der Schichtbeginn im Format hh:mm.")]
+        public string ShiftStart { get; set; }
+
+        [Description("Das Schichtende im Format hh:mm.")]
+        public string ShiftEnd { get; set; }
+
+        [Description("Der Beginn der ersten Pause im Format hh:mm.")]
+        public string BreakStart1 { get; set; }
+
+        [Description("Das Ende der ersten Pause im Format hh:mm.")]
+        public string BreakEnd1 { get; set; }
+
+        [Description("Der Beginn der zweiten Pause im Format hh:mm.")]
+        public string BreakStart2 { get; set; }
+
+        [Description("Das Ende der zweiten Pause im Format hh:mm.")]
+        public string BreakEnd2 { get; set; }
+
+        [Description("Der Beginn der dritten Pause im Format hh:mm.")]
+        public string BreakStart3 { get; set; }
+
+        [Description("Das Ende der dritten Pause im Format hh:mm.")]
+        public string BreakEnd3 { get; set; }
+
+        [Description("Der Prozentsatz für Kurzarbeit.")]
+        public decimal PercentageShortTimeWork { get; set; }
+
+        [Description("Eine Bemerkung.")]
+        public string Remark { get; set; }
     }
 }
