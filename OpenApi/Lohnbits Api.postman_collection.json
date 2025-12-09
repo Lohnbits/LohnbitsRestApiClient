@@ -1248,11 +1248,114 @@
 								},
 								{
 									"name": "selectEmployeeWorkingHoursExternal Copy",
-									"item": []
+									"item": [
+										{
+											"name": "Liest für einen oder alle Mitarbeiter des Mandanten die externen Arbeitszeiten",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 12345\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/selectEmployeeWorkingHoursExternal",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"selectEmployeeWorkingHoursExternal"
+													]
+												}
+											},
+											"response": []
+										}
+									]
 								},
 								{
 									"name": "updateEmployeeWorkingHoursExternal Copy",
-									"item": []
+									"item": [
+										{
+											"name": "Schreibt für einen Mitarbeiter des Mandanten die externen Arbeitszeiten",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 1234,\n  \"employeeId\": 12345,\n  \"date\": \"2025-12-01T00:00:00\",\n  \"workingHours\": 8,\n  \"shiftStart\": \"08:00\",\n  \"shiftEnd\": \"16:30\",\n  \"breakStart1\": \"12:00\",\n  \"breakEnd1\": \"12:30\",\n  \"breakStart2\": \"\",\n  \"breakEnd2\": \"\",\n  \"breakStart3\": \"\",\n  \"breakEnd3\": \"\",\n  \"remark\": \"Einfach nur eine Beschreibung\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/updateEmployeeWorkingHoursExternal",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"updateEmployeeWorkingHoursExternal"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "selectEmployeeAbsenceModificationDate Copy",
+									"item": [
+										{
+											"name": "Gibt für einen Mandanten zurück, wann die Abwesenheitstabelle je Mitarbeiter zuletzt geändert wurde.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"clientId\": 4848\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/selectEmployeeAbsenceModificationDate",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"selectEmployeeAbsenceModificationDate"
+													]
+												}
+											},
+											"response": []
+										}
+									]
 								}
 							]
 						},
@@ -4489,7 +4592,7 @@
 		},
 		{
 			"key": "password",
-			"value": "<password>"
+			"value": ""
 		},
 		{
 			"key": "aesKey",

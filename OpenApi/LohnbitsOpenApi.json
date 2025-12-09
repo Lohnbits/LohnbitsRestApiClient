@@ -1714,6 +1714,72 @@
         }
       }
     },
+    "/api/v1/selectEmployeeAbsenceModificationDate": {
+      "post": {
+        "tags": [
+          "Abwesenheiten"
+        ],
+        "summary": "Gibt für einen Mandanten zurück, wann die Abwesenheitstabelle je Mitarbeiter zuletzt geändert wurde. Die Angabe einer Mandantengruppe wird zur Zeit nicht unterstützt.",
+        "operationId": "select-absences-modification-date",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceModificationDateRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceModificationDateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceModificationDateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeeAbsenceModificationDateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceModificationDateResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceModificationDateResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeeAbsenceModificationDateResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/selectEmployeeWorkingHoursExternal": {
       "post": {
         "tags": [
@@ -2432,6 +2498,44 @@
           "quotaDescription05": {
             "type": "string",
             "description": "Bezeichnung des Kontingents 05."
+          }
+        }
+      },
+      "DataEmployeeAbsenceModificationDate": {
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Identifikationsnummer des Mandanten",
+            "format": "int32"
+          },
+          "employeeId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Identifikationsnummer des Mitarbeiters",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Mandantennummer",
+            "format": "int32"
+          },
+          "personnelNumber": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Numerische Mitarbeiternummer in DATEV.",
+            "format": "int32"
+          },
+          "companyPersonnelNumber": {
+            "type": "string",
+            "description": "Alternative alphanumerische Mitarbeiternummer in DATEV."
+          },
+          "timeTrackingPersonnelNumber": {
+            "type": "string",
+            "description": "Identifikationsnummer des Mitarbeiters."
+          },
+          "modificationDate": {
+            "type": "string",
+            "description": "Datum und Zeit der letzten Änderung des Datensatzes in Lohnbits",
+            "format": "date-time"
           }
         }
       },
@@ -13603,6 +13707,69 @@
               "$ref": "#/components/schemas/DataEmployeeAbsenceBalance"
             },
             "description": "Liste der Abwesenheitssalden",
+            "nullable": true
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "transactionId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Identifikationsnummer der durchgeführten Transaktion",
+            "format": "int32"
+          },
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Http Status Code abhängig vom Fehlercode",
+            "format": "int32"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Beschreibung des aufgetretenen Fehlers",
+            "nullable": true
+          }
+        }
+      },
+      "SelectEmployeeAbsenceModificationDateRequest": {
+        "type": "object",
+        "properties": {
+          "lohnbitsSyncApiLogLfdNr": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.",
+            "format": "int32"
+          },
+          "clientNumber": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Entweder wird `clientNumber` oder `clientId` angegeben, um einen Mitarbeiter einem Mandanten zuzuordnen.Soweit die Werte eindeutig sind, ist es auch möglich, `clientGroupId` und eine eindeutige Mitarbeiternummer (`personnelNumber`, `companyPersonnelNumber` oder `timeTrackingPersonnelNumber`) anzugeben",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Identifikationsnummer des Mandanten. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientGroupId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Identifikationsnummer der Mandantengruppe. Für weitere Informationen siehe `clientNumber`",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "description": "Identifikationsnummer der durchführenden Transaktion."
+          }
+        }
+      },
+      "SelectEmployeeAbsenceModificationDateResult": {
+        "type": "object",
+        "properties": {
+          "absenceModificationDates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataEmployeeAbsenceModificationDate"
+            },
+            "description": "Liste der letzten Änderungen der Mitarbeiterabwesenheiten",
             "nullable": true
           },
           "errorCode": {
