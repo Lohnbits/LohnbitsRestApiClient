@@ -22,6 +22,9 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
 
             RequestPeriodBegin = null;
             RequestPeriodEnd = null;
+
+            ModifiedAfter = null;
+            ModifiedBefore = null;
         }
 
         [Description("Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.")]
@@ -56,6 +59,14 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
 
         [Description("Ende des abgefragten Zeitraums")]
         public DateTime? RequestPeriodEnd { set; get; }
+
+        [Description("Filter: Erhalte alle Abwesenheiten welche vor diesem Datum das letzt Mal geändert wurden.\n" +
+            "In Kombination mit ´modifiedBefore´ werden alle Abwesenheiten, welche in diesem Zeitraum das letzte Mal geändert wurden, zurückgegeben")]
+        public DateTime? ModifiedAfter { get; set; }
+
+        [Description("Filter: Erhalte alle Abwesenheiten welche nach diesem Datum das letzt Mal geändert wurden.\n" +
+            "In Kombination mit ´modifiedAfter´ werden alle Abwesenheiten, welche in diesem Zeitraum das letzte Mal geändert wurden, zurückgegeben")]
+        public DateTime? ModifiedBefore { get; set; }
     }
 }
 

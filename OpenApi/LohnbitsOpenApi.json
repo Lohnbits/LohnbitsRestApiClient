@@ -12308,7 +12308,8 @@
           "InvalidAbsenceDuration",
           "InvalidHalfDayFlag",
           "InvalidDateRange",
-          "DataImmutable"
+          "DataImmutable",
+          "InvalidFilter"
         ]
       },
       "eMitarbeitergruppeHgb": {
@@ -13853,6 +13854,18 @@
           "requestPeriodEnd": {
             "type": "string",
             "description": "Ende des abgefragten Zeitraums",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedAfter": {
+            "type": "string",
+            "description": "Filter: Erhalte alle Abwesenheiten welche vor diesem Datum das letzt Mal geändert wurden.\nIn Kombination mit ´modifiedBefore´ werden alle Abwesenheiten, welche in diesem Zeitraum das letzte Mal geändert wurden, zurückgegeben",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBefore": {
+            "type": "string",
+            "description": "Filter: Erhalte alle Abwesenheiten welche nach diesem Datum das letzt Mal geändert wurden.\nIn Kombination mit ´modifiedAfter´ werden alle Abwesenheiten, welche in diesem Zeitraum das letzte Mal geändert wurden, zurückgegeben",
             "format": "date-time",
             "nullable": true
           }

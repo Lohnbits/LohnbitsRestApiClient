@@ -86,6 +86,7 @@ namespace gv3kServerFibuLohn.Api.Data
                     eErrorCode.InvalidAbsenceDuration => "Gefundene Fehlzeit passt nicht zur angegebenen Abwesenheitsdauer ('duration').",
                     eErrorCode.InvalidHalfDayFlag => "Bitte verwende für eintägige Abwesenheiten maximal ein Halbtagskennzeichen",
                     eErrorCode.InvalidDateRange => "Der angegebene Zeitraum ist ungültig.",
+                    eErrorCode.InvalidFilter => "Der verwendete Filter ist ungültig.",
                     _ => "Unbekannter Fehler"
                 };
         }
@@ -126,7 +127,8 @@ namespace gv3kServerFibuLohn.Api.Data
             InvalidAbsenceDuration,
             InvalidHalfDayFlag,
             InvalidDateRange,
-            DataImmutable
+            DataImmutable,
+            InvalidFilter
         }
     }
 }
