@@ -31,6 +31,8 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
             HolidayHours = 0;
             HolidayType = "";
             HolidayName = "";
+            IsPending = false;
+            IsDeclined = false;
         }
 
         [Description("Identifikationsnummer der Abwesenheit für diesen Tag.\n" +
@@ -79,6 +81,7 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
         /// </summary>
         [Description("Genehmigungsstatus der Abwesenheit. Folgende Werte sind möglich:\n" +
             "* Unbekannt\n" +
+            "* Beantragt\n" +
             "* TeilweiseGenehmigt\n" +
             "* Genehmigt\n" +
             "* Abgelehnt\n" +
@@ -166,5 +169,11 @@ namespace gv3kServerFibuLohn.Api.Data.Absences
 
         [Description("Die Bezeichnung des Feiertages")]
         public string HolidayName { set; get; }
+
+        [Description("Gibt an, ob die Abwesenheit aktuell zur Genehmigung aussteht. Sind `IsPending` und `IsDeclined` beide `false`, gilt eine Abwesenheit als genehmigt/aktzeptiert")]
+        public bool IsPending { get; set; }
+
+        [Description("Gibt an, ob die Abwesenheit abgelehnt wurde. Sind `IsPending` und `IsDeclined` beide `false`, gilt eine Abwesenheit als genehmigt/aktzeptiert")]
+        public bool IsDeclined { get; set;}
     }
 }

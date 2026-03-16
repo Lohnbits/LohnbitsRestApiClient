@@ -2138,7 +2138,7 @@
           },
           "approvalStatus": {
             "type": "string",
-            "description": "Genehmigungsstatus der Abwesenheit. Folgende Werte sind möglich:\n* Unbekannt\n* TeilweiseGenehmigt\n* Genehmigt\n* Abgelehnt\n* WartetAufGenehmigung\n* BitteRuecksprache"
+            "description": "Genehmigungsstatus der Abwesenheit. Folgende Werte sind möglich:\n* Unbekannt\n* Beantragt\n* TeilweiseGenehmigt\n* Genehmigt\n* Abgelehnt\n* WartetAufGenehmigung\n* BitteRuecksprache"
           },
           "certificateOfIncapacityForWorkStatus": {
             "type": "string",
@@ -2193,6 +2193,14 @@
           "holidayName": {
             "type": "string",
             "description": "Die Bezeichnung des Feiertages"
+          },
+          "isPending": {
+            "type": "boolean",
+            "description": "Gibt an, ob die Abwesenheit aktuell zur Genehmigung aussteht. Sind `IsPending` und `IsDeclined` beide `false`, gilt eine Abwesenheit als genehmigt/aktzeptiert"
+          },
+          "isDeclined": {
+            "type": "boolean",
+            "description": "Gibt an, ob die Abwesenheit abgelehnt wurde. Sind `IsPending` und `IsDeclined` beide `false`, gilt eine Abwesenheit als genehmigt/aktzeptiert"
           }
         }
       },
@@ -2737,66 +2745,82 @@
           },
           "amFahrzeugkennzeichen": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amBeschreibung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amSeriennummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amModell": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amHersteller": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amBemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amVertragspartnerVersicherung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amIsbn": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amAutor": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amInventarnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amSchuhgroesse": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amKleidungsgroesse": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amKuendigungsfrist": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amVertragspartnerWartung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amVertragspartnerLeasing": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amKostenstelle": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amAnschaffungskosten": {
@@ -2805,22 +2829,27 @@
           },
           "amZusatzfeld01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amZusatzfeld02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amZusatzfeld03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amZusatzfeld04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amZusatzfeld05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amNummer": {
@@ -2867,6 +2896,7 @@
           },
           "amStatusArbeitsmittelBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amVersteuerungFahrzeug": {
@@ -2874,6 +2904,7 @@
           },
           "amVersteuerungFahrzeugBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amIsPrivatfahrten": {
@@ -2903,6 +2934,7 @@
           },
           "amtArtTransaktionBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amtStatusTransaktion": {
@@ -2910,10 +2942,12 @@
           },
           "amtStatusTransaktionBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "amtBemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msAnstellungsartAbweichend": {
@@ -2924,6 +2958,7 @@
           },
           "msAusweisNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msBeschaeftigungsstatusMitarbeiterAbweichend": {
@@ -2937,6 +2972,7 @@
           },
           "msGfosOrganisationseinheitAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msIsKeineZeiterfassung": {
@@ -2949,6 +2985,7 @@
           },
           "msMitarbeiternummerZeiterfassungAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsArbeitnehmertyp": {
@@ -2965,18 +3002,22 @@
           },
           "vmsBankverbindungBankname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungBic": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungIban": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungInhaber": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBeginnStudienbescheinigung": {
@@ -2993,10 +3034,12 @@
           },
           "vmsFinanzamtnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIdentifikationsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsAktiv": {
@@ -3006,7 +3049,8 @@
             "type": "boolean"
           },
           "vmsIsHauptbeschaeftigung": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "vmsKinderfreibetrag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -3018,6 +3062,7 @@
           },
           "vmsKonfessionNummerMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLohnMonatsdatenVorerfassungMitarbeiterStammdatenLfdNr": {
@@ -3026,6 +3071,7 @@
           },
           "vmsStandardentlohnungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsStandardentlohnungNummer": {
@@ -3056,6 +3102,7 @@
           },
           "vmsEntgeltgruppe": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msAustrittsgrund": {
@@ -3075,7 +3122,8 @@
           },
           "msVollzeitaequivalent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "vmsArbeitszeitDienstag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -3127,6 +3175,7 @@
           },
           "vmsBerufsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBetriebsstaetteLfdNr": {
@@ -3240,6 +3289,7 @@
           },
           "calcAnzahlKinderAbweichung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcAnzahlAnhangHgbQuartal1": {
@@ -3303,11 +3353,33 @@
           },
           "calcFehlzeitStichtag1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcFehlzeitStichtag2": {
             "type": "string",
+            "default": "",
             "nullable": true
+          },
+          "lbDatumLohnPersonalakteStichwortPostart1LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart2LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart3LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart4LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart5LfdNr": {
+            "type": "string",
+            "format": "date-time"
           },
           "msFamilieGeschiedenSeit": {
             "type": "string",
@@ -3327,10 +3399,12 @@
           },
           "msFamiliePartnerName": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamiliePartnerVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamilieVerheiratetSeit": {
@@ -3384,10 +3458,12 @@
           },
           "gruppierung01Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "gruppierung02Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "sortierungHash": {
@@ -3410,6 +3486,7 @@
           },
           "mandantenname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mandantennummer": {
@@ -3458,26 +3535,32 @@
           },
           "msGemeindeGewSt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe06": {
@@ -3505,14 +3588,17 @@
           },
           "vmsAbteilungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAbteilungsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFibugruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGruppennummerFibu": {
@@ -3521,18 +3607,22 @@
           },
           "vmsKostenstelleBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstelleNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLeistungsgruppeStatistischeAemter": {
@@ -3541,6 +3631,7 @@
           },
           "vmsMitarbeitergruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeitergruppennnummer": {
@@ -3553,15 +3644,18 @@
           },
           "vmsKostenstellenverteilungsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstellenverteilungsdetails": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHeadcount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "msHeadcount01": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -3735,102 +3829,127 @@
           },
           "msWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString06": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString07": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString08": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString09": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString10": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString11": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString12": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString13": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString14": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString15": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString16": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString17": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString18": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString19": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString20": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertDecimal01": {
@@ -3885,62 +4004,77 @@
           },
           "msDurchwahlBetrieb": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdresse": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdressePrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummerPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msTelefonPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWhatsappNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGfosPersonalnummerKopiervorlage": {
@@ -3978,6 +4112,7 @@
           },
           "vmsArtKinderAbweichendVerwendenBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAusgeuebteTaetigkeitLfdNr": {
@@ -4022,10 +4157,12 @@
           },
           "vmsBerufsgenossenschaftStrukturschluessel1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBerufsgenossenschaftStrukturschluessel2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsDatumA1BescheinigungBis": {
@@ -4049,6 +4186,9 @@
           "vmsIsPrivatversichert": {
             "type": "boolean"
           },
+          "vmsIsVersorgungsbezugsempfaenger": {
+            "type": "boolean"
+          },
           "vmsIsSchwerbehindert": {
             "type": "boolean"
           },
@@ -4062,6 +4202,7 @@
           },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsUnstaendigeBeschaeftigung": {
@@ -4072,6 +4213,7 @@
           },
           "vmsKrankenkasseBeitragskontonummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseBetriebsnummer": {
@@ -4080,6 +4222,7 @@
           },
           "vmsKrankenkasseBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseGeschaeftsstelle": {
@@ -4092,6 +4235,7 @@
           },
           "vmsKrankenkasseHauptversicherungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsPersonengruppenschluessel": {
@@ -4100,6 +4244,7 @@
           },
           "vmsPersonengruppenschluesselBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsSchulabschluss": {
@@ -4134,20 +4279,32 @@
             "type": "string",
             "nullable": true
           },
+          "vmsPkvBasisabsicherung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "vmsPkvGesamtbeitrag": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
           "calcNameVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcPlzOrt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcStrasseHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msMitarbeiterKuerzel": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msSprache": {
@@ -4162,6 +4319,7 @@
           },
           "msStatusDerAushilfeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msStatusMitarbeiter": {
@@ -4169,10 +4327,12 @@
           },
           "msStatusMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAkademischerGrad": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAnschriftenzusatz": {
@@ -4181,10 +4341,12 @@
           },
           "vmsBetrieblichePersonalnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFamilienname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsdatum": {
@@ -4193,6 +4355,7 @@
           },
           "vmsGeburtslandIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtslandLfdNr": {
@@ -4205,10 +4368,12 @@
           },
           "vmsGeburtsname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsort": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeschlecht": {
@@ -4221,6 +4386,7 @@
           },
           "vmsHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeiternummer": {
@@ -4229,10 +4395,12 @@
           },
           "vmsNamenszusatzBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzNummer": {
@@ -4261,6 +4429,7 @@
           },
           "vmsNationWohnortIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsOrt": {
@@ -4285,10 +4454,12 @@
           },
           "vmsVorsatzwortBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortNummer": {
@@ -4300,10 +4471,12 @@
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msReisekostenrichtlinieStammBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcWertDateTime01": {
@@ -4593,38 +4766,47 @@
         "properties": {
           "bavVertragsart": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavMonate": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavVertragsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavVerwendungszweck1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavIban": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavBic": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavKuerzungTeilmonat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavKontoinhaber": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavIntervall": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "bavBetragGehaltsverzicht": {
@@ -4663,6 +4845,7 @@
           },
           "msAusweisNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msBeschaeftigungsstatusMitarbeiterAbweichend": {
@@ -4676,6 +4859,7 @@
           },
           "msGfosOrganisationseinheitAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msIsKeineZeiterfassung": {
@@ -4688,6 +4872,7 @@
           },
           "msMitarbeiternummerZeiterfassungAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsArbeitnehmertyp": {
@@ -4704,18 +4889,22 @@
           },
           "vmsBankverbindungBankname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungBic": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungIban": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungInhaber": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBeginnStudienbescheinigung": {
@@ -4732,10 +4921,12 @@
           },
           "vmsFinanzamtnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIdentifikationsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsAktiv": {
@@ -4745,7 +4936,8 @@
             "type": "boolean"
           },
           "vmsIsHauptbeschaeftigung": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "vmsKinderfreibetrag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -4757,6 +4949,7 @@
           },
           "vmsKonfessionNummerMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLohnMonatsdatenVorerfassungMitarbeiterStammdatenLfdNr": {
@@ -4765,6 +4958,7 @@
           },
           "vmsStandardentlohnungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsStandardentlohnungNummer": {
@@ -4795,6 +4989,7 @@
           },
           "vmsEntgeltgruppe": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msAustrittsgrund": {
@@ -4814,7 +5009,8 @@
           },
           "msVollzeitaequivalent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "vmsArbeitszeitDienstag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -4866,6 +5062,7 @@
           },
           "vmsBerufsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBetriebsstaetteLfdNr": {
@@ -4979,6 +5176,7 @@
           },
           "calcAnzahlKinderAbweichung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcAnzahlAnhangHgbQuartal1": {
@@ -5042,11 +5240,33 @@
           },
           "calcFehlzeitStichtag1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcFehlzeitStichtag2": {
             "type": "string",
+            "default": "",
             "nullable": true
+          },
+          "lbDatumLohnPersonalakteStichwortPostart1LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart2LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart3LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart4LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart5LfdNr": {
+            "type": "string",
+            "format": "date-time"
           },
           "msFamilieGeschiedenSeit": {
             "type": "string",
@@ -5066,10 +5286,12 @@
           },
           "msFamiliePartnerName": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamiliePartnerVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamilieVerheiratetSeit": {
@@ -5123,10 +5345,12 @@
           },
           "gruppierung01Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "gruppierung02Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "sortierungHash": {
@@ -5149,6 +5373,7 @@
           },
           "mandantenname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mandantennummer": {
@@ -5197,26 +5422,32 @@
           },
           "msGemeindeGewSt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe06": {
@@ -5244,14 +5475,17 @@
           },
           "vmsAbteilungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAbteilungsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFibugruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGruppennummerFibu": {
@@ -5260,18 +5494,22 @@
           },
           "vmsKostenstelleBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstelleNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLeistungsgruppeStatistischeAemter": {
@@ -5280,6 +5518,7 @@
           },
           "vmsMitarbeitergruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeitergruppennnummer": {
@@ -5292,15 +5531,18 @@
           },
           "vmsKostenstellenverteilungsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstellenverteilungsdetails": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHeadcount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "msHeadcount01": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -5474,102 +5716,127 @@
           },
           "msWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString06": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString07": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString08": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString09": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString10": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString11": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString12": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString13": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString14": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString15": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString16": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString17": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString18": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString19": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString20": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertDecimal01": {
@@ -5624,62 +5891,77 @@
           },
           "msDurchwahlBetrieb": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdresse": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdressePrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummerPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msTelefonPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWhatsappNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGfosPersonalnummerKopiervorlage": {
@@ -5717,6 +5999,7 @@
           },
           "vmsArtKinderAbweichendVerwendenBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAusgeuebteTaetigkeitLfdNr": {
@@ -5761,10 +6044,12 @@
           },
           "vmsBerufsgenossenschaftStrukturschluessel1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBerufsgenossenschaftStrukturschluessel2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsDatumA1BescheinigungBis": {
@@ -5788,6 +6073,9 @@
           "vmsIsPrivatversichert": {
             "type": "boolean"
           },
+          "vmsIsVersorgungsbezugsempfaenger": {
+            "type": "boolean"
+          },
           "vmsIsSchwerbehindert": {
             "type": "boolean"
           },
@@ -5801,6 +6089,7 @@
           },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsUnstaendigeBeschaeftigung": {
@@ -5811,6 +6100,7 @@
           },
           "vmsKrankenkasseBeitragskontonummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseBetriebsnummer": {
@@ -5819,6 +6109,7 @@
           },
           "vmsKrankenkasseBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseGeschaeftsstelle": {
@@ -5831,6 +6122,7 @@
           },
           "vmsKrankenkasseHauptversicherungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsPersonengruppenschluessel": {
@@ -5839,6 +6131,7 @@
           },
           "vmsPersonengruppenschluesselBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsSchulabschluss": {
@@ -5873,20 +6166,32 @@
             "type": "string",
             "nullable": true
           },
+          "vmsPkvBasisabsicherung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "vmsPkvGesamtbeitrag": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
           "calcNameVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcPlzOrt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcStrasseHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msMitarbeiterKuerzel": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msSprache": {
@@ -5901,6 +6206,7 @@
           },
           "msStatusDerAushilfeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msStatusMitarbeiter": {
@@ -5908,10 +6214,12 @@
           },
           "msStatusMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAkademischerGrad": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAnschriftenzusatz": {
@@ -5920,10 +6228,12 @@
           },
           "vmsBetrieblichePersonalnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFamilienname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsdatum": {
@@ -5932,6 +6242,7 @@
           },
           "vmsGeburtslandIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtslandLfdNr": {
@@ -5944,10 +6255,12 @@
           },
           "vmsGeburtsname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsort": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeschlecht": {
@@ -5960,6 +6273,7 @@
           },
           "vmsHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeiternummer": {
@@ -5968,10 +6282,12 @@
           },
           "vmsNamenszusatzBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzNummer": {
@@ -6000,6 +6316,7 @@
           },
           "vmsNationWohnortIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsOrt": {
@@ -6024,10 +6341,12 @@
           },
           "vmsVorsatzwortBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortNummer": {
@@ -6039,10 +6358,12 @@
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msReisekostenrichtlinieStammBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcWertDateTime01": {
@@ -6336,6 +6657,7 @@
           },
           "lohnartname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "kontonummer": {
@@ -6344,6 +6666,7 @@
           },
           "kontoname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "gegenkontonummer": {
@@ -6352,6 +6675,7 @@
           },
           "gegenkontoname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "krankenkassennummer": {
@@ -6360,22 +6684,27 @@
           },
           "krankenkassenname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "kostenstellennummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "kostentraegername": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "kostentraegernummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "kostenstellenname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "kostMenge": {
@@ -6384,18 +6713,22 @@
           },
           "mitarbeitername": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "verarbeitungskennzeichen": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "beleg1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "beleg2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "betragSoll": {
@@ -6428,6 +6761,7 @@
           },
           "buchungstext": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "zuordnungsdatum": {
@@ -6436,6 +6770,7 @@
           },
           "hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msAnstellungsartAbweichend": {
@@ -6446,6 +6781,7 @@
           },
           "msAusweisNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msBeschaeftigungsstatusMitarbeiterAbweichend": {
@@ -6459,6 +6795,7 @@
           },
           "msGfosOrganisationseinheitAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msIsKeineZeiterfassung": {
@@ -6471,6 +6808,7 @@
           },
           "msMitarbeiternummerZeiterfassungAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsArbeitnehmertyp": {
@@ -6487,18 +6825,22 @@
           },
           "vmsBankverbindungBankname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungBic": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungIban": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungInhaber": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBeginnStudienbescheinigung": {
@@ -6515,10 +6857,12 @@
           },
           "vmsFinanzamtnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIdentifikationsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsAktiv": {
@@ -6528,7 +6872,8 @@
             "type": "boolean"
           },
           "vmsIsHauptbeschaeftigung": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "vmsKinderfreibetrag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -6540,6 +6885,7 @@
           },
           "vmsKonfessionNummerMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLohnMonatsdatenVorerfassungMitarbeiterStammdatenLfdNr": {
@@ -6548,6 +6894,7 @@
           },
           "vmsStandardentlohnungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsStandardentlohnungNummer": {
@@ -6578,6 +6925,7 @@
           },
           "vmsEntgeltgruppe": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msAustrittsgrund": {
@@ -6597,7 +6945,8 @@
           },
           "msVollzeitaequivalent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "vmsArbeitszeitDienstag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -6649,6 +6998,7 @@
           },
           "vmsBerufsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBetriebsstaetteLfdNr": {
@@ -6762,6 +7112,7 @@
           },
           "calcAnzahlKinderAbweichung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcAnzahlAnhangHgbQuartal1": {
@@ -6825,11 +7176,33 @@
           },
           "calcFehlzeitStichtag1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcFehlzeitStichtag2": {
             "type": "string",
+            "default": "",
             "nullable": true
+          },
+          "lbDatumLohnPersonalakteStichwortPostart1LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart2LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart3LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart4LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart5LfdNr": {
+            "type": "string",
+            "format": "date-time"
           },
           "msFamilieGeschiedenSeit": {
             "type": "string",
@@ -6849,10 +7222,12 @@
           },
           "msFamiliePartnerName": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamiliePartnerVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamilieVerheiratetSeit": {
@@ -6906,10 +7281,12 @@
           },
           "gruppierung01Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "gruppierung02Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "sortierungHash": {
@@ -6932,6 +7309,7 @@
           },
           "mandantenname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mandantennummer": {
@@ -6980,26 +7358,32 @@
           },
           "msGemeindeGewSt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe06": {
@@ -7027,14 +7411,17 @@
           },
           "vmsAbteilungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAbteilungsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFibugruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGruppennummerFibu": {
@@ -7043,18 +7430,22 @@
           },
           "vmsKostenstelleBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstelleNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLeistungsgruppeStatistischeAemter": {
@@ -7063,6 +7454,7 @@
           },
           "vmsMitarbeitergruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeitergruppennnummer": {
@@ -7075,15 +7467,18 @@
           },
           "vmsKostenstellenverteilungsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstellenverteilungsdetails": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHeadcount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "msHeadcount01": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -7257,102 +7652,127 @@
           },
           "msWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString06": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString07": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString08": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString09": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString10": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString11": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString12": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString13": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString14": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString15": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString16": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString17": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString18": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString19": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString20": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertDecimal01": {
@@ -7407,62 +7827,77 @@
           },
           "msDurchwahlBetrieb": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdresse": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdressePrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummerPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msTelefonPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWhatsappNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGfosPersonalnummerKopiervorlage": {
@@ -7500,6 +7935,7 @@
           },
           "vmsArtKinderAbweichendVerwendenBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAusgeuebteTaetigkeitLfdNr": {
@@ -7544,10 +7980,12 @@
           },
           "vmsBerufsgenossenschaftStrukturschluessel1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBerufsgenossenschaftStrukturschluessel2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsDatumA1BescheinigungBis": {
@@ -7571,6 +8009,9 @@
           "vmsIsPrivatversichert": {
             "type": "boolean"
           },
+          "vmsIsVersorgungsbezugsempfaenger": {
+            "type": "boolean"
+          },
           "vmsIsSchwerbehindert": {
             "type": "boolean"
           },
@@ -7584,6 +8025,7 @@
           },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsUnstaendigeBeschaeftigung": {
@@ -7594,6 +8036,7 @@
           },
           "vmsKrankenkasseBeitragskontonummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseBetriebsnummer": {
@@ -7602,6 +8045,7 @@
           },
           "vmsKrankenkasseBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseGeschaeftsstelle": {
@@ -7614,6 +8058,7 @@
           },
           "vmsKrankenkasseHauptversicherungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsPersonengruppenschluessel": {
@@ -7622,6 +8067,7 @@
           },
           "vmsPersonengruppenschluesselBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsSchulabschluss": {
@@ -7656,20 +8102,32 @@
             "type": "string",
             "nullable": true
           },
+          "vmsPkvBasisabsicherung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "vmsPkvGesamtbeitrag": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
           "calcNameVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcPlzOrt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcStrasseHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msMitarbeiterKuerzel": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msSprache": {
@@ -7684,6 +8142,7 @@
           },
           "msStatusDerAushilfeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msStatusMitarbeiter": {
@@ -7691,10 +8150,12 @@
           },
           "msStatusMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAkademischerGrad": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAnschriftenzusatz": {
@@ -7703,10 +8164,12 @@
           },
           "vmsBetrieblichePersonalnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFamilienname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsdatum": {
@@ -7715,6 +8178,7 @@
           },
           "vmsGeburtslandIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtslandLfdNr": {
@@ -7727,10 +8191,12 @@
           },
           "vmsGeburtsname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsort": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeschlecht": {
@@ -7743,6 +8209,7 @@
           },
           "vmsHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeiternummer": {
@@ -7751,10 +8218,12 @@
           },
           "vmsNamenszusatzBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzNummer": {
@@ -7783,6 +8252,7 @@
           },
           "vmsNationWohnortIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsOrt": {
@@ -7807,10 +8277,12 @@
           },
           "vmsVorsatzwortBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortNummer": {
@@ -7822,10 +8294,12 @@
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msReisekostenrichtlinieStammBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcWertDateTime01": {
@@ -8123,6 +8597,7 @@
           },
           "lohnMonatsdatenVorerfassungMitarbeiterNeuanlageTemplateBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "lohnMonatsdatenVorerfassungMitarbeiterNeuanlageTemplateLfdNr": {
@@ -8145,6 +8620,7 @@
           },
           "msAusweisNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msBeschaeftigungsstatusMitarbeiterAbweichend": {
@@ -8158,6 +8634,7 @@
           },
           "msGfosOrganisationseinheitAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msIsKeineZeiterfassung": {
@@ -8170,6 +8647,7 @@
           },
           "msMitarbeiternummerZeiterfassungAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsArbeitnehmertyp": {
@@ -8186,18 +8664,22 @@
           },
           "vmsBankverbindungBankname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungBic": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungIban": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungInhaber": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBeginnStudienbescheinigung": {
@@ -8214,10 +8696,12 @@
           },
           "vmsFinanzamtnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIdentifikationsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsAktiv": {
@@ -8227,7 +8711,8 @@
             "type": "boolean"
           },
           "vmsIsHauptbeschaeftigung": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "vmsKinderfreibetrag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -8239,6 +8724,7 @@
           },
           "vmsKonfessionNummerMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLohnMonatsdatenVorerfassungMitarbeiterStammdatenLfdNr": {
@@ -8247,6 +8733,7 @@
           },
           "vmsStandardentlohnungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsStandardentlohnungNummer": {
@@ -8277,6 +8764,7 @@
           },
           "vmsEntgeltgruppe": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msAustrittsgrund": {
@@ -8296,7 +8784,8 @@
           },
           "msVollzeitaequivalent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "vmsArbeitszeitDienstag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -8348,6 +8837,7 @@
           },
           "vmsBerufsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBetriebsstaetteLfdNr": {
@@ -8461,6 +8951,7 @@
           },
           "calcAnzahlKinderAbweichung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcAnzahlAnhangHgbQuartal1": {
@@ -8524,11 +9015,33 @@
           },
           "calcFehlzeitStichtag1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcFehlzeitStichtag2": {
             "type": "string",
+            "default": "",
             "nullable": true
+          },
+          "lbDatumLohnPersonalakteStichwortPostart1LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart2LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart3LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart4LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart5LfdNr": {
+            "type": "string",
+            "format": "date-time"
           },
           "msFamilieGeschiedenSeit": {
             "type": "string",
@@ -8548,10 +9061,12 @@
           },
           "msFamiliePartnerName": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamiliePartnerVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamilieVerheiratetSeit": {
@@ -8605,10 +9120,12 @@
           },
           "gruppierung01Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "gruppierung02Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "sortierungHash": {
@@ -8631,6 +9148,7 @@
           },
           "mandantenname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mandantennummer": {
@@ -8679,26 +9197,32 @@
           },
           "msGemeindeGewSt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe06": {
@@ -8726,14 +9250,17 @@
           },
           "vmsAbteilungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAbteilungsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFibugruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGruppennummerFibu": {
@@ -8742,18 +9269,22 @@
           },
           "vmsKostenstelleBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstelleNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLeistungsgruppeStatistischeAemter": {
@@ -8762,6 +9293,7 @@
           },
           "vmsMitarbeitergruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeitergruppennnummer": {
@@ -8774,15 +9306,18 @@
           },
           "vmsKostenstellenverteilungsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstellenverteilungsdetails": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHeadcount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "msHeadcount01": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -8956,102 +9491,127 @@
           },
           "msWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString06": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString07": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString08": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString09": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString10": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString11": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString12": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString13": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString14": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString15": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString16": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString17": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString18": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString19": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString20": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertDecimal01": {
@@ -9106,62 +9666,77 @@
           },
           "msDurchwahlBetrieb": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdresse": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdressePrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummerPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msTelefonPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWhatsappNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGfosPersonalnummerKopiervorlage": {
@@ -9199,6 +9774,7 @@
           },
           "vmsArtKinderAbweichendVerwendenBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAusgeuebteTaetigkeitLfdNr": {
@@ -9243,10 +9819,12 @@
           },
           "vmsBerufsgenossenschaftStrukturschluessel1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBerufsgenossenschaftStrukturschluessel2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsDatumA1BescheinigungBis": {
@@ -9270,6 +9848,9 @@
           "vmsIsPrivatversichert": {
             "type": "boolean"
           },
+          "vmsIsVersorgungsbezugsempfaenger": {
+            "type": "boolean"
+          },
           "vmsIsSchwerbehindert": {
             "type": "boolean"
           },
@@ -9283,6 +9864,7 @@
           },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsUnstaendigeBeschaeftigung": {
@@ -9293,6 +9875,7 @@
           },
           "vmsKrankenkasseBeitragskontonummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseBetriebsnummer": {
@@ -9301,6 +9884,7 @@
           },
           "vmsKrankenkasseBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseGeschaeftsstelle": {
@@ -9313,6 +9897,7 @@
           },
           "vmsKrankenkasseHauptversicherungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsPersonengruppenschluessel": {
@@ -9321,6 +9906,7 @@
           },
           "vmsPersonengruppenschluesselBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsSchulabschluss": {
@@ -9355,20 +9941,32 @@
             "type": "string",
             "nullable": true
           },
+          "vmsPkvBasisabsicherung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "vmsPkvGesamtbeitrag": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
           "calcNameVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcPlzOrt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcStrasseHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msMitarbeiterKuerzel": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msSprache": {
@@ -9383,6 +9981,7 @@
           },
           "msStatusDerAushilfeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msStatusMitarbeiter": {
@@ -9390,10 +9989,12 @@
           },
           "msStatusMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAkademischerGrad": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAnschriftenzusatz": {
@@ -9402,10 +10003,12 @@
           },
           "vmsBetrieblichePersonalnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFamilienname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsdatum": {
@@ -9414,6 +10017,7 @@
           },
           "vmsGeburtslandIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtslandLfdNr": {
@@ -9426,10 +10030,12 @@
           },
           "vmsGeburtsname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsort": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeschlecht": {
@@ -9442,6 +10048,7 @@
           },
           "vmsHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeiternummer": {
@@ -9450,10 +10057,12 @@
           },
           "vmsNamenszusatzBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzNummer": {
@@ -9482,6 +10091,7 @@
           },
           "vmsNationWohnortIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsOrt": {
@@ -9506,10 +10116,12 @@
           },
           "vmsVorsatzwortBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortNummer": {
@@ -9521,10 +10133,12 @@
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msReisekostenrichtlinieStammBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcWertDateTime01": {
@@ -9814,7 +10428,8 @@
         "properties": {
           "mwFamilienstandNummer": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
+            "format": "int32",
+            "default": -1
           },
           "mwWohnortLandLfdNr": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -9822,26 +10437,32 @@
           },
           "mwStrassePostfach": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwPostleitzahl": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwOrt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWohnortLand": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwKostentraeger": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwSteuerklasse": {
@@ -9854,18 +10475,22 @@
           },
           "mwAbteilungsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwAbteilung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwKostenstelle": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwStandardentlohnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwFibuGruppe": {
@@ -9874,22 +10499,27 @@
           },
           "mwGruppe01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwGruppe02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwGruppe03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwGruppe04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwGruppe05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwHeadcount": {
@@ -9938,6 +10568,7 @@
           },
           "mwBerufsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwUrlaubJahrBeginn": {
@@ -10198,42 +10829,52 @@
           },
           "mwWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString06": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString07": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString08": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString09": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertString10": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mwWertBool01": {
@@ -10265,6 +10906,42 @@
           },
           "mwWertBool10": {
             "type": "boolean"
+          },
+          "lbResturlaubTageJahr": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "lbResturlaubTageVorjahr": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "lbTageBetrieblichesGesundheitsmangement": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "tageKrankOhneAttest": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "tageKrankMitAu": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "tageKrankMitLohnfortzahlung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "tageKrankOhneLohnfortzahlung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "tageKindKrankMitLohnfortzahlung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "tageKindKrankOhneLohnfortzahlung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
           },
           "datevAuszahlungsbetrag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -10336,6 +11013,7 @@
           },
           "datevKostenstelleZeile": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "datevArbeitgeberBavFoerderbetrag": {
@@ -10394,6 +11072,10 @@
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "format": "double"
           },
+          "datevPersonengruppenschluessel": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
           "datevUnfallversicherungStunden": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "format": "double"
@@ -10412,14 +11094,17 @@
           },
           "datevUnfallversicherungGefahrentarifstelle1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "datevUnfallversicherungGefahrentarifstelle2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "datevUnfallversicherungGefahrentarifstelle3": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "datevDarlehenNennbetrag": {
@@ -10450,30 +11135,6 @@
             "type": "string",
             "format": "date-time"
           },
-          "tageKrankOhneAttest": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
-          },
-          "tageKrankMitAu": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
-          },
-          "tageKrankMitLohnfortzahlung": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
-          },
-          "tageKrankOhneLohnfortzahlung": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
-          },
-          "tageKindKrankMitLohnfortzahlung": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
-          },
-          "tageKindKrankOhneLohnfortzahlung": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
-          },
           "msAnstellungsartAbweichend": {
             "$ref": "#/components/schemas/eAnstellungsartMitarbeiter"
           },
@@ -10482,6 +11143,7 @@
           },
           "msAusweisNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msBeschaeftigungsstatusMitarbeiterAbweichend": {
@@ -10495,6 +11157,7 @@
           },
           "msGfosOrganisationseinheitAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msIsKeineZeiterfassung": {
@@ -10507,6 +11170,7 @@
           },
           "msMitarbeiternummerZeiterfassungAbweichend": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsArbeitnehmertyp": {
@@ -10523,18 +11187,22 @@
           },
           "vmsBankverbindungBankname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungBic": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungIban": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBankverbindungInhaber": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBeginnStudienbescheinigung": {
@@ -10551,10 +11219,12 @@
           },
           "vmsFinanzamtnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIdentifikationsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsAktiv": {
@@ -10564,7 +11234,8 @@
             "type": "boolean"
           },
           "vmsIsHauptbeschaeftigung": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "vmsKinderfreibetrag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -10576,6 +11247,7 @@
           },
           "vmsKonfessionNummerMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLohnMonatsdatenVorerfassungMitarbeiterStammdatenLfdNr": {
@@ -10584,6 +11256,7 @@
           },
           "vmsStandardentlohnungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsStandardentlohnungNummer": {
@@ -10614,6 +11287,7 @@
           },
           "vmsEntgeltgruppe": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msAustrittsgrund": {
@@ -10633,7 +11307,8 @@
           },
           "msVollzeitaequivalent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "vmsArbeitszeitDienstag": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -10685,6 +11360,7 @@
           },
           "vmsBerufsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBetriebsstaetteLfdNr": {
@@ -10798,6 +11474,7 @@
           },
           "calcAnzahlKinderAbweichung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcAnzahlAnhangHgbQuartal1": {
@@ -10861,11 +11538,33 @@
           },
           "calcFehlzeitStichtag1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcFehlzeitStichtag2": {
             "type": "string",
+            "default": "",
             "nullable": true
+          },
+          "lbDatumLohnPersonalakteStichwortPostart1LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart2LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart3LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart4LfdNr": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lbDatumLohnPersonalakteStichwortPostart5LfdNr": {
+            "type": "string",
+            "format": "date-time"
           },
           "msFamilieGeschiedenSeit": {
             "type": "string",
@@ -10885,10 +11584,12 @@
           },
           "msFamiliePartnerName": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamiliePartnerVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msFamilieVerheiratetSeit": {
@@ -10942,10 +11643,12 @@
           },
           "gruppierung01Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "gruppierung02Hash": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "sortierungHash": {
@@ -10968,6 +11671,7 @@
           },
           "mandantenname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "mandantennummer": {
@@ -11016,26 +11720,32 @@
           },
           "msGemeindeGewSt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGruppe06": {
@@ -11063,14 +11773,17 @@
           },
           "vmsAbteilungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAbteilungsnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFibugruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGruppennummerFibu": {
@@ -11079,18 +11792,22 @@
           },
           "vmsKostenstelleBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstelleNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostentraegerNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsLeistungsgruppeStatistischeAemter": {
@@ -11099,6 +11816,7 @@
           },
           "vmsMitarbeitergruppeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeitergruppennnummer": {
@@ -11111,15 +11829,18 @@
           },
           "vmsKostenstellenverteilungsbezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKostenstellenverteilungsdetails": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHeadcount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double"
+            "format": "double",
+            "default": 1
           },
           "msHeadcount01": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -11293,102 +12014,127 @@
           },
           "msWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString06": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString07": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString08": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString09": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString10": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString11": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString12": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString13": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString14": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString15": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString16": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString17": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString18": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString19": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWertString20": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString01": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString02": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString03": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString04": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertString05": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msDokumentWertDecimal01": {
@@ -11443,62 +12189,77 @@
           },
           "msDurchwahlBetrieb": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdresse": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msEmailAdressePrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msHandynummerPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt1Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Bemerkung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Erreichbarkeit2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msNotfallkontakt2Name": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msTelefonPrivat": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msWhatsappNummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msGfosPersonalnummerKopiervorlage": {
@@ -11536,6 +12297,7 @@
           },
           "vmsArtKinderAbweichendVerwendenBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAusgeuebteTaetigkeitLfdNr": {
@@ -11580,10 +12342,12 @@
           },
           "vmsBerufsgenossenschaftStrukturschluessel1": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsBerufsgenossenschaftStrukturschluessel2": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsDatumA1BescheinigungBis": {
@@ -11607,6 +12371,9 @@
           "vmsIsPrivatversichert": {
             "type": "boolean"
           },
+          "vmsIsVersorgungsbezugsempfaenger": {
+            "type": "boolean"
+          },
           "vmsIsSchwerbehindert": {
             "type": "boolean"
           },
@@ -11620,6 +12387,7 @@
           },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsIsUnstaendigeBeschaeftigung": {
@@ -11630,6 +12398,7 @@
           },
           "vmsKrankenkasseBeitragskontonummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseBetriebsnummer": {
@@ -11638,6 +12407,7 @@
           },
           "vmsKrankenkasseBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsKrankenkasseGeschaeftsstelle": {
@@ -11650,6 +12420,7 @@
           },
           "vmsKrankenkasseHauptversicherungBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsPersonengruppenschluessel": {
@@ -11658,6 +12429,7 @@
           },
           "vmsPersonengruppenschluesselBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsSchulabschluss": {
@@ -11692,20 +12464,32 @@
             "type": "string",
             "nullable": true
           },
+          "vmsPkvBasisabsicherung": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "vmsPkvGesamtbeitrag": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
           "calcNameVorname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcPlzOrt": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcStrasseHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msMitarbeiterKuerzel": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msSprache": {
@@ -11720,6 +12504,7 @@
           },
           "msStatusDerAushilfeBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msStatusMitarbeiter": {
@@ -11727,10 +12512,12 @@
           },
           "msStatusMitarbeiterBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAkademischerGrad": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsAnschriftenzusatz": {
@@ -11739,10 +12526,12 @@
           },
           "vmsBetrieblichePersonalnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsFamilienname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsdatum": {
@@ -11751,6 +12540,7 @@
           },
           "vmsGeburtslandIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtslandLfdNr": {
@@ -11763,10 +12553,12 @@
           },
           "vmsGeburtsname": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeburtsort": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsGeschlecht": {
@@ -11779,6 +12571,7 @@
           },
           "vmsHausnummer": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsMitarbeiternummer": {
@@ -11787,10 +12580,12 @@
           },
           "vmsNamenszusatzBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsNamenszusatzNummer": {
@@ -11819,6 +12614,7 @@
           },
           "vmsNationWohnortIso3166Kz3stellig": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsOrt": {
@@ -11843,10 +12639,12 @@
           },
           "vmsVorsatzwortBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortGeburtsnameBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "vmsVorsatzwortNummer": {
@@ -11858,10 +12656,12 @@
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "msReisekostenrichtlinieStammBezeichnung": {
             "type": "string",
+            "default": "",
             "nullable": true
           },
           "calcWertDateTime01": {
@@ -14110,6 +14910,10 @@
           "transactionId": {
             "type": "string",
             "description": "Identifikationsnummer der durchführenden Transaktion."
+          },
+          "includeAllEmployees": {
+            "type": "boolean",
+            "description": "Gibt an, ob ehemalige Mitarbeiter in die Abfrage einbezogen werden sollen. Standardwert ist `false`."
           }
         }
       },
