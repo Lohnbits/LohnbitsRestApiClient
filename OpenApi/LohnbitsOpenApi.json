@@ -3020,10 +3020,6 @@
             "default": "",
             "nullable": true
           },
-          "vmsBeginnStudienbescheinigung": {
-            "type": "string",
-            "format": "date-time"
-          },
           "vmsBundeslandnummer": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
@@ -3190,11 +3186,11 @@
             "type": "string",
             "nullable": true
           },
-          "vmsDatumArbeitserlaubnisBis": {
+          "vmsArbeitserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
-          "vmsDatumAufenthaltserlaubnisBis": {
+          "vmsAufenthaltserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -3206,7 +3202,7 @@
             "type": "string",
             "format": "date-time"
           },
-          "vmsEndeStudienbescheinigung": {
+          "vmsStudienbescheinigungBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -3525,7 +3521,26 @@
             },
             "nullable": true
           },
+          "dictAlleWerte": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                "format": "double"
+              }
+            },
+            "nullable": true
+          },
           "dictDurchschnitt": {
+            "type": "object",
+            "additionalProperties": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "dictMedian": {
             "type": "object",
             "additionalProperties": {
               "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -4200,6 +4215,14 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
           },
+          "vmsSchwerbehinderungGueltigAb": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsSchwerbehinderungGueltigBis": {
+            "type": "string",
+            "format": "date-time"
+          },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
             "default": "",
@@ -4468,6 +4491,10 @@
           },
           "msIsReisekostenAbrechnen": {
             "type": "boolean"
+          },
+          "msVorgabeKreditorReisekosten": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
@@ -4907,10 +4934,6 @@
             "default": "",
             "nullable": true
           },
-          "vmsBeginnStudienbescheinigung": {
-            "type": "string",
-            "format": "date-time"
-          },
           "vmsBundeslandnummer": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
@@ -5077,11 +5100,11 @@
             "type": "string",
             "nullable": true
           },
-          "vmsDatumArbeitserlaubnisBis": {
+          "vmsArbeitserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
-          "vmsDatumAufenthaltserlaubnisBis": {
+          "vmsAufenthaltserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -5093,7 +5116,7 @@
             "type": "string",
             "format": "date-time"
           },
-          "vmsEndeStudienbescheinigung": {
+          "vmsStudienbescheinigungBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -5412,7 +5435,26 @@
             },
             "nullable": true
           },
+          "dictAlleWerte": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                "format": "double"
+              }
+            },
+            "nullable": true
+          },
           "dictDurchschnitt": {
+            "type": "object",
+            "additionalProperties": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "dictMedian": {
             "type": "object",
             "additionalProperties": {
               "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -6087,6 +6129,14 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
           },
+          "vmsSchwerbehinderungGueltigAb": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsSchwerbehinderungGueltigBis": {
+            "type": "string",
+            "format": "date-time"
+          },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
             "default": "",
@@ -6355,6 +6405,10 @@
           },
           "msIsReisekostenAbrechnen": {
             "type": "boolean"
+          },
+          "msVorgabeKreditorReisekosten": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
@@ -6843,10 +6897,6 @@
             "default": "",
             "nullable": true
           },
-          "vmsBeginnStudienbescheinigung": {
-            "type": "string",
-            "format": "date-time"
-          },
           "vmsBundeslandnummer": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
@@ -7013,11 +7063,11 @@
             "type": "string",
             "nullable": true
           },
-          "vmsDatumArbeitserlaubnisBis": {
+          "vmsArbeitserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
-          "vmsDatumAufenthaltserlaubnisBis": {
+          "vmsAufenthaltserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -7029,7 +7079,7 @@
             "type": "string",
             "format": "date-time"
           },
-          "vmsEndeStudienbescheinigung": {
+          "vmsStudienbescheinigungBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -7348,7 +7398,26 @@
             },
             "nullable": true
           },
+          "dictAlleWerte": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                "format": "double"
+              }
+            },
+            "nullable": true
+          },
           "dictDurchschnitt": {
+            "type": "object",
+            "additionalProperties": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "dictMedian": {
             "type": "object",
             "additionalProperties": {
               "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -8023,6 +8092,14 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
           },
+          "vmsSchwerbehinderungGueltigAb": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsSchwerbehinderungGueltigBis": {
+            "type": "string",
+            "format": "date-time"
+          },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
             "default": "",
@@ -8291,6 +8368,10 @@
           },
           "msIsReisekostenAbrechnen": {
             "type": "boolean"
+          },
+          "msVorgabeKreditorReisekosten": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
@@ -8682,10 +8763,6 @@
             "default": "",
             "nullable": true
           },
-          "vmsBeginnStudienbescheinigung": {
-            "type": "string",
-            "format": "date-time"
-          },
           "vmsBundeslandnummer": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
@@ -8852,11 +8929,11 @@
             "type": "string",
             "nullable": true
           },
-          "vmsDatumArbeitserlaubnisBis": {
+          "vmsArbeitserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
-          "vmsDatumAufenthaltserlaubnisBis": {
+          "vmsAufenthaltserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -8868,7 +8945,7 @@
             "type": "string",
             "format": "date-time"
           },
-          "vmsEndeStudienbescheinigung": {
+          "vmsStudienbescheinigungBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -9187,7 +9264,26 @@
             },
             "nullable": true
           },
+          "dictAlleWerte": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                "format": "double"
+              }
+            },
+            "nullable": true
+          },
           "dictDurchschnitt": {
+            "type": "object",
+            "additionalProperties": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "dictMedian": {
             "type": "object",
             "additionalProperties": {
               "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -9862,6 +9958,14 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
           },
+          "vmsSchwerbehinderungGueltigAb": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsSchwerbehinderungGueltigBis": {
+            "type": "string",
+            "format": "date-time"
+          },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
             "default": "",
@@ -10130,6 +10234,10 @@
           },
           "msIsReisekostenAbrechnen": {
             "type": "boolean"
+          },
+          "msVorgabeKreditorReisekosten": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
@@ -11205,10 +11313,6 @@
             "default": "",
             "nullable": true
           },
-          "vmsBeginnStudienbescheinigung": {
-            "type": "string",
-            "format": "date-time"
-          },
           "vmsBundeslandnummer": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
@@ -11375,11 +11479,11 @@
             "type": "string",
             "nullable": true
           },
-          "vmsDatumArbeitserlaubnisBis": {
+          "vmsArbeitserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
-          "vmsDatumAufenthaltserlaubnisBis": {
+          "vmsAufenthaltserlaubnisBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -11391,7 +11495,7 @@
             "type": "string",
             "format": "date-time"
           },
-          "vmsEndeStudienbescheinigung": {
+          "vmsStudienbescheinigungBis": {
             "type": "string",
             "format": "date-time"
           },
@@ -11710,7 +11814,26 @@
             },
             "nullable": true
           },
+          "dictAlleWerte": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                "format": "double"
+              }
+            },
+            "nullable": true
+          },
           "dictDurchschnitt": {
+            "type": "object",
+            "additionalProperties": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "dictMedian": {
             "type": "object",
             "additionalProperties": {
               "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -12385,6 +12508,14 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
           },
+          "vmsSchwerbehinderungGueltigAb": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "vmsSchwerbehinderungGueltigBis": {
+            "type": "string",
+            "format": "date-time"
+          },
           "vmsPgsSchwerbehinderung": {
             "type": "string",
             "default": "",
@@ -12653,6 +12784,10 @@
           },
           "msIsReisekostenAbrechnen": {
             "type": "boolean"
+          },
+          "msVorgabeKreditorReisekosten": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
           },
           "msVorgabeKostenstelleReisekosten": {
             "type": "string",
@@ -14913,7 +15048,11 @@
           },
           "includeAllEmployees": {
             "type": "boolean",
-            "description": "Gibt an, ob ehemalige Mitarbeiter in die Abfrage einbezogen werden sollen. Standardwert ist `false`."
+            "description": "Gibt an, ob alle Mitarbeiter (ehemalige, vorgemerkte, etc.) in die Abfrage einbezogen werden sollen. Standardwert ist `false`."
+          },
+          "ignoreEmptyEntries": {
+            "type": "boolean",
+            "description": "Gibt an, ob leere Einträge in die Abfrage einbezogen werden sollen. Standardwert ist `false`."
           }
         }
       },

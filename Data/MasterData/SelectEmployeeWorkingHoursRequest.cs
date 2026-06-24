@@ -20,6 +20,7 @@ namespace gv3kServerFibuLohn.Api.Data.MasterData
             RowFilterFormular = null;
             TransactionId = string.Empty;
             IncludeAllEmployees = false;
+            IgnoreEmptyEntries = false;
         }
 
         [Description("Identifikationsnummer des Aufrufprotokolls. Wird nur für interne Zwecke benötigt und darf nicht manuell vergeben werden.")]
@@ -54,5 +55,8 @@ namespace gv3kServerFibuLohn.Api.Data.MasterData
 
         [Description("Gibt an, ob alle Mitarbeiter (ehemalige, vorgemerkte, etc.) in die Abfrage einbezogen werden sollen. Standardwert ist `false`.")]
         public bool IncludeAllEmployees { get; set; }
+
+        [Description("Gibt an, ob leere Einträge in die Abfrage einbezogen werden sollen. Standardwert ist `false`.")]
+        public bool IgnoreEmptyEntries { get; set; }
     }
 }
