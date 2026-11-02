@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "62bf6d5a-992e-485a-9313-cfae18a2e28b",
+    "_postman_id": "021c5c5e-c9bf-40ce-ad18-c0efcc9ca756",
     "name": "Lohnbits Api",
     "description": "Spezifikation der Lohnbits Api\n\nContact Support:\n Name: Lohnbits",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -32,10 +32,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"otp\": \"string\"\n}",
+                      "raw": "{\n  \"username\": \"username\",\n  \"password\": \"password\",\n  \"otp\": \"123456\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -232,7 +231,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"username\": \"string\",\n  \"password\": \"string\"\n}",
+                      "raw": "{\n  \"username\": \"username\",\n  \"password\": \"password\"\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -717,10 +716,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": \"string\",\n  \"clientNumber\": \"string\",\n  \"clientId\": 179,\n  \"clientGroupId\": null,\n  \"specialFunction\": \"string\",\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 179\n//   \"specialFunction\": \"string\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -906,10 +904,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 9007,\n  \"clientNumber\": \"string\",\n  \"clientId\": \"string\",\n  \"clientGroupId\": 1648,\n  \"onlyActiveEmployees\": true,\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"onlyActiveEmployees\": false\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -1095,10 +1092,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": \"string\",\n  \"clientNumber\": 4352,\n  \"clientId\": \"string\",\n  \"clientGroupId\": \"string\",\n  \"onlyActiveEmployees\": true,\n  \"personnelNumber\": null,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"onlyActiveEmployees\": false,\n  \"personnelNumber\": 123\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -1284,10 +1280,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 6685,\n  \"clientNumber\": \"string\",\n  \"clientId\": 1358,\n  \"clientGroupId\": \"string\",\n  \"personnelNumber\": null,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": 3518,\n  \"rowFilterFormular\": \"string\",\n  \"transactionId\": \"string\",\n  \"includeAllEmployees\": true,\n  \"ignoreEmptyEntries\": false\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"includeAllEmployees\": true\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -1473,10 +1468,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 609,\n  \"clientNumber\": 6435,\n  \"clientId\": \"string\",\n  \"clientGroupId\": 9182,\n  \"personnelNumber\": null,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"transactionId\": \"string\",\n  \"note\": \"string\",\n  \"fileName\": \"string\",\n  \"fileFormat\": \"string\",\n  \"documentDate\": \"1968-12-02T18:02:41.517Z\",\n  \"monthlyRecordingPeriod\": \"2023-09-07T01:15:55.913Z\",\n  \"periodAssignment\": \"2009-07-13T03:39:50.700Z\",\n  \"documentTypeId\": \"string\",\n  \"isOldVersion\": true,\n  \"isOnlyForPersonnelFile\": false,\n  \"isHighPriority\": true,\n  \"content\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"note\": \"string\",\n  \"fileName\": \"filename.pdf\",\n  \"documentDate\": \"2026-03-15T14:02:00.000Z\",\n  \"monthlyRecordingPeriod\": \"2026-03-01T00:00:00.000Z\",\n  \"periodAssignment\": \"2026-03-15T14:02:00.000Z\",\n  \"documentTypeId\": 0,\n  \"isOnlyForPersonnelFile\": false,\n  \"isHighPriority\": false,\n  \"content\": []\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -1662,10 +1656,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 9764,\n  \"clientNumber\": null,\n  \"clientId\": 8876,\n  \"clientGroupId\": 4785,\n  \"personnelNumber\": 5161,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": 8323,\n  \"transactionId\": \"string\",\n  \"note\": \"string\",\n  \"fileName\": \"string\",\n  \"fileFormat\": \"string\",\n  \"documentDate\": \"1967-07-25T09:21:49.851Z\",\n  \"content\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"note\": \"Just a little note\",\n  \"fileName\": \"filename.pdf\",\n  \"documentDate\": \"2026-03-15T14:02:00.000Z\",\n  \"content\": []\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -1851,10 +1844,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 4549,\n  \"clientNumber\": \"string\",\n  \"clientId\": 7311,\n  \"clientGroupId\": 9614,\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -2040,10 +2032,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 5327,\n  \"clientNumber\": null,\n  \"clientId\": null,\n  \"clientGroupId\": null,\n  \"transactionId\": \"string\",\n  \"code\": \"string\",\n  \"reportPeriodBegin\": \"1986-12-13T14:05:17.379Z\",\n  \"reportPeriodEnd\": \"1950-10-09T07:38:49.031Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"code\": \"report-code\",\n  \"reportPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"reportPeriodEnd\": \"2026-06-31T23:59:59.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -2277,10 +2268,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": \"string\",\n  \"clientNumber\": 9682,\n  \"clientId\": 6703,\n  \"clientGroupId\": \"string\",\n  \"transactionId\": \"string\",\n  \"code\": \"string\",\n  \"reportPeriodBegin\": \"1965-03-22T17:20:21.467Z\",\n  \"reportPeriodEnd\": \"2018-04-01T18:23:41.821Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"code\": \"report-code\",\n  \"reportPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"reportPeriodEnd\": \"2026-06-31T23:59:59.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -2514,10 +2504,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 5327,\n  \"clientNumber\": null,\n  \"clientId\": null,\n  \"clientGroupId\": null,\n  \"transactionId\": \"string\",\n  \"code\": \"string\",\n  \"reportPeriodBegin\": \"1986-12-13T14:05:17.379Z\",\n  \"reportPeriodEnd\": \"1950-10-09T07:38:49.031Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"code\": \"report-code\",\n  \"reportPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"reportPeriodEnd\": \"2026-06-31T23:59:59.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -2751,10 +2740,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 5327,\n  \"clientNumber\": null,\n  \"clientId\": null,\n  \"clientGroupId\": null,\n  \"transactionId\": \"string\",\n  \"code\": \"string\",\n  \"reportPeriodBegin\": \"1986-12-13T14:05:17.379Z\",\n  \"reportPeriodEnd\": \"1950-10-09T07:38:49.031Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"code\": \"report-code\",\n  \"reportPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"reportPeriodEnd\": \"2026-06-31T23:59:59.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -2988,10 +2976,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 5327,\n  \"clientNumber\": null,\n  \"clientId\": null,\n  \"clientGroupId\": null,\n  \"transactionId\": \"string\",\n  \"code\": \"string\",\n  \"reportPeriodBegin\": \"1986-12-13T14:05:17.379Z\",\n  \"reportPeriodEnd\": \"1950-10-09T07:38:49.031Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"code\": \"report-code\",\n  \"reportPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"reportPeriodEnd\": \"2026-06-31T23:59:59.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -3225,10 +3212,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 586,\n  \"clientNumber\": null,\n  \"clientId\": 1742,\n  \"clientGroupId\": 6385,\n  \"preRecordingTitle\": \"string\",\n  \"period\": \"1962-01-28T02:41:29.353Z\",\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"preRecordingTitle\": \"RecordingTitle\",\n  \"period\": \"2026-03-01T00:00:00.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -3414,10 +3400,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 6535,\n  \"id\": \"6d00b2a2-6c72-b6f0-5bb2-7325d26f33f9\",\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"id\": \"6d00b2a2-6c72-b6f0-5bb2-7325d26f33f9\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -3603,10 +3588,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": \"string\",\n  \"id\": \"00ffd610-e1ef-901b-2168-6d86bbceef6f\",\n  \"personnelNumber\": 8051,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"variableName\": \"string\",\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"id\": \"00ffd610-e1ef-901b-2168-6d86bbceef6f\",\n  \"personnelNumber\": 123,\n  \"variableName\": \"overtime\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -3792,10 +3776,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 249,\n  \"id\": \"d322e0d4-35cc-b744-386e-65993363913e\",\n  \"transactionId\": \"string\",\n  \"personnelNumber\": null,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": 1560,\n  \"variableName\": \"string\",\n  \"valueDecimal\": \"string\",\n  \"valueInt\": 1210,\n  \"valueBool\": true,\n  \"valueString\": \"string\",\n  \"bemerkung\": \"string\"\n}",
+                      "raw": "{\n  \"id\": \"d322e0d4-35cc-b744-386e-65993363913e\",\n  \"personnelNumber\": 123,\n  \"variableName\": \"overtime\",\n  \"valueDecimal\": 3.24\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -3981,10 +3964,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 340,\n  \"clientNumber\": 318,\n  \"clientId\": 1138,\n  \"clientGroupId\": null,\n  \"personnelNumber\": \"string\",\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": 6747,\n  \"date\": \"2005-08-25T20:40:49.548Z\",\n  \"duration\": \"string\",\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"date\": \"2026-03-01T00:00:00.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -4218,10 +4200,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 1478,\n  \"clientNumber\": \"string\",\n  \"clientId\": 6015,\n  \"clientGroupId\": 6711,\n  \"personnelNumber\": \"string\",\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"transactionId\": \"string\",\n  \"absencePeriodBegin\": \"1958-09-11T18:53:33.018Z\",\n  \"absencePeriodEnd\": \"1964-11-21T06:22:11.647Z\",\n  \"absenceKeyLohnbits\": \"string\",\n  \"absenceKeyDatev\": \"string\",\n  \"absenceKeyTimeTracking\": \"string\",\n  \"substitutePersonnelNumber\": \"string\",\n  \"substituteCompanyPersonnelNumber\": \"string\",\n  \"substituteTimeTrackingPersonnelNumber\": \"string\",\n  \"substituteEmployeeId\": null,\n  \"isFirstDayAfternoonOnly\": true,\n  \"isLastDayMorningOnly\": false,\n  \"preventRecalc\": false,\n  \"remark\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"absencePeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"absencePeriodEnd\": \"2026-03-05T00:00:00.000Z\",\n  \"absenceKeyLohnbits\": \"U\",\n  \"isFirstDayAfternoonOnly\": true,\n  \"isLastDayMorningOnly\": false,\n  \"preventRecalc\": false,\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -4407,10 +4388,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 6600,\n  \"clientNumber\": null,\n  \"clientId\": \"string\",\n  \"clientGroupId\": null,\n  \"personnelNumber\": \"string\",\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"transactionId\": \"string\",\n  \"recalcPeriodBegin\": \"1992-08-01T19:27:28.074Z\",\n  \"recalcPeriodEnd\": \"1989-11-08T10:55:22.229Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"recalcPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"recalcPeriodEnd\": \"2026-06-01T00:00:00.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -4596,10 +4576,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 3761,\n  \"clientNumber\": \"string\",\n  \"clientId\": \"string\",\n  \"clientGroupId\": 1493,\n  \"personnelNumber\": 2606,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"transactionId\": \"string\",\n  \"requestPeriodBegin\": \"1978-01-13T02:12:19.356Z\",\n  \"requestPeriodEnd\": \"1956-11-06T06:09:53.679Z\",\n  \"modifiedAfter\": \"1949-11-19T00:54:51.428Z\",\n  \"modifiedBefore\": \"1974-04-12T12:21:27.398Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"requestPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"requestPeriodEnd\": \"2026-06-01T00:00:00.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -4785,10 +4764,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": \"string\",\n  \"clientNumber\": null,\n  \"clientId\": \"string\",\n  \"clientGroupId\": null,\n  \"personnelNumber\": 6339,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": 3667,\n  \"transactionId\": \"string\",\n  \"requestPeriodBegin\": \"2001-06-26T23:42:48.457Z\",\n  \"requestPeriodEnd\": \"2020-03-20T02:51:37.403Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"requestPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"requestPeriodEnd\": \"2026-06-01T00:00:00.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -4974,10 +4952,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": \"string\",\n  \"clientNumber\": null,\n  \"clientId\": \"string\",\n  \"clientGroupId\": null,\n  \"personnelNumber\": 6339,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": 3667,\n  \"transactionId\": \"string\",\n  \"requestPeriodBegin\": \"2001-06-26T23:42:48.457Z\",\n  \"requestPeriodEnd\": \"2020-03-20T02:51:37.403Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"requestPeriodBegin\": \"2026-01-01T00:00:00.000Z\",\n  \"requestPeriodEnd\": \"2026-12-31T23:59:59.999Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -5163,10 +5140,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 8665,\n  \"clientNumber\": 9850,\n  \"clientId\": \"string\",\n  \"clientGroupId\": null,\n  \"transactionId\": \"string\"\n}",
+                      "raw": "{\n  \"clientId\": 0\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -5351,10 +5327,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": \"string\",\n  \"clientNumber\": 9501,\n  \"clientId\": \"string\",\n  \"clientGroupId\": \"string\",\n  \"transactionId\": \"string\",\n  \"targetWorkdays\": [\n    {\n      \"personnelNumber\": 4508,\n      \"companyPersonnelNumber\": \"string\",\n      \"timeTrackingPersonnelNumber\": \"string\",\n      \"employeeId\": 6790,\n      \"date\": \"2025-07-08T20:02:41.252Z\",\n      \"targetWorkingHours\": 3431.674900762247,\n      \"holidayCompanyVacationType\": \"Morning\",\n      \"holidayCompanyVacationNameOverride\": \"string\",\n      \"remainingTimeDisplayCorrection\": \"string\",\n      \"workingTimeFrameBegin\": \"1953-10-02T23:07:14.660Z\",\n      \"workingTimeFrameEnd\": \"2017-09-07T14:42:51.804Z\",\n      \"fixedBreak1Begin\": \"1990-02-18T04:30:50.814Z\",\n      \"fixedBreak1End\": \"1997-02-02T14:40:04.675Z\",\n      \"fixedBreak2Begin\": \"1952-05-28T03:07:24.040Z\",\n      \"fixedBreak2End\": \"1956-03-26T14:52:46.505Z\",\n      \"fixedBreak3Begin\": \"2005-06-24T05:08:26.556Z\",\n      \"fixedBreak3End\": \"1953-01-21T04:28:15.587Z\",\n      \"relativeBreak1AfterHours\": \"string\",\n      \"relativeBreak1DurationHours\": \"string\",\n      \"relativeBreak2AfterHours\": 1666.5984421124492,\n      \"relativeBreak2DurationHours\": \"string\",\n      \"relativeBreak3AfterHours\": \"string\",\n      \"relativeBreak3DurationHours\": \"string\",\n      \"selectableCostCenters\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"personnelNumber\": 1110,\n      \"companyPersonnelNumber\": \"string\",\n      \"timeTrackingPersonnelNumber\": \"string\",\n      \"employeeId\": 9238,\n      \"date\": \"1990-03-06T18:33:18.572Z\",\n      \"targetWorkingHours\": 6832.529326725041,\n      \"holidayCompanyVacationType\": \"Morning\",\n      \"holidayCompanyVacationNameOverride\": \"string\",\n      \"remainingTimeDisplayCorrection\": \"string\",\n      \"workingTimeFrameBegin\": \"1976-08-11T03:32:43.604Z\",\n      \"workingTimeFrameEnd\": \"1969-12-01T03:17:58.456Z\",\n      \"fixedBreak1Begin\": \"1964-11-24T02:37:43.878Z\",\n      \"fixedBreak1End\": \"2012-08-20T06:26:22.600Z\",\n      \"fixedBreak2Begin\": \"2025-01-20T00:57:45.926Z\",\n      \"fixedBreak2End\": \"1951-05-30T15:55:23.713Z\",\n      \"fixedBreak3Begin\": \"1995-06-15T00:23:04.697Z\",\n      \"fixedBreak3End\": \"1979-03-03T15:58:57.097Z\",\n      \"relativeBreak1AfterHours\": 3800.8034371138833,\n      \"relativeBreak1DurationHours\": \"string\",\n      \"relativeBreak2AfterHours\": 2130.9835839592615,\n      \"relativeBreak2DurationHours\": 9019.237734585333,\n      \"relativeBreak3AfterHours\": 5438.298734308746,\n      \"relativeBreak3DurationHours\": 8742.30296145468,\n      \"selectableCostCenters\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+                      "raw": "{\n  \"clientNumber\": 0,\n  \"targetWorkdays\": [\n    {\n      \"personnelNumber\": 123,\n      \"date\": \"2026-03-01T00:00:00.000Z\",\n      \"targetWorkingHours\": 8,\n      \"workingTimeFrameBegin\": \"2026-03-01T09:00:00.000Z\",\n      \"workingTimeFrameEnd\": \"2026-03-01T17:00:00.000Z\"\n    },\n    {\n      \"personnelNumber\": 123,\n      \"date\": \"2026-03-02T00:00:00.000Z\",\n      \"targetWorkingHours\": 8,\n      \"workingTimeFrameBegin\": \"2026-03-02T09:00:00.000Z\",\n      \"workingTimeFrameEnd\": \"2026-03-02T17:00:00.000Z\"\n    },\n    {\n      \"personnelNumber\": 123,\n      \"date\": \"2026-03-03T00:00:00.000Z\",\n      \"targetWorkingHours\": 8,\n      \"workingTimeFrameBegin\": \"2026-03-03T09:00:00.000Z\",\n      \"workingTimeFrameEnd\": \"2026-03-03T17:00:00.000Z\"\n    }\n  ]\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -5540,10 +5515,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 6873,\n  \"clientNumber\": \"string\",\n  \"clientId\": null,\n  \"clientGroupId\": null,\n  \"personnelNumber\": \"string\",\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"transactionId\": \"string\",\n  \"requestPeriodBegin\": \"1993-03-01T02:13:29.215Z\",\n  \"requestPeriodEnd\": \"2020-11-16T14:10:52.232Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"requestPeriodBegin\": \"2026-03-01T17:00:00.000Z\",\n  \"requestPeriodEnd\": \"2026-03-31T17:00:00.000Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -5729,10 +5703,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": \"string\",\n  \"clientNumber\": null,\n  \"clientId\": \"string\",\n  \"clientGroupId\": 3069,\n  \"transactionId\": \"string\",\n  \"actualWorkdays\": [\n    {\n      \"personnelNumber\": 4035,\n      \"companyPersonnelNumber\": \"string\",\n      \"timeTrackingPersonnelNumber\": \"string\",\n      \"employeeId\": null,\n      \"date\": \"1956-05-31T04:04:49.558Z\",\n      \"actualWorkingHours\": \"string\",\n      \"actualBreakHours\": 1552.0001549116746,\n      \"payrollExportHours\": 315.36607637008495,\n      \"payrollExportDays\": \"string\",\n      \"firstClockIn\": \"1951-12-21T13:42:36.672Z\",\n      \"lastClockOut\": \"1988-09-20T14:09:00.557Z\",\n      \"overtimeAccountBalance\": 6873.458566680824,\n      \"account01Value\": 414.35164454619036,\n      \"account02Value\": 5072.941827825616,\n      \"account03Value\": 1659.911981825374,\n      \"account04Value\": \"string\",\n      \"account05Value\": 7232.960657203043,\n      \"account06Value\": 6550.721413337111,\n      \"account07Value\": 1393.130341333939,\n      \"account08Value\": 7058.598781072098,\n      \"account09Value\": \"string\",\n      \"account10Value\": \"string\",\n      \"account11Value\": 7228.322994966302,\n      \"account12Value\": 6788.869914482014,\n      \"account13Value\": 1710.4386738396092,\n      \"account14Value\": \"string\",\n      \"account15Value\": \"string\",\n      \"account16Value\": \"string\",\n      \"account17Value\": \"string\",\n      \"account18Value\": 374.92135785659906,\n      \"account19Value\": 1278.0760626313536,\n      \"account20Value\": 1493.2598329230252,\n      \"remark\": \"string\"\n    },\n    {\n      \"personnelNumber\": 6805,\n      \"companyPersonnelNumber\": \"string\",\n      \"timeTrackingPersonnelNumber\": \"string\",\n      \"employeeId\": \"string\",\n      \"date\": \"1954-05-16T22:47:40.571Z\",\n      \"actualWorkingHours\": \"string\",\n      \"actualBreakHours\": 3046.5114087259326,\n      \"payrollExportHours\": \"string\",\n      \"payrollExportDays\": 1044.2270024157797,\n      \"firstClockIn\": \"1954-09-15T06:18:43.380Z\",\n      \"lastClockOut\": \"1998-02-23T09:48:40.766Z\",\n      \"overtimeAccountBalance\": \"string\",\n      \"account01Value\": \"string\",\n      \"account02Value\": \"string\",\n      \"account03Value\": 4627.051325099094,\n      \"account04Value\": \"string\",\n      \"account05Value\": \"string\",\n      \"account06Value\": 2913.2185966629954,\n      \"account07Value\": 5773.229634649183,\n      \"account08Value\": \"string\",\n      \"account09Value\": \"string\",\n      \"account10Value\": 4582.573886533524,\n      \"account11Value\": \"string\",\n      \"account12Value\": \"string\",\n      \"account13Value\": 6748.672411455452,\n      \"account14Value\": 3252.793056095997,\n      \"account15Value\": 4502.1151656002985,\n      \"account16Value\": 5616.517174844034,\n      \"account17Value\": \"string\",\n      \"account18Value\": \"string\",\n      \"account19Value\": \"string\",\n      \"account20Value\": 8710.091922199008,\n      \"remark\": \"string\"\n    }\n  ]\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"actualWorkdays\": [\n    {\n      \"personnelNumber\": 123,\n      \"date\": \"2026-03-01T00:00:00.000Z\",\n      \"actualWorkingHours\": 8.25,\n      \"actualBreakHours\": 0.5,\n      \"firstClockIn\": \"2026-03-02T08:30:00.000Z\",\n      \"lastClockOut\": \"2026-03-02T17:15:00.000Z\"\n    },\n    {\n      \"personnelNumber\": 123,\n      \"date\": \"2026-03-03T00:00:00.000Z\",\n      \"actualWorkingHours\": 8.00,\n      \"actualBreakHours\": 0.5,\n      \"firstClockIn\": \"2026-03-02T08:25:00.000Z\",\n      \"lastClockOut\": \"2026-03-02T17:15:00.000Z\"\n    },\n    {\n      \"personnelNumber\": 123,\n      \"date\": \"2026-03-03T00:00:00.000Z\",\n      \"actualWorkingHours\": 7.75,\n      \"actualBreakHours\": 0.5,\n      \"firstClockIn\": \"2026-03-02T09:00:00.000Z\",\n      \"lastClockOut\": \"2026-03-02T17:15:00.000Z\"\n    }\n  ]\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
@@ -5918,10 +5891,9 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"lohnbitsSyncApiLogLfdNr\": 8894,\n  \"clientNumber\": 6122,\n  \"clientId\": \"string\",\n  \"clientGroupId\": 5886,\n  \"personnelNumber\": 9968,\n  \"companyPersonnelNumber\": \"string\",\n  \"timeTrackingPersonnelNumber\": \"string\",\n  \"employeeId\": \"string\",\n  \"transactionId\": \"string\",\n  \"requestPeriodBegin\": \"1970-02-05T07:55:07.521Z\",\n  \"requestPeriodEnd\": \"1951-01-12T01:11:10.212Z\"\n}",
+                      "raw": "{\n  \"clientId\": 0,\n  \"personnelNumber\": 123,\n  \"requestPeriodBegin\": \"2026-03-01T00:00:00.000Z\",\n  \"requestPeriodEnd\": \"2026-03-31T23:59:59.999Z\"\n}",
                       "options": {
                         "raw": {
-                          "headerFamily": "json",
                           "language": "json"
                         }
                       }
